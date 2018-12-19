@@ -15,7 +15,7 @@ Amplify.configure({
         userPoolWebClientId: config.cognito.APP_CLIENT_ID
       },
       API: {
-        endpoints: [
+        endpoints: [ 
           {
             name: "zansi",
             endpoint: config.apiGateway.URL,
@@ -25,7 +25,7 @@ Amplify.configure({
       }
     });
     
-});
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

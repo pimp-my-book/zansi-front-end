@@ -1,5 +1,5 @@
 const dev = {
-    apiGateWay:{
+    apiGateway:{
         REGION: process.env.REACT_APP_REGION,
         URL: process.env.REACT_APP_API_ENDPOINT_DEV
 
@@ -11,10 +11,10 @@ const dev = {
         IDENTITY_POOL_ID: process.env.REACT_APP_IdentityPoolId_Dev,
 
     }
-}
+};
 
 const prod = {
-    apiGateWay:{
+    apiGateway:{
         REGION: process.env.REACT_APP_REGION,
         URL: process.env.REACT_APP_API_ENDPOINT_PROD
     },
@@ -23,8 +23,8 @@ const prod = {
         USER_POOL_ID: process.env.REACT_APP_UserPoolID_PROD,
         APP_CLIENT_ID: process.env.REACT_APP_UserPoolClientID_PROD,
         IDENTITY_POOL_ID: process.env.REACT_APP_IdentityPoolId_PROD,
-
-}
+    }
+};
 
 const config = process.env.REACT_APP_STAGE === 'prod'
    ? prod
