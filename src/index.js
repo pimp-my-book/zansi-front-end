@@ -31,9 +31,11 @@ Amplify.configure({
 	}
 });
     
+const stage = process.env.REACT_APP_STAGE === 'prod';
+
 
 const httpLink = createHttpLink({
-	uri: "http://localhost:3000/graphql"
+	uri: stage ? process.env.REACT_APP_API_ENDPOINT_DEV : "http://localhost:3000/graphql"
 });
 
 const client = new ApolloClient({
