@@ -34,7 +34,8 @@ class App extends Component {
 		return (
 			<div className="App">
 				<header className="App-header">
-					<Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
+        <div className="App-logo"><span role="img"   aria-label="book emoji">📚</span></div>
+					<Title>Hello! Welcome to Zansi!</Title>
            <Query
            query={query.HELLO_QUERY}
            >
