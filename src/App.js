@@ -29,11 +29,12 @@ class App extends Component {
 
 
 
+
+
 		return (
 			<div className="App">
 				<header className="App-header">
 					<Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
-				  
            <Query
            query={query.HELLO_QUERY}
            >

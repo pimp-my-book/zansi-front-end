@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import Amplify from "aws-amplify";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -9,9 +8,23 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import {createGlobalStyle} from 'styled-components';
 import "bootstrap/dist/css/bootstrap.min.css";
 
+/*  A few things to note:
 
+The react app is hosted on Netlify.
+
+The graphQL API is hosted on AWS via Lambda.
+
+Zansi's styleguide is implemented with the use of Bootstrap4 and Styled-Components
+
+
+
+*/
+
+
+//Connect to Amplify
 Amplify.configure({
 	Auth: {
 		mandatorySignIn: true,
@@ -30,10 +43,15 @@ Amplify.configure({
 		]
 	}
 });
-    
+	
+
+//Identyifying the different enviromental stages
 const stage = process.env.REACT_APP_STAGE === 'prod';
 
 
+
+
+//Connecting the GraphQL API to REACT-APOLLO
 const httpLink = createHttpLink({
 	uri: stage ? process.env.REACT_APP_API_ENDPOINT_DEV : "http://localhost:3000/graphql"
 });
@@ -45,8 +63,23 @@ const client = new ApolloClient({
 
 
 
+//Global APP styles
+
+const GlobalStyle = createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+   body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  }
+`;
+
 ReactDOM.render(
 	<ApolloProvider client={client}>
+	<GlobalStyle />
 		<App />
 	</ApolloProvider>, 
 
