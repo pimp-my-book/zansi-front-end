@@ -33,19 +33,19 @@ class App extends Component {
 			<div className="App">
 				<header className="App-header">
 					<Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
-				  <Button>Testing Bootstrap</Button>
+				  
            <Query
            query={query.HELLO_QUERY}
            >
            {({data, error, loading}) => {
              if (loading) return <p>Loading</p>;
-             if (error) return <p>error</p>;
+             if (error) return <p>Our API is on a bender ATM, chechk back soon once it is ready.<span role="img" aria-label="Woman Construction Worker emoji">👷‍♀️</span></p>;
              return (
                <p>{data.hello}</p>
              )
            }}
            </Query>
-          <NewButton>Testing styled components with Bootstrap</NewButton>
+          
         </header>
 			</div>
 		);
