@@ -67,6 +67,7 @@ const client = new ApolloClient({
 
 const GlobalStyle = createGlobalStyle`
 
+
 :root {
 	--rose-pink: #ff6bd6;
 	--linen: #fbe8e7;
@@ -82,13 +83,16 @@ const GlobalStyle = createGlobalStyle`
  
  
 
+
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-   html {
+   body {
+
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
 
 	/* Disable auto-enlargement of small text in Safari */
 	text-size-adjust: 100%;
@@ -103,6 +107,9 @@ const GlobalStyle = createGlobalStyle`
  
 
 
+
+
+  }
 
 `;
 
