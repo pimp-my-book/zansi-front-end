@@ -5,14 +5,15 @@ import { Button } from "react-bootstrap";
 
 const PrimaryButtonStyles = styled(Button)`
 &&&{
-padding: 10px;
-color: pink;
-background-color: red;
+
+color: var(--linen);
+background-color: var(--rose-pink);
 border: none;
 
 :hover {
- background-color: pink;
-}
+ background-color: var(--linen);
+ color: var(--rasin-black);
+   }
 }
 `;
 

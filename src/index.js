@@ -67,14 +67,43 @@ const client = new ApolloClient({
 
 const GlobalStyle = createGlobalStyle`
 
+:root {
+	--rose-pink: #ff6bd6;
+	--linen: #fbe8e7;
+	--space-cadet: #1b335f;
+	--folly: #2b2024;
+	--rasin-black: #fd0054; 
+
+	--wageningen-green: #3BC14A;
+	--medium-sky-blue: #64E9EE;
+	--maize: #feef6d;
+	--papaya-whip: #ffecd3;
+}
+ 
+ 
+
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-   body {
+   html {
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	/* Disable auto-enlargement of small text in Safari */
+	text-size-adjust: 100%;
+  
+	/* Enable kerning and optional ligatures */
+	text-rendering: optimizeLegibility;
   }
+
+  h1,h2,h3,h4,h5{
+	  font-family: inherit;
+  }
+ 
+
+
+
 `;
 
 ReactDOM.render(

@@ -16,7 +16,6 @@ class App extends Component {
   `;
 
 
-
 		return (
 			<div className="App">
 				<header className="App-header">
@@ -33,10 +32,7 @@ class App extends Component {
 							);
 						}}
 					</Query>
-          <PrimaryButton
-          text='Hello'
-          disabled
-          />
+          
 				</header>
 			</div>
 		);
