@@ -32,7 +32,9 @@ class App extends Component {
 							);
 						}}
 					</Query>
-          
+             <PrimaryButton
+			 text="hello"
+			 />
 				</header>
 			</div>
 		);
