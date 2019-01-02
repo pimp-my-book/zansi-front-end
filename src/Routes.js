@@ -4,9 +4,11 @@ import Home from "./containers/Home";
 import NotFound from "./containers/NotFound";
 
 export default () => 
-	<Router >
+<div>
+	<Switch>
 		<Route exact path="/" component={Home}/>
 		<Route component={NotFound}/>
-	</Router>;
+	</Switch>
+</div>;
 
 
