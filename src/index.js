@@ -9,6 +9,7 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import {createGlobalStyle} from 'styled-components';
+import {BrowserRouter as Router} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 /*  A few things to note:
@@ -114,10 +115,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
+	<Router>
 	<ApolloProvider client={client}>
 	<GlobalStyle />
 		<App />
-	</ApolloProvider>, 
+	</ApolloProvider>
+	</Router>, 
 
 	document.getElementById("root"));
 
