@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
+import * as Icon from "react-feather";
 
 
 const PrimaryButtonStyles = styled(Button)`
@@ -32,20 +33,20 @@ font-size: 20px;
 
 
 const PrimaryButton = ({
-    onClick,
-    text,
-    disabled 
+	onClick,
+	text,
+	disabled 
 }) =>{
 
-    return (
-        <PrimaryButtonStyles
-        onClick={onClick}
-        disabled={disabled}
-        >
-        {text}
-        </PrimaryButtonStyles>
-    )
+	return (
+		<PrimaryButtonStyles
+			onClick={onClick}
+			disabled={disabled}
+		>
+			{text}
+		</PrimaryButtonStyles>
+	);
 
-}
+};
 
 export default PrimaryButton;

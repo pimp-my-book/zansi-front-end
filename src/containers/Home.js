@@ -31,7 +31,7 @@ const Home = () => {
                   >
                       {({data, error, loading}) => {
                           if (loading) return <p>Loading</p>;
-                          if (error) return <p>Our API is on a bender ATM, chechk back soon once it is ready.<span role="img" aria-label="Woman Construction Worker emoji">👷‍♀️</span></p>;
+                          if (error) return <p>Our API is on a bender ATM, check back soon once it is ready.<span role="img" aria-label="Woman Construction Worker emoji">👷‍♀️</span></p>;
                           return (
                               <p>{data.hello}</p>
                           );
