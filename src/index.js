@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Amplify from "aws-amplify";
+import Amplify, {Auth} from "aws-amplify";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import config from "./config";
@@ -8,7 +8,7 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import {createGlobalStyle} from 'styled-components';
+import {createGlobalStyle} from "styled-components";
 import {BrowserRouter as Router} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -47,9 +47,9 @@ Amplify.configure({
 	
 
 //Identyifying the different enviromental stages
-const stage = process.env.REACT_APP_STAGE === 'prod';
+const stage = process.env.REACT_APP_STAGE === "prod";
 
-
+//Providing the user access to the api
 
 
 //Connecting the GraphQL API to REACT-APOLLO
@@ -62,8 +62,36 @@ const client = new ApolloClient({
 	cache: new InMemoryCache()
 });
 
+/*
+Auth.currentSession()
+	.then(result => {
+		const token = result.idToken.jwtToken;
+		
+		
+	}).catch(function(e){
+		return e;
+	});
+	*/
 
 
+
+const authLink = setContext((_,{headers}) => {
+	
+
+	Auth.currentSession()
+	.then(result => {
+		const token = result.idToken.jwtToken;
+		
+		
+	}).catch(function(e){
+		return e;
+	});
+	
+	
+	return {
+		
+	}
+})
 //Global APP styles
 
 const GlobalStyle = createGlobalStyle`
@@ -116,10 +144,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
 	<Router>
-	<ApolloProvider client={client}>
-	<GlobalStyle />
-		<App />
-	</ApolloProvider>
+		<ApolloProvider client={client}>
+			<GlobalStyle />
+			<App />
+		</ApolloProvider>
 	</Router>, 
 
 	document.getElementById("root"));
