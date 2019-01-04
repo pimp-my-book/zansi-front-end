@@ -7,6 +7,7 @@ import config from "./config";
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
+import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from "apollo-cache-inmemory";
 import {createGlobalStyle} from "styled-components";
 import {BrowserRouter as Router} from "react-router-dom";
@@ -50,6 +51,18 @@ Amplify.configure({
 const stage = process.env.REACT_APP_STAGE === "prod";
 
 //Providing the user access to the api
+const authLink = setContext(async (_, {headers}) => {
+	
+	const token = await Auth.currentSession();
+	
+		return {
+			headers: {
+				...headers,
+				Authorization: token ? `Bearer ${token.idToken.jwtToken}` : null
+			  
+			}
+		}
+	});
 
 
 //Connecting the GraphQL API to REACT-APOLLO
@@ -58,8 +71,13 @@ const httpLink = createHttpLink({
 });
 
 const client = new ApolloClient({
-	link: httpLink,
-	cache: new InMemoryCache()
+	link: authLink.concat(httpLink),
+	cache: new InMemoryCache(),
+	onError: ({networkError, graphQLErrors}) => {
+		console.log('graphQLErrors', graphQLErrors)
+        console.log('networkError', networkError)
+
+	}
 });
 
 /*
@@ -75,23 +93,7 @@ Auth.currentSession()
 
 
 
-const authLink = setContext((_,{headers}) => {
-	
 
-	Auth.currentSession()
-	.then(result => {
-		const token = result.idToken.jwtToken;
-		
-		
-	}).catch(function(e){
-		return e;
-	});
-	
-	
-	return {
-		
-	}
-})
 //Global APP styles
 
 const GlobalStyle = createGlobalStyle`
