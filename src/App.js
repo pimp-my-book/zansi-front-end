@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Routes from "./Routes";
 import {Auth} from "aws-amplify";
+import {Navbar, Nav} from "react-bootstrap";
 
 
 class App extends Component {
@@ -45,20 +46,25 @@ class App extends Component {
 		return (	
 			!this.state.isAuthenticating &&	
 			    <div>	
-					<div>
+					<Navbar bg="light" expand="lg">
+						<Navbar.Brand href="#home">Zansi</Navbar.Brand>
+						 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 						{this.state.isAuthenticated
 						? <Fragment>
-						
-						<button
+						 
+						<Nav.Item
 						  onClick={this.handleLogout}
-						>Logout</button>
+						>Logout
+						</Nav.Item>
 						</Fragment>
 
 						:<Fragment> 
-						<p>Home</p>
+						 <Nav.Link>
+							 More Coming Soon
+						 </Nav.Link>
 						</Fragment>
 					}
-					</div>
+					</Navbar>
 				<Routes childProps={childProps}/>
 				</div>
 		);
