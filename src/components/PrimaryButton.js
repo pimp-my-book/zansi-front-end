@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { Button } from "react-bootstrap";
 import * as Icon from "react-feather";
 
@@ -30,20 +30,38 @@ font-size: 20px;
 }
 `;
 
+const rotate = keyframes`
+  from {
+	  transform: rotate(0deg);
+  }
+
+  to {
+	  transform: rotate(360deg);
+  }
+`;
+
+const Spinner = styled.span`
+ display: inline-block;
+ animation: ${rotate} 4s  infinite linear;
+`;
 
 
 const PrimaryButton = ({
 	onClick,
+	isLoading,
 	text,
-	disabled 
+	loadingText,
+	disabled=false,
+	...props 
 }) =>{
 
 	return (
 		<PrimaryButtonStyles
-			onClick={onClick}
-			disabled={disabled}
+			{...props}
+			disabled={disabled || isLoading}
 		>
-			{text}
+		     {isLoading && <Spinner><Icon.RotateCcw/></Spinner>}
+			{!isLoading ? text: loadingText}
 		</PrimaryButtonStyles>
 	);
 

@@ -57,7 +57,7 @@ const authLink = setContext(async (_, {headers}) => {
 		return {
 			headers: {
 				...headers,
-				Authorization: token ? `Bearer ${console.log(token)}` : null
+				Authorization: token ? `Bearer ${console.log(token.idToken.jwtToken)}` : null
 			  
 			}
 		}
@@ -79,16 +79,6 @@ const client = new ApolloClient({
 	}
 });
 
-/*
-Auth.currentSession()
-	.then(result => {
-		const token = result.idToken.jwtToken;
-		
-		
-	}).catch(function(e){
-		return e;
-	});
-	*/
 
 
 
