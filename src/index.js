@@ -54,11 +54,10 @@ const stage = process.env.REACT_APP_STAGE === "prod";
 const authLink = setContext(async (_, {headers}) => {
 	
 	const token = await Auth.currentSession();
-	
 		return {
 			headers: {
 				...headers,
-				Authorization: token ? `Bearer ${token.idToken.jwtToken}` : null
+				Authorization: token ? `Bearer ${console.log(token)}` : null
 			  
 			}
 		}
@@ -67,7 +66,7 @@ const authLink = setContext(async (_, {headers}) => {
 
 //Connecting the GraphQL API to REACT-APOLLO
 const httpLink = createHttpLink({
-	uri: stage ? process.env.REACT_APP_API_ENDPOINT_DEV : "http://localhost:3000/graphql"
+	uri:  process.env.REACT_APP_API_ENDPOINT_DEV
 });
 
 const client = new ApolloClient({
