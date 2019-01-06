@@ -4,7 +4,8 @@ import {Auth} from "aws-amplify";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
 import DisplayXlarge from "./components/DisplayXlarge";
-
+import DisplayMedium from "./components/DisplayMedium";
+ import NavToggler from "./components/NavToggler";
 class App extends Component {
 	constructor(props){
 		super(props);
@@ -51,13 +52,14 @@ class App extends Component {
 					<Navigation>
 					
 						<Navbar.Brand href="#home"><DisplayXlarge normal>Zansi</DisplayXlarge></Navbar.Brand>
-						
-						 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+			
+						 <NavToggler>Menu</NavToggler>
 						 <Navbar.Collapse >
+						<Nav className="ml-auto">
 						 {this.state.isAuthenticated
 						? <Fragment>
 						 
-						<Nav.Item
+						<Nav.Item className="mt-4"
 						  onClick={this.handleLogout}
 						>Logout
 						</Nav.Item>
@@ -66,13 +68,14 @@ class App extends Component {
 
 						: 
 						<Fragment> 
-						 <Nav.Link>
-							 More Coming Soon
-						 </Nav.Link>
+						 <Nav.Item className="mt-4">
+							<DisplayMedium normal> More Coming Soon</DisplayMedium>
+						 </Nav.Item>
 						</Fragment>
 						
 						
 					}
+					</Nav>
 					</Navbar.Collapse >
 					</Navigation>  
 					
