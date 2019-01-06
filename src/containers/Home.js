@@ -2,14 +2,17 @@ import React from "react";
 import { Query } from "react-apollo";
 import * as query from "../graphql/Queries";
 import styled from "styled-components";
+import Pic from "../undraw_logistics_x4dc.svg";
+import {Image, Row, Col, Container} from "react-bootstrap";
+import DisplayLarge from "../components/DisplayLarge";
+import DisplayMedium from "../components/DisplayMedium";
 
 const Home = () => {
 
     const Title = styled.h1`
     text-align:center;
-    color: pink;
-    
-   `;
+    color: var(--bubblegum);
+    `;
 
    const Header = styled.header`
    background-color: #fbe8e7;
@@ -23,9 +26,39 @@ const Home = () => {
    `
  
 	return (
+        <Container>
 		<Header>
+            <Container>
+                <Row>
+                   <Col>
+                     <DisplayLarge normal>Get Your Textbooks Faster</DisplayLarge>
+                     <DisplayMedium>Zansi is a new Pimp My Book Service.</DisplayMedium>
+                    </Col>
+                    <Col  className="d-none d-lg-block" 
+                    style={{marginLeft:"450px"}}>
+                    <Image 
+                    width={800}
+                    
+                    src={Pic}/>
+                    </Col>
+                </Row>
+            </Container>
 			
-            <Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
+           
+        </Header>
+
+
+        
+        </Container>
+    )
+        
+        ;
+};
+
+export default Home;
+
+/*
+ <Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
 				  
                   <Query
                       query={query.HELLO_QUERY}
@@ -38,11 +71,4 @@ const Home = () => {
                           );
                       }}
                   </Query>
-        </Header>
-        
-    )
-        
-        ;
-};
-
-export default Home;
+*/
