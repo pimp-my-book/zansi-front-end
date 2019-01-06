@@ -4,7 +4,8 @@ import styled from "styled-components";
   font-size: 55px;
   line-height: 100%;
   font-weight: 500;
-  color: ${props => props.normal ? "var(--bubblegum)" : "var(--linen)"}
+  color: #ffc4d0;
+  font-family: 'Paytone One', sans-serif;
 `;
 
 export default DisplayXlarge;
