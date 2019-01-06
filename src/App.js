@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation";
 
 import DisplayXlarge from "./components/typography/DisplayXlarge";
 import DisplaySmall from "./components/typography/DisplaySmall";
-
+import Footer from "./components/Footer";
 
  import NavToggler from "./components/NavToggler";
 class App extends Component {
@@ -95,6 +95,7 @@ class App extends Component {
 					
 					
 				<Routes childProps={childProps}/>
+				<Footer/>
 				</div>
 		);
 	}
