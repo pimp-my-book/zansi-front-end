@@ -78,7 +78,7 @@ class App extends Component {
 							<DisplaySmall normal>How It Works</DisplaySmall>
 						 </Nav.Item>
 						 <Nav.Item className="mt-4 mr-4">
-							<DisplaySmall normal>Temporay Service</DisplaySmall>
+							<DisplaySmall normal>Temporary Service</DisplaySmall>
 						 </Nav.Item>
 						 <Nav.Item className="mt-4 mr-4">
 							<DisplaySmall normal>FAQ</DisplaySmall>
