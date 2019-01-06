@@ -99,6 +99,8 @@ const GlobalStyle = createGlobalStyle`
 	--medium-sky-blue: #64E9EE;
 	--maize: #feef6d;
 	--papaya-whip: #ffecd3;
+
+	--sea-shell: #fcf5ee;
 }
  
  
