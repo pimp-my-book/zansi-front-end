@@ -3,8 +3,11 @@ import Routes from "./Routes";
 import {Auth} from "aws-amplify";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
-import DisplayXlarge from "./components/DisplayXlarge";
-import DisplayMedium from "./components/DisplayMedium";
+
+import DisplayXlarge from "./components/typography/DisplayXlarge";
+import DisplayMedium from "./components/typography/DisplayMedium";
+
+
  import NavToggler from "./components/NavToggler";
 class App extends Component {
 	constructor(props){
@@ -68,8 +71,19 @@ class App extends Component {
 
 						: 
 						<Fragment> 
-						 <Nav.Item className="mt-4">
-							<DisplayMedium normal> More Coming Soon</DisplayMedium>
+
+						 
+						 
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplayMedium normal>How It Works</DisplayMedium>
+						 </Nav.Item>
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplayMedium normal>Temporay Service</DisplayMedium>
+						 </Nav.Item>
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplayMedium normal>FAQ</DisplayMedium>
+
+
 						 </Nav.Item>
 						</Fragment>
 						

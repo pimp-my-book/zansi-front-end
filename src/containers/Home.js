@@ -2,14 +2,20 @@ import React from "react";
 import { Query } from "react-apollo";
 import * as query from "../graphql/Queries";
 import styled from "styled-components";
+import Pic from "../undraw_logistics_x4dc.svg";
+import {Image, Row, Col, Container} from "react-bootstrap";
+import DisplayLarge from "../components/typography/DisplayLarge";
+import DisplayMedium from "../components/typography/DisplayMedium";
+import Body from "../components/Body";
+
 
 const Home = () => {
 
     const Title = styled.h1`
     text-align:center;
-    color: pink;
-    
-   `;
+    color: var(--bubblegum);
+    `;
+
 
    const Header = styled.header`
    background-color: #fbe8e7;
@@ -20,12 +26,43 @@ const Home = () => {
    justify-content: center;
    font-size: calc(10px + 2vmin);
    color: white;
-   `
+   `;
+
+   const headerURL = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_book_lover_mkck.svg";
  
 	return (
+        <Container>
 		<Header>
+            <Container>
+                <Row>
+                   <Col classname="">
+                     <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
+                     <DisplayMedium>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplayMedium>
+                    </Col>
+                    <Col  className=" d-none d-lg-block">
+                    <Image
+                    src={headerURL}
+                    fluid
+                    />
+                    </Col>
+                </Row>
+            </Container>
 			
-            <Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
+           
+        </Header>
+
+      <Body/>
+
+        </Container>
+    )
+        
+        ;
+};
+
+export default Home;
+
+/*
+ <Title>Hello! Welcome to Zansi! <span role="img" aria-label="book emoji">📚</span></Title>
 				  
                   <Query
                       query={query.HELLO_QUERY}
@@ -38,11 +75,4 @@ const Home = () => {
                           );
                       }}
                   </Query>
-        </Header>
-        
-    )
-        
-        ;
-};
-
-export default Home;
+*/
