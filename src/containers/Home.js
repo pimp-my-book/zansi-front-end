@@ -16,6 +16,7 @@ const Home = () => {
     color: var(--bubblegum);
     `;
 
+
    const Header = styled.header`
    background-color: #fbe8e7;
    min-height:100vh;

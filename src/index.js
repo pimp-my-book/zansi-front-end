@@ -107,6 +107,7 @@ const GlobalStyle = createGlobalStyle`
 	--bubblegum: #ffc4d0;
 	--pale-pink:#f7ddde;
 
+
 	body {
 
 		margin: 0;
