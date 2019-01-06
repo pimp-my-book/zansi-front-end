@@ -8,6 +8,7 @@ const Home = () => {
     const Title = styled.h1`
     text-align:center;
     color: pink;
+    
    `;
 
    const Header = styled.header`
