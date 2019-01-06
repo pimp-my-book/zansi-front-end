@@ -3,6 +3,7 @@ import Routes from "./Routes";
 import {Auth} from "aws-amplify";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
+import DisplayXlarge from "./components/DisplayXlarge";
 
 class App extends Component {
 	constructor(props){
@@ -49,7 +50,7 @@ class App extends Component {
 					
 					<Navigation>
 					
-						<Navbar.Brand href="#home">Zansi</Navbar.Brand>
+						<Navbar.Brand href="#home"><DisplayXlarge normal>Zansi</DisplayXlarge></Navbar.Brand>
 						
 						 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 						 <Navbar.Collapse >
