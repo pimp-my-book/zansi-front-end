@@ -89,6 +89,8 @@ const GlobalStyle = createGlobalStyle`
 
 
 :root {
+
+	@import url('https://fonts.googleapis.com/css?family=Poppins|Paytone+One');
 	--rose-pink: #ff6bd6;
 	--linen: #fbe8e7;
 	--space-cadet: #1b335f;
@@ -101,37 +103,40 @@ const GlobalStyle = createGlobalStyle`
 	--papaya-whip: #ffecd3;
 
 	--sea-shell: #fcf5ee;
+
+
+	body {
+
+		margin: 0;
+		padding: 0;
+		font-family: 'Poppins', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		background-color: #fbe8e7;
+	
+		/* Disable auto-enlargement of small text in Safari */
+		text-size-adjust: 100%;
+	  
+		/* Enable kerning and optional ligatures */
+		text-rendering: optimizeLegibility;
+	  }
+	
+	  h1,h2,h3,h4,h5{
+		  font-family: 'Paytone One', sans-serif;
+	  }
+	 
+	
 }
  
  
 
 
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-   body {
 
-	margin: 0;
-	padding: 0;
-	font-family: 'Poppins', sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-    background-color: #fbe8e7;
-
-	/* Disable auto-enlargement of small text in Safari */
-	text-size-adjust: 100%;
   
-	/* Enable kerning and optional ligatures */
-	text-rendering: optimizeLegibility;
-  }
-
-  h1,h2,h3,h4,h5{
-	  font-family: inherit;
-  }
- 
 
 
 
-
-  }
+  
 
 `;
 
