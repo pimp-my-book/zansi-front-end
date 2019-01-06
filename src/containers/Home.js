@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Pic from "../undraw_logistics_x4dc.svg";
 import {Image, Row, Col, Container} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
-import DisplayMedium from "../components/typography/DisplayMedium";
+import DisplaySmall from "../components/typography/DisplaySmall";
 import Body from "../components/Body";
 
 
@@ -37,7 +37,7 @@ const Home = () => {
                 <Row>
                    <Col classname="">
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
-                     <DisplayMedium>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplayMedium>
+                     <DisplaySmall>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
                     </Col>
                     <Col  className=" d-none d-lg-block">
                     <Image

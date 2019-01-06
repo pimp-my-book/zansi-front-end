@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container,Row, Col, Image} from "react-bootstrap";
+import DisplayMedium from "./typography/DisplayMedium";
 
 const Body = () => {
 
@@ -8,6 +9,7 @@ const Body = () => {
         <Container>
 
             <Row>
+              <DisplayMedium>The Process In A Nuttshell</DisplayMedium>
                 <Row>
                     <Col></Col>
                     <Col>

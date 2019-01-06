@@ -5,7 +5,7 @@ import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
 
 import DisplayXlarge from "./components/typography/DisplayXlarge";
-import DisplayMedium from "./components/typography/DisplayMedium";
+import DisplaySmall from "./components/typography/DisplaySmall";
 
 
  import NavToggler from "./components/NavToggler";
@@ -75,13 +75,13 @@ class App extends Component {
 						 
 						 
 						 <Nav.Item className="mt-4 mr-4">
-							<DisplayMedium normal>How It Works</DisplayMedium>
+							<DisplaySmall normal>How It Works</DisplaySmall>
 						 </Nav.Item>
 						 <Nav.Item className="mt-4 mr-4">
-							<DisplayMedium normal>Temporay Service</DisplayMedium>
+							<DisplaySmall normal>Temporay Service</DisplaySmall>
 						 </Nav.Item>
 						 <Nav.Item className="mt-4 mr-4">
-							<DisplayMedium normal>FAQ</DisplayMedium>
+							<DisplaySmall normal>FAQ</DisplaySmall>
 
 
 						 </Nav.Item>
