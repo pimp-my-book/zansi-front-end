@@ -103,7 +103,7 @@ const GlobalStyle = createGlobalStyle`
 	--papaya-whip: #ffecd3;
 
 	--sea-shell: #fcf5ee;
-
+    --white: #ffffff;
 
 	body {
 
