@@ -68,8 +68,16 @@ class App extends Component {
 
 						: 
 						<Fragment> 
-						 <Nav.Item className="mt-4">
-							<DisplayMedium normal> More Coming Soon</DisplayMedium>
+						 
+						 
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplayMedium normal>How It Works</DisplayMedium>
+						 </Nav.Item>
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplayMedium normal>Temporay Service</DisplayMedium>
+						 </Nav.Item>
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplayMedium normal>FAQ</DisplayMedium>
 						 </Nav.Item>
 						</Fragment>
 						
