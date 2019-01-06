@@ -25,23 +25,24 @@ const Home = () => {
    justify-content: center;
    font-size: calc(10px + 2vmin);
    color: white;
-   `
+   `;
+
+   const headerURL = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_book_lover_mkck.svg";
  
 	return (
         <Container>
 		<Header>
             <Container>
                 <Row>
-                   <Col>
-                     <DisplayLarge normal>Get Your Textbooks Faster</DisplayLarge>
-                     <DisplayMedium>Zansi is a new Pimp My Book Service.</DisplayMedium>
+                   <Col classname="">
+                     <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
+                     <DisplayMedium>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplayMedium>
                     </Col>
-                    <Col  className="d-none d-lg-block" 
-                    style={{marginLeft:"450px"}}>
-                    <Image 
-                    width={800}
-                    
-                    src={Pic}/>
+                    <Col  className=" d-none d-lg-block">
+                    <Image
+                    src={headerURL}
+                    fluid
+                    />
                     </Col>
                 </Row>
             </Container>

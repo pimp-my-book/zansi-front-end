@@ -11,10 +11,11 @@ const Body = () => {
                 <Row>
                     <Col></Col>
                     <Col>
+                    {/*
                     <Image
                     src={ImgURL}
                     width={200}
-                    />
+                    /> */}
                     </Col>
                 </Row>
                 <Row>
