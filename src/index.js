@@ -88,7 +88,7 @@ const client = new ApolloClient({
 const GlobalStyle = createGlobalStyle`
 
 
-:root {
+
 
 	@import url('https://fonts.googleapis.com/css?family=Poppins|Paytone+One');
 	--rose-pink: #ff6bd6;
@@ -128,7 +128,7 @@ const GlobalStyle = createGlobalStyle`
 	  }
 	 
 	
-}
+
  
  
 

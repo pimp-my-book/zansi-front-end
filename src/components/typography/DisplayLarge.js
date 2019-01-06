@@ -4,7 +4,7 @@ import styled from "styled-components";
   font-size: 35px;
   line-height: 100%;
   font-weight: 500;
-  color: ${props => props.normal ? "var(--bubblegum)" : "var(--linen)"}
+  color: #ffc4d0;
 `;
 
 export default DisplayLarge;
