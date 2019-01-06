@@ -3,8 +3,8 @@ import Routes from "./Routes";
 import {Auth} from "aws-amplify";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
-import DisplayXlarge from "./components/DisplayXlarge";
-import DisplayMedium from "./components/DisplayMedium";
+import DisplayXlarge from "./components/typography/DisplayXlarge";
+import DisplayMedium from "./components/typography/DisplayMedium";
  import NavToggler from "./components/NavToggler";
 class App extends Component {
 	constructor(props){

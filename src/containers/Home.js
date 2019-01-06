@@ -4,8 +4,10 @@ import * as query from "../graphql/Queries";
 import styled from "styled-components";
 import Pic from "../undraw_logistics_x4dc.svg";
 import {Image, Row, Col, Container} from "react-bootstrap";
-import DisplayLarge from "../components/DisplayLarge";
-import DisplayMedium from "../components/DisplayMedium";
+import DisplayLarge from "../components/typography/DisplayLarge";
+import DisplayMedium from "../components/typography/DisplayMedium";
+import Body from "../components/Body";
+
 
 const Home = () => {
 
@@ -47,8 +49,8 @@ const Home = () => {
            
         </Header>
 
+      <Body/>
 
-        
         </Container>
     )
         
