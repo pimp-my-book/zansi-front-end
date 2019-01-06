@@ -112,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
 	font-family: 'Poppins', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
+    background-color: #fbe8e7;
 
 	/* Disable auto-enlargement of small text in Safari */
 	text-size-adjust: 100%;

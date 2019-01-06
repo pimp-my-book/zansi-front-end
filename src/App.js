@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import Routes from "./Routes";
 import {Auth} from "aws-amplify";
-import {Navbar, Nav} from "react-bootstrap";
-
+import { Navbar,Nav,Container} from "react-bootstrap";
+import Navigation from "./components/Navigation";
 
 class App extends Component {
 	constructor(props){
@@ -32,7 +32,7 @@ class App extends Component {
 		}
 		catch (e){
 			if (e !== 'No Current User') {
-				alert(e);
+				console.log(e);
 			}
 		}
 
@@ -46,10 +46,14 @@ class App extends Component {
 		return (	
 			!this.state.isAuthenticating &&	
 			    <div>	
-					<Navbar bg="light" expand="lg">
+					
+					<Navigation>
+					
 						<Navbar.Brand href="#home">Zansi</Navbar.Brand>
+						
 						 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-						{this.state.isAuthenticated
+						 <Navbar.Collapse >
+						 {this.state.isAuthenticated
 						? <Fragment>
 						 
 						<Nav.Item
@@ -57,14 +61,21 @@ class App extends Component {
 						>Logout
 						</Nav.Item>
 						</Fragment>
+						
 
-						:<Fragment> 
+						: 
+						<Fragment> 
 						 <Nav.Link>
 							 More Coming Soon
 						 </Nav.Link>
 						</Fragment>
+						
+						
 					}
-					</Navbar>
+					</Navbar.Collapse >
+					</Navigation>  
+					
+					
 				<Routes childProps={childProps}/>
 				</div>
 		);

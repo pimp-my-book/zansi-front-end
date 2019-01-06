@@ -11,7 +11,7 @@ const Home = () => {
    `;
 
    const Header = styled.header`
-   background-color: #282c34;
+   background-color: #fbe8e7;
    min-height:100vh;
    display: flex;
    flex-direction: column;
