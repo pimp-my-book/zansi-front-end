@@ -47,7 +47,7 @@ font-size: 20px;
                    <Col classname="">
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
                      
-                     <DisplaySmall normal>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
+                     <DisplaySmall normal>Zansi is a new Pimp My Book Service designed help bursary students to order textbooks.</DisplaySmall>
                      <br/>
                      <LinkButton  
             href="https://docs.google.com/forms/d/e/1FAIpQLSdKL281Oic4JbxoFCi0q4E_U_X0XtJpIPhYkV_vV4vNi3wVjA/viewform?usp=sf_link">
