@@ -3,7 +3,7 @@ import {Container,Row, Col, Image} from "react-bootstrap";
 import DisplayMedium from "./typography/DisplayMedium";
 import DisplaySmall from "./typography/DisplaySmall";
 import styled from "styled-components";
-
+import Textbody from "./typography/Textbody";
 const Body = () => {
 
 	const ImgURL= "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_accept_terms_4in8.svg";
@@ -32,6 +32,7 @@ const Body = () => {
 					<DisplayMedium className="mx-auto">
                     The Process In A Nuttshell
 					</DisplayMedium>
+                    
 				</Row>
    
 			</Container>
@@ -39,6 +40,7 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Sign up!
 					</DisplaySmall> 
+                    <Textbody>All you need to do is create an account and provide us with your details.</Textbody>
 				</div>
 				<div>
 					<Image
@@ -51,6 +53,7 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Place Your Order
 					</DisplaySmall> 
+                    <Textbody>Then all you need to do is tell us exactly which books you need.</Textbody>
 				</div>
 				<div>
 					<Image
@@ -64,6 +67,8 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Get Confirmation
 					</DisplaySmall> 
+                    <Textbody>Once your order is placed, we will let you know that it has been recevied by us.</Textbody>
+
 				</div>
 				<div>
 					<Image
@@ -77,6 +82,8 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Constant Updates
 					</DisplaySmall> 
+                    <Textbody>We will also notify of the different stages your order is at.</Textbody>
+
 				</div>
 				<div>
 					<Image
@@ -90,6 +97,7 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Textbooks Delivered
 					</DisplaySmall> 
+                    <Textbody>Lastly, you will get your books delivered or you can choose to collect them.</Textbody>
 				</div>
 				<div>
 					<Image
