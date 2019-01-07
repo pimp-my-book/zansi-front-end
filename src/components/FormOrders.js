@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 
 const LinkButton = styled.a`
-color: var(--linen);
+color: white;
 background-color: #ff6bd6;
 border: 2px solid #ff6bd6;
 padding: 10px;
