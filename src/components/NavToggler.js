@@ -7,7 +7,7 @@ const NavToggler = styled(Navbar.Toggle)`
      .navbar-toggler-icon {
          background-image:none;
      }
-     color: var(--white);
+     color: #1b335f;
   }
 `;
 
