@@ -37,7 +37,7 @@ const Home = () => {
                 <Row>
                    <Col classname="">
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
-                     <DisplaySmall>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
+                     <DisplaySmall normal>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
                      <PrimaryButton
                      text="Order Now"
                      />

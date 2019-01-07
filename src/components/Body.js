@@ -21,7 +21,7 @@ const Body = () => {
 
      @media (max-width: 600px){
         grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-        margin:50px;
+        margin:20px;
      }
     `;
 
@@ -35,7 +35,7 @@ const Body = () => {
 		<div>
 			
 				
-					<DisplayMedium className="mx-auto">
+					<DisplayMedium className="mx-auto text-center">
                     The Process In A Nuttshell
 					</DisplayMedium>
                 
