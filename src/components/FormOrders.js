@@ -8,8 +8,8 @@ import styled from "styled-components";
 
 const LinkButton = styled.a`
 color: var(--linen);
-background-color: var(--rose-pink);
-border: 2px solid var(--rose-pink);
+background-color: #ff6bd6;
+border: 2px solid #ff6bd6;
 padding: 10px;
 border-radius: 8px;
 width: 156px;
