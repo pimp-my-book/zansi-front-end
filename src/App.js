@@ -3,7 +3,6 @@ import Routes from "./Routes";
 import {Auth} from "aws-amplify";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
-
 import DisplayXlarge from "./components/typography/DisplayXlarge";
 import DisplaySmall from "./components/typography/DisplaySmall";
 import Footer from "./components/Footer";
@@ -77,13 +76,14 @@ class App extends Component {
 						 <Nav.Item className="mt-4 mr-4">
 							<DisplaySmall normal>How It Works</DisplaySmall>
 						 </Nav.Item>
-						 <Nav.Item className="mt-4 mr-4">
-							<DisplaySmall normal>Temporary Service</DisplaySmall>
-						 </Nav.Item>
+						
 						 <Nav.Item className="mt-4 mr-4">
 							<DisplaySmall normal>FAQ</DisplaySmall>
 
 
+						 </Nav.Item>
+						  <Nav.Item className="mt-4 mr-4">
+							<DisplaySmall normal>Order Now</DisplaySmall>
 						 </Nav.Item>
 						</Fragment>
 						
