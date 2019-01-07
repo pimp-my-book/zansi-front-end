@@ -21,27 +21,32 @@ const Body = () => {
 
      @media (max-width: 600px){
         grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-        margin:80px;
+        margin:50px;
      }
     `;
 
+    const ResponsiveWrapper = styled.div`
+     @media (max-width:600px){
+         margin-right:20px;
+     }
+    `
+
 	return(
 		<div>
-			<Container>
-				<Row>
+			
+				
 					<DisplayMedium className="mx-auto">
                     The Process In A Nuttshell
 					</DisplayMedium>
-                    
-				</Row>
-   
-			</Container>
+                
         		<Grid>
 				<div>
 					<DisplaySmall>Sign up!
 					</DisplaySmall> 
+                    <ResponsiveWrapper>
                     <Textbody>All you need to do is create an account and provide us with your details.</Textbody>
-				</div>
+                    </ResponsiveWrapper>
+                </div>
 				<div>
 					<Image
 						src={ImgURL}
@@ -52,9 +57,12 @@ const Body = () => {
 			<Grid>
 				<div>
 					<DisplaySmall>Place Your Order
-					</DisplaySmall> 
+					</DisplaySmall>
+                    <ResponsiveWrapper> 
                     <Textbody>Then all you need to do is tell us exactly which books you need.</Textbody>
-				</div>
+                    </ResponsiveWrapper>
+
+                </div>
 				<div>
 					<Image
 						src={PlaceOrder}
@@ -67,7 +75,9 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Get Confirmation
 					</DisplaySmall> 
+                    <ResponsiveWrapper>
                     <Textbody>Once your order is placed, we will let you know that it has been recevied by us.</Textbody>
+                    </ResponsiveWrapper>
 
 				</div>
 				<div>
@@ -82,7 +92,10 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Constant Updates
 					</DisplaySmall> 
+                    <ResponsiveWrapper>
+
                     <Textbody>We will also notify of the different stages your order is at.</Textbody>
+                    </ResponsiveWrapper>
 
 				</div>
 				<div>
@@ -97,8 +110,12 @@ const Body = () => {
 				<div>
 					<DisplaySmall>Textbooks Delivered
 					</DisplaySmall> 
+                    <ResponsiveWrapper>
+
                     <Textbody>Lastly, you will get your books delivered or you can choose to collect them.</Textbody>
-				</div>
+                    </ResponsiveWrapper>
+
+                </div>
 				<div>
 					<Image
 						src={Deliver}
