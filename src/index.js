@@ -131,11 +131,16 @@ const GlobalStyle = createGlobalStyle`
 	 
 	
 
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 2b4167401dd662fcb787a4d96350217a292eb7ef
 
 html {
 	position: relative;
 	min-height: 100%;
 }
+
  
  
 

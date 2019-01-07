@@ -140,7 +140,7 @@ export default Body;
 						<DisplaySmall>Sign up!
 						</DisplaySmall> 
 					</Col>
-					<Col className="justify-content-sm-center">
+					<Col xs={6} className="justify-content-sm-center">
                     
 						<Image
 							src={ImgURL}
