@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import DisplayXlarge from "./components/typography/DisplayXlarge";
 import DisplaySmall from "./components/typography/DisplaySmall";
 import Footer from "./components/Footer";
+import styled from "styled-components";
 
  import NavToggler from "./components/NavToggler";
 class App extends Component {
@@ -48,6 +49,10 @@ class App extends Component {
 			isAuthenticated: this.state.isAuthenticated,
 			userHasAuthenticated: this.userHasAuthenticated
 		};
+		const LinkA = styled.a`
+ text-decoration: none;
+ color: white;
+`;
 		return (	
 			!this.state.isAuthenticating &&	
 			    <div>	
@@ -76,9 +81,14 @@ class App extends Component {
 						 
 						 
 						  <Nav.Item className="mt-4 mr-4">
-						  <Link to="/order">
-							<DisplaySmall normal>Order Now</DisplaySmall>
-						 </Link>
+							<DisplaySmall normal>
+							<LinkA
+							href="https://docs.google.com/forms/d/e/1FAIpQLSdKL281Oic4JbxoFCi0q4E_U_X0XtJpIPhYkV_vV4vNi3wVjA/viewform?usp=sf_link"
+							>
+							Order Now
+							</LinkA>
+							</DisplaySmall>
+							
 						 </Nav.Item>
 						</Fragment>
 						
