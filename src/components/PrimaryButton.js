@@ -7,15 +7,15 @@ import * as Icon from "react-feather";
 const PrimaryButtonStyles = styled(Button)`
 &&&{
 
-color: var(--linen);
-background-color: var(--rose-pink);
-border: none;
+color: var(--rose-pink);
+background-color: transparent;
+border: 2px solid var(--rose-pink) ;
 width: 156px;
 font-size: 20px;
 
 :hover {
- background-color: var(--linen);
- color: var(--rasin-black);
+ background-color: var(--rose-pink);
+ color: var(--linen);
    }
    border: 1px solid var(--rose-pink);
 }
@@ -52,6 +52,7 @@ const PrimaryButton = ({
 	text,
 	loadingText,
 	disabled=false,
+	href,
 	...props 
 }) =>{
 

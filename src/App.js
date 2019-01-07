@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import Routes from "./Routes";
 import {Auth} from "aws-amplify";
+import {Link} from "react-router-dom";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Navigation from "./components/Navigation";
-
 import DisplayXlarge from "./components/typography/DisplayXlarge";
 import DisplaySmall from "./components/typography/DisplaySmall";
 import Footer from "./components/Footer";
+import styled from "styled-components";
 
  import NavToggler from "./components/NavToggler";
 class App extends Component {
@@ -48,13 +49,17 @@ class App extends Component {
 			isAuthenticated: this.state.isAuthenticated,
 			userHasAuthenticated: this.userHasAuthenticated
 		};
+		const LinkA = styled.a`
+ text-decoration: none;
+ color: white;
+`;
 		return (	
 			!this.state.isAuthenticating &&	
 			    <div>	
 					
 					<Navigation>
 					
-						<Navbar.Brand href="#home"><DisplayXlarge normal>Zansi</DisplayXlarge></Navbar.Brand>
+						<Navbar.Brand href="/"><DisplayXlarge normal>Zansi</DisplayXlarge></Navbar.Brand>
 			
 						 <NavToggler>Menu</NavToggler>
 						 <Navbar.Collapse >
@@ -74,16 +79,16 @@ class App extends Component {
 
 						 
 						 
-						 <Nav.Item className="mt-4 mr-4">
-							<DisplaySmall normal>How It Works</DisplaySmall>
-						 </Nav.Item>
-						 <Nav.Item className="mt-4 mr-4">
-							<DisplaySmall normal>Temporary Service</DisplaySmall>
-						 </Nav.Item>
-						 <Nav.Item className="mt-4 mr-4">
-							<DisplaySmall normal>FAQ</DisplaySmall>
-
-
+						 
+						  <Nav.Item className="mt-4 mr-4">
+							<DisplaySmall normal>
+							<LinkA
+							href="https://docs.google.com/forms/d/e/1FAIpQLSdKL281Oic4JbxoFCi0q4E_U_X0XtJpIPhYkV_vV4vNi3wVjA/viewform?usp=sf_link"
+							>
+							Order Now
+							</LinkA>
+							</DisplaySmall>
+							
 						 </Nav.Item>
 						</Fragment>
 						

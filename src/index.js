@@ -95,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
 	--linen: #fbe8e7;
 	--space-cadet: #1b335f;
 	--folly: #2b2024;
-	--rasin-black: #fd0054; 
+	--rasin-black: #2b2024; 
 
 	--wageningen-green: #3BC14A;
 	--medium-sky-blue: #64E9EE;
@@ -110,7 +110,7 @@ const GlobalStyle = createGlobalStyle`
 
 	body {
 
-		
+		margin: 0 0 100px;
 		font-family: 'Poppins', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -126,8 +126,16 @@ const GlobalStyle = createGlobalStyle`
 	  h1,h2,h3,h4,h5{
 		  font-family: 'Paytone One', sans-serif;
 	  }
+
+	
 	 
 	
+
+
+html {
+	position: relative;
+	min-height: 100%;
+}
 
  
  

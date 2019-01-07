@@ -2,12 +2,11 @@ import React from "react";
 import { Query } from "react-apollo";
 import * as query from "../graphql/Queries";
 import styled from "styled-components";
-import Pic from "../undraw_logistics_x4dc.svg";
-import {Image, Row, Col, Container} from "react-bootstrap";
+import {Image, Row, Col, Container, Button} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplaySmall from "../components/typography/DisplaySmall";
 import Body from "../components/Body";
-
+import PrimaryButton from "../components/PrimaryButton";
 
 const Home = () => {
 
@@ -28,6 +27,16 @@ const Home = () => {
    color: white;
    `;
 
+   const LinkButton = styled.a`
+color: #ff6bd6;
+background-color: transparent;
+border: 2px solid #ff6bd6;
+padding: 10px;
+border-radius: 8px;
+width: 156px;
+font-size: 20px;
+`;
+
    const headerURL = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_book_lover_mkck.svg";
  
 	return (
@@ -37,7 +46,11 @@ const Home = () => {
                 <Row>
                    <Col classname="">
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
-                     <DisplaySmall>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
+                     <DisplaySmall normal>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
+                     <LinkButton  
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdKL281Oic4JbxoFCi0q4E_U_X0XtJpIPhYkV_vV4vNi3wVjA/viewform?usp=sf_link">
+            Order Now
+            </LinkButton>
                     </Col>
                     <Col  className=" d-none d-lg-block">
                     <Image
