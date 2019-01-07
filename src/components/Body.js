@@ -44,7 +44,7 @@ const Body = () => {
 					<DisplaySmall>Sign up!
 					</DisplaySmall> 
                     <ResponsiveWrapper>
-                    <Textbody>All you need to do is create an account and provide us with your details.</Textbody>
+                    <Textbody>Simply start by creating an account and provide us with your details.</Textbody>
                     </ResponsiveWrapper>
                 </div>
 				<div>
@@ -94,7 +94,7 @@ const Body = () => {
 					</DisplaySmall> 
                     <ResponsiveWrapper>
 
-                    <Textbody>We will also notify of the different stages your order is going through.</Textbody>
+                    <Textbody>We will also notify you of the different stages your order is going through.</Textbody>
                     </ResponsiveWrapper>
 
 				</div>

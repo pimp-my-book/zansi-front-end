@@ -51,7 +51,7 @@ class App extends Component {
 		};
 		const LinkA = styled.a`
  text-decoration: none;
- color: white;
+ color: #1b335f;
 `;
 		return (	
 			!this.state.isAuthenticating &&	

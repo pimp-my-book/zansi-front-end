@@ -11,12 +11,11 @@ left: 0;
 bottom: 0;
 height: 100px;
 width: 100%;
-
 `;
 
 const Link = styled.a`
  text-decoration: none;
- color: white;
+ color: #1b335f;
 `;
 const Footer = () => 
   <FooterStyles>
