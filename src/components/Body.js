@@ -7,95 +7,100 @@ import styled from "styled-components";
 const Body = () => {
 
 	const ImgURL= "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_accept_terms_4in8.svg";
-    const PlaceOrder = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_choose_80qg.svg";
-    const Confirmed = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_order_confirmed_1m3v.svg";
-    const Comms = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_mail_2_tqip.svg";
-    const Deliver = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_logistics_x4dc.svg";
+	const PlaceOrder = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_choose_80qg.svg";
+	const Confirmed = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_order_confirmed_1m3v.svg";
+	const Comms = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_mail_2_tqip.svg";
+	const Deliver = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_logistics_x4dc.svg";
 
-    const Grid =  styled.div`
+	const Grid =  styled.div`
      display: grid;
      grid-gap: 20px;
      grid-template-columns: repeat(2,1fr);
      margin-top: 100px;
      margin-left:250px;
-    `
 
-    return(
-        <div>
-		<Container>
-            <Row>
-                 <DisplayMedium className="mx-auto">
+     @media (max-width: 600px){
+        grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+        margin:80px;
+     }
+    `;
+
+	return(
+		<div>
+			<Container>
+				<Row>
+					<DisplayMedium className="mx-auto">
                     The Process In A Nuttshell
-                    </DisplayMedium>
-            </Row>
+					</DisplayMedium>
+				</Row>
    
-		</Container>
+			</Container>
         		<Grid>
-                    <div>
-                    <DisplaySmall>Sign up!
-						</DisplaySmall> 
-                    </div>
-                    <div>
-                    <Image
-							src={ImgURL}
-							width={200}
-						/> 
-                    </div>
-                </Grid>
-                <Grid>
-                <div>
-                <DisplaySmall>Place Your Order
-						</DisplaySmall> 
-                    </div>
-                    <div>
-                    <Image
-							src={PlaceOrder}
-							width={200}
-						/> 
-                    </div>
-                </Grid>
+				<div>
+					<DisplaySmall>Sign up!
+					</DisplaySmall> 
+				</div>
+				<div>
+					<Image
+						src={ImgURL}
+						width={200}
+					/> 
+				</div>
+			</Grid>
+			<Grid>
+				<div>
+					<DisplaySmall>Place Your Order
+					</DisplaySmall> 
+				</div>
+				<div>
+					<Image
+						src={PlaceOrder}
+						width={200}
+					/> 
+				</div>
+			</Grid>
 
-                <Grid>
-                <div>
-                <DisplaySmall>Get Confirmation
-						</DisplaySmall> 
-                    </div>
-                    <div>
-                    <Image
-							src={Confirmed}
-							width={200}
-						/> 
-                    </div>
+			<Grid>
+				<div>
+					<DisplaySmall>Get Confirmation
+					</DisplaySmall> 
+				</div>
+				<div>
+					<Image
+						src={Confirmed}
+						width={200}
+					/> 
+				</div>
                     
-                    </Grid>
-                    <Grid>
-                    <div>
-                <DisplaySmall>Constant Updates
-						</DisplaySmall> 
-                    </div>
-                    <div>
-                    <Image
-							src={Comms}
-							width={200}
-						/> 
-                    </div>
+			</Grid>
+			<Grid>
+				<div>
+					<DisplaySmall>Constant Updates
+					</DisplaySmall> 
+				</div>
+				<div>
+					<Image
+						src={Comms}
+						width={200}
+					/> 
+				</div>
 
-</Grid>
-                    <Grid>
-                    <div>
-                <DisplaySmall>Textbooks Delivered
-						</DisplaySmall> 
-                    </div>
-                    <div>
-                    <Image
-							src={Deliver}
-							width={200}
-						/> 
-                    </div>
+			</Grid>
+			<Grid>
+				<div>
+					<DisplaySmall>Textbooks Delivered
+					</DisplaySmall> 
+				</div>
+				<div>
+					<Image
+						src={Deliver}
+						width={200}
+					/> 
+				</div>
                     
-                    </Grid>
+			</Grid>
 
-                </div>
+		</div>
 
 	);
 };
