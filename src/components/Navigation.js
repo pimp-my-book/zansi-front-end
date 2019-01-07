@@ -7,6 +7,7 @@ const NavbarStyles = styled(Navbar)`
 
 &&&{
     background-color: #fbe8e7;
+    border-top: #ffc4d0 8px solid;
 }
 
 

@@ -27,6 +27,16 @@ const Home = () => {
    color: white;
    `;
 
+   const LinkButton = styled.a`
+color: var(--rose-pink);
+background-color: transparent;
+border: 2px solid var(--rose-pink);
+padding: 10px;
+border-radius: 8px;
+width: 156px;
+font-size: 20px;
+`;
+
    const headerURL = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_book_lover_mkck.svg";
  
 	return (
@@ -37,9 +47,10 @@ const Home = () => {
                    <Col classname="">
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
                      <DisplaySmall normal>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
-                     <PrimaryButton
-                     text="Order Now"
-                     />
+                     <LinkButton  
+            href="/order">
+            Order Now
+            </LinkButton>
                     </Col>
                     <Col  className=" d-none d-lg-block">
                     <Image

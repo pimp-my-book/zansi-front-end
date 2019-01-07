@@ -110,7 +110,7 @@ const GlobalStyle = createGlobalStyle`
 
 	body {
 
-		
+		margin: 0 0 100px;
 		font-family: 'Poppins', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -126,8 +126,15 @@ const GlobalStyle = createGlobalStyle`
 	  h1,h2,h3,h4,h5{
 		  font-family: 'Paytone One', sans-serif;
 	  }
+
+	
 	 
 	
+}
+
+html {
+	position: relative;
+	min-height: 100%;
 }
  
  

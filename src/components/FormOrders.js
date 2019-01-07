@@ -14,7 +14,7 @@ padding: 10px;
 border-radius: 8px;
 width: 156px;
 font-size: 20px;
-`
+`;
 
 const FormOrders = () =>
 {

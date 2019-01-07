@@ -94,7 +94,7 @@ const Body = () => {
 					</DisplaySmall> 
                     <ResponsiveWrapper>
 
-                    <Textbody>We will also notify of the different stages your order is at.</Textbody>
+                    <Textbody>We will also notify of the different stages your order is going through.</Textbody>
                     </ResponsiveWrapper>
 
 				</div>
@@ -112,7 +112,7 @@ const Body = () => {
 					</DisplaySmall> 
                     <ResponsiveWrapper>
 
-                    <Textbody>Lastly, you will get your books delivered or you can choose to collect them.</Textbody>
+                    <Textbody>Lastly, you will get your books delivered to the address of your choice.</Textbody>
                     </ResponsiveWrapper>
 
                 </div>
