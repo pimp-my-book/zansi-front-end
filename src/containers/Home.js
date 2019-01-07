@@ -3,11 +3,11 @@ import { Query } from "react-apollo";
 import * as query from "../graphql/Queries";
 import styled from "styled-components";
 import Pic from "../undraw_logistics_x4dc.svg";
-import {Image, Row, Col, Container} from "react-bootstrap";
+import {Image, Row, Col, Container, Button} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplaySmall from "../components/typography/DisplaySmall";
 import Body from "../components/Body";
-
+import PrimaryButton from "../components/PrimaryButton";
 
 const Home = () => {
 
@@ -38,6 +38,9 @@ const Home = () => {
                    <Col classname="">
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
                      <DisplaySmall>Zansi is a new Pimp My Book Service designed to get you equiped with your prescribed textbooks for your academic year.</DisplaySmall>
+                     <PrimaryButton
+                     text="Order Now"
+                     />
                     </Col>
                     <Col  className=" d-none d-lg-block">
                     <Image

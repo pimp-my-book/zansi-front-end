@@ -95,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
 	--linen: #fbe8e7;
 	--space-cadet: #1b335f;
 	--folly: #2b2024;
-	--rasin-black: #fd0054; 
+	--rasin-black: #2b2024; 
 
 	--wageningen-green: #3BC14A;
 	--medium-sky-blue: #64E9EE;

@@ -15,7 +15,7 @@ font-size: 20px;
 
 :hover {
  background-color: var(--linen);
- color: var(--rasin-black);
+ color: var(--rose-pink);
    }
    border: 1px solid var(--rose-pink);
 }
