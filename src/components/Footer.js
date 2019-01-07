@@ -6,7 +6,13 @@ import Textbody from "./typography/Textbody";
 const FooterStyles = styled.footer`
   
 margin-top: 30px;
-postion: fixed;
+position: absolute;
+left: 0;
+bottom: 0;
+height: 100px;
+width: 100%;
+overflow: hidden;
+
 `;
 
 const Link = styled.a`

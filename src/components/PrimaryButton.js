@@ -52,6 +52,7 @@ const PrimaryButton = ({
 	text,
 	loadingText,
 	disabled=false,
+	href,
 	...props 
 }) =>{
 

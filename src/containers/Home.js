@@ -2,7 +2,6 @@ import React from "react";
 import { Query } from "react-apollo";
 import * as query from "../graphql/Queries";
 import styled from "styled-components";
-import Pic from "../undraw_logistics_x4dc.svg";
 import {Image, Row, Col, Container, Button} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplaySmall from "../components/typography/DisplaySmall";
