@@ -48,16 +48,16 @@ Amplify.configure({
 	
 
 //Identyifying the different enviromental stages
-const stage = process.env.REACT_APP_STAGE === "prod";
+//const stage = process.env.REACT_APP_STAGE === "prod";
 
 //Providing the user access to the api
 const authLink = setContext(async (_, {headers}) => {
 	
-	const token = await Auth.currentSession();
+	const token = await console.log(Auth.currentSession());
 		return {
 			headers: {
 				...headers,
-				Authorization: token ? `Bearer ${console.log(token.idToken.jwtToken)}` : null
+				Authorization: token ? `Bearer ${token.idToken.jwtToken}` : null
 			  
 			}
 		}
@@ -136,19 +136,12 @@ html {
 	position: relative;
 	min-height: 100%;
 }
-
- 
- 
-
-
-
-  
-
-
-
-  
-
 `;
+
+
+
+
+
 
 ReactDOM.render(
 	<Router>

@@ -1,5 +1,4 @@
 import React from 'react';
-import PrimaryButton from "../components/PrimaryButton";
 
 export default () =>
 

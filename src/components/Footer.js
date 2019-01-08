@@ -25,7 +25,7 @@ const Footer = () =>
           <Textbody className="mx-auto mt-4"> <Link href="http://www.pimpmybook.co.za">Pimp My Book </Link>  &copy; 2019</Textbody>
           </Col>
           <Col className=" mt-4">
-          <Textbody className="mx-auto mt-4">Made with <span aria-label="heart emoji">❤️</span> in Cape Town, <span aria-label="SA-emoji">🇿🇦</span></Textbody>
+          <Textbody className="mx-auto mt-4">Made with <span role="img" aria-labelledby="heart emoji">❤️</span> in Cape Town, <span role="img" aria-label="SA-emoji">🇿🇦</span></Textbody>
           </Col>
           </Row>
       
