@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Button, Form, Col} from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import styled from "styled-components";
+import SecondaryButton from "../components/SecondaryButton";
 
 
 export default class Login extends Component {
@@ -73,6 +74,7 @@ export default class Login extends Component {
 
         return (
             <LoginDiv>
+                
                 <StyledForm onSubmit={this.handleSubmit}>
                 <Form.Group bsSize="small" controlId="email" >
                 <Form.Label>Email</Form.Label>
