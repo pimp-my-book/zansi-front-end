@@ -1,5 +1,5 @@
 import React from "react";
-import {Container,Row, Col, Image} from "react-bootstrap";
+import  {Image} from "react-bootstrap";
 import DisplayMedium from "./typography/DisplayMedium";
 import DisplaySmall from "./typography/DisplaySmall";
 import styled from "styled-components";

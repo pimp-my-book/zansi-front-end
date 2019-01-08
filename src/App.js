@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import Routes from "./Routes";
 import {Auth} from "aws-amplify";
-import {Link} from "react-router-dom";
-import { Navbar,Nav,Container} from "react-bootstrap";
+//import {Link} from "react-router-dom";
+import { Navbar,Nav} from "react-bootstrap";
 import Navigation from "./components/Navigation";
 import DisplayXlarge from "./components/typography/DisplayXlarge";
 import DisplaySmall from "./components/typography/DisplaySmall";
@@ -50,9 +50,9 @@ class App extends Component {
 			userHasAuthenticated: this.userHasAuthenticated
 		};
 		const LinkA = styled.a`
- text-decoration: none;
- color: #1b335f;
-`;
+            text-decoration: none;
+            color: #1b335f;
+                 `;
 		return (	
 			!this.state.isAuthenticating &&	
 			    <div>	

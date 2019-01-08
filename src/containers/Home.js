@@ -1,19 +1,12 @@
 import React from "react";
-import { Query } from "react-apollo";
-import * as query from "../graphql/Queries";
+
 import styled from "styled-components";
-import {Image, Row, Col, Container, Button} from "react-bootstrap";
+import {Image, Row, Col, Container} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplaySmall from "../components/typography/DisplaySmall";
 import Body from "../components/Body";
-import PrimaryButton from "../components/PrimaryButton";
 
 const Home = () => {
-
-    const Title = styled.h1`
-    text-align:center;
-    color: var(--bubblegum);
-    `;
 
 
    const Header = styled.header`

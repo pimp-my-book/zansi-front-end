@@ -48,7 +48,7 @@ Amplify.configure({
 	
 
 //Identyifying the different enviromental stages
-const stage = process.env.REACT_APP_STAGE === "prod";
+//const stage = process.env.REACT_APP_STAGE === "prod";
 
 //Providing the user access to the api
 const authLink = setContext(async (_, {headers}) => {
