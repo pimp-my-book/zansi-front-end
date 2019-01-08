@@ -11,6 +11,7 @@ import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from "apollo-cache-inmemory";
 import {createGlobalStyle} from "styled-components";
 import {BrowserRouter as Router} from "react-router-dom";
+import withAnalytics, { initAnalytics } from 'react-with-analytics';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 /*  A few things to note:
@@ -136,19 +137,12 @@ html {
 	position: relative;
 	min-height: 100%;
 }
-
- 
- 
-
-
-
-  
-
-
-
-  
-
 `;
+
+
+
+
+
 
 ReactDOM.render(
 	<Router>
