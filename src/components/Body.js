@@ -4,6 +4,8 @@ import DisplayMedium from "./typography/DisplayMedium";
 import DisplaySmall from "./typography/DisplaySmall";
 import styled from "styled-components";
 import Textbody from "./typography/Textbody";
+import Card from "./Card";
+
 const Body = () => {
 
 	const ImgURL= "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_accept_terms_4in8.svg";
@@ -113,7 +115,16 @@ const Body = () => {
 				</div>
 
 			</Grid>
-			
+			<div>
+    <Card
+	textBody="Click here for a more detailed breakdown"
+	textLink="Go Here"
+	href="/login"
+	/>
+	
+	
+		
+			</div>
 
 		</div>
 
