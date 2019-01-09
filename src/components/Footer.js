@@ -5,10 +5,9 @@ import Textbody from "./typography/Textbody";
 
 const FooterStyles = styled.footer`
   
-margin-top: 200px;
+margin-top: 20px;
 position: absolute;
 left: 0;
-bottom: 0;
 height: 100px;
 width: 100%;
 `;
