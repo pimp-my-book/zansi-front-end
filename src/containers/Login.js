@@ -104,9 +104,9 @@ export default class Login extends Component {
                 />
                 </Form.Group>
                 <Form.Group>
-                <Form.Label>
-                    Forgot Your Password?
-                </Form.Label>
+                <LinkButton sm href="/forgot-password" >
+                Forgot Your Password?
+                </LinkButton>
                 </Form.Group>
                 
           <PrimaryButton
@@ -116,7 +116,7 @@ export default class Login extends Component {
              className="mr-3"
           /> 
           
-         <LinkButton sm >Don't Have An Account?</LinkButton>
+         <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
         
           
                 </StyledForm>
