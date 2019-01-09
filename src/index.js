@@ -87,6 +87,8 @@ const client = new ApolloClient({
 
 const GlobalStyle = createGlobalStyle`
 
+@tailwind preflight;
+@tailwind utilities;
 
 :root{
 
