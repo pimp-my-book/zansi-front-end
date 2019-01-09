@@ -4,6 +4,10 @@ import DisplayMedium from "./typography/DisplayMedium";
 import DisplaySmall from "./typography/DisplaySmall";
 import styled from "styled-components";
 import Textbody from "./typography/Textbody";
+import Card from "./Card";
+import {Container, Col, Row} from "react-bootstrap";
+
+
 const Body = () => {
 
 	const ImgURL= "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_accept_terms_4in8.svg";
@@ -11,6 +15,10 @@ const Body = () => {
 	const Confirmed = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_order_confirmed_1m3v.svg";
 	const Comms = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_mail_2_tqip.svg";
 	const Deliver = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_logistics_x4dc.svg";
+	const Forgot = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_forgot_password_gi2d.svg";
+	const Empty = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_empty_xct9.svg";
+
+
 
 	const Grid =  styled.div`
      display: grid;
@@ -24,6 +32,15 @@ const Body = () => {
         margin:20px;
      }
     `;
+
+
+	const CardGrid = styled.div`
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	margin-top: 10px;
+	
+	`;
 
     const ResponsiveWrapper = styled.div`
      @media (max-width:600px){
@@ -41,27 +58,11 @@ const Body = () => {
                 
         		<Grid>
 				<div>
-					<DisplaySmall>Sign up!
+					<DisplaySmall main>Placing Orders
 					</DisplaySmall> 
                     <ResponsiveWrapper>
-                    <Textbody>Simply start by creating an account and provide us with your details.</Textbody>
+                    <Textbody>Click the "Order Now" button to be redirected to the Google Form and complete it.</Textbody>
                     </ResponsiveWrapper>
-                </div>
-				<div>
-					<Image
-						src={ImgURL}
-						width={200}
-					/> 
-				</div>
-			</Grid>
-			<Grid>
-				<div>
-					<DisplaySmall>Place Your Order
-					</DisplaySmall>
-                    <ResponsiveWrapper> 
-                    <Textbody>Then all you need to do is tell us exactly which books you need.</Textbody>
-                    </ResponsiveWrapper>
-
                 </div>
 				<div>
 					<Image
@@ -70,52 +71,32 @@ const Body = () => {
 					/> 
 				</div>
 			</Grid>
-
 			<Grid>
 				<div>
-					<DisplaySmall>Get Confirmation
-					</DisplaySmall> 
-                    <ResponsiveWrapper>
-                    <Textbody>Once your order is placed, we will let you know that it has been recevied by us.</Textbody>
+					<DisplaySmall main>Status Updates
+					</DisplaySmall>
+                    <ResponsiveWrapper> 
+                    <Textbody>You will recieve status updates, which will be communicated to you via the email address you provided.</Textbody>
                     </ResponsiveWrapper>
 
-				</div>
+                </div>
 				<div>
 					<Image
 						src={Confirmed}
 						width={200}
 					/> 
 				</div>
-                    
 			</Grid>
+
 			<Grid>
 				<div>
-					<DisplaySmall>Constant Updates
+					<DisplaySmall main>Collections and Deliveries
 					</DisplaySmall> 
                     <ResponsiveWrapper>
-
-                    <Textbody>We will also notify you of the different stages your order is going through.</Textbody>
+                    <Textbody>We will let you know about the delivery/collection process applicable for your orders.</Textbody>
                     </ResponsiveWrapper>
 
 				</div>
-				<div>
-					<Image
-						src={Comms}
-						width={200}
-					/> 
-				</div>
-
-			</Grid>
-			<Grid>
-				<div>
-					<DisplaySmall>Textbooks Delivered
-					</DisplaySmall> 
-                    <ResponsiveWrapper>
-
-                    <Textbody>Lastly, you will get your books delivered to the address of your choice.</Textbody>
-                    </ResponsiveWrapper>
-
-                </div>
 				<div>
 					<Image
 						src={Deliver}
@@ -124,6 +105,39 @@ const Body = () => {
 				</div>
                     
 			</Grid>
+			<Grid>
+				<div>
+					<DisplaySmall main>Returns and Exchanges
+					</DisplaySmall> 
+                    <ResponsiveWrapper>
+
+                    <Textbody>If there are any issues we will gladly give you a refund or exchange a book. Just email us at moshal@pimpmybook.co.za!</Textbody>
+                    </ResponsiveWrapper>
+
+				</div>
+				<div>
+					<Image
+						src={Empty}
+						width={200}
+					/> 
+				</div>
+
+			</Grid>
+
+		<CardGrid>
+					<Card
+	                    textBody="This is just a break down, please click below for a detailed overview."
+	               textLink="More Details"
+	              href="/how-it-works"
+	                      />
+				</CardGrid>
+			
+			
+    
+	
+	
+		
+			
 
 		</div>
 
@@ -131,90 +145,3 @@ const Body = () => {
 };
 
 export default Body;
-
-/*
-
-			<Row >
-
-					<Col lg="4" sm="2">
-						<DisplaySmall>Sign up!
-						</DisplaySmall> 
-					</Col>
-					<Col xs={6} className="justify-content-sm-center">
-                    
-						<Image
-							src={ImgURL}
-							width={200}
-						/> 
-					</Col>
-				
-				
-				
-                    </Row>
-                   
-                    <Row >
-
-					<Col>
-                    <Image
-							src={PlaceOrder}
-							width={200}
-						/> 
-						
-					</Col>
-					<Col>
-                    <DisplaySmall>Place Your Order
-						</DisplaySmall> 
-						
-					</Col>
-				
-				
-				
-                    </Row>
-
-
-
-                    <Row>
-                        <Col>
-                        <DisplaySmall>Get Confirmation
-						</DisplaySmall> 
-                        
-                        </Col>
-                        <Col>
-                        <Image
-							src={Confirmed}
-							width={200}
-						/> 
-                        </Col>
-                    </Row>
-
-                      <Row>
-                        <Col>
-                        <Image
-							src={Comms}
-							width={200}
-						/> 
-                        
-                        </Col>
-                        <Col>
-                        
-
-                        <DisplaySmall>Constant Updates
-						</DisplaySmall> 
-                        </Col>
-                    </Row>
-
-                       <Row>
-                        <Col>
-                        <DisplaySmall>Textbooks Delivered
-						</DisplaySmall> 
-                        
-                        </Col>
-                        <Col>
-                        <Image
-							src={Deliver}
-							width={200}
-						/> 
-                        </Col>
-                    </Row>
-
-*/

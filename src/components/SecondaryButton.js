@@ -4,11 +4,11 @@ import { Button } from "react-bootstrap";
 import * as Icon from "react-feather";
 
 
-const PrimaryButtonStyles = styled(Button)`
+const SecondaryButtonStyles = styled(Button)`
 &&&{
 
 color: var(--rasin-black);
-background-color: var(--rose-pink);
+background-color: var(--linen);
 border: 2px solid var(--rose-pink) ;
 width: 156px;
 font-size: 20px;
@@ -46,26 +46,25 @@ const Spinner = styled.span`
 `;
 
 
-const PrimaryButton = ({
+const SecondaryButton = ({
 	onClick,
 	isLoading,
 	text,
 	loadingText,
 	disabled=false,
-	href,
 	...props 
 }) =>{
 
 	return (
-		<PrimaryButtonStyles
+		<SecondaryButtonStyles
 			{...props}
 			disabled={disabled || isLoading}
 		>
 		     {isLoading && <Spinner><Icon.RotateCcw/></Spinner>}
 			{!isLoading ? text: loadingText}
-		</PrimaryButtonStyles>
+		</SecondaryButtonStyles>
 	);
 
 };
 
-export default PrimaryButton;
+export default SecondaryButton;

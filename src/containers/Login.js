@@ -1,6 +1,8 @@
 import React, {Component} from "react";
-import { Button, Form} from "react-bootstrap";
+import { Button, Form, Col} from "react-bootstrap";
 import { Auth } from "aws-amplify";
+import styled from "styled-components";
+import SecondaryButton from "../components/SecondaryButton";
 
 
 export default class Login extends Component {
@@ -36,13 +38,49 @@ export default class Login extends Component {
     }
 
     render(){
+
+        const StyledForm = styled.form`
+        @media all and (min-width: 480px) {
+               
+            margin: 0 auto;
+            max-width: 320px;
+        }
+        
+      
+        
+        `;
+
+        const LoginDiv = styled.div`
+
+         margin-top: 150px;
+
+        @media all and (min-width: 480px) {
+           
+              padding: 60px 0;
+           
+          
+            
+              margin: 0 auto;
+              max-width: 320px;
+           
+          }
+        `
+
+        const Input = styled(Form.Control)`
+         &&& {
+             width: 300px;
+         }
+        `;
+
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="email" >
+            <LoginDiv>
+                
+                <StyledForm onSubmit={this.handleSubmit}>
+                <Form.Group bsSize="small" controlId="email" >
                 <Form.Label>Email</Form.Label>
-                <Form.Control
+                <Input
                 autoFocus
+                required
                 type="email"
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -50,22 +88,32 @@ export default class Login extends Component {
                 </Form.Group>
                 <Form.Group controlId="password" >
                 <Form.Label>Password</Form.Label>
-                <Form.Control
+                <Input
                 type="password"
+                required
+               
                 value={this.state.password}
                 onChange={this.handleChange}
                 />
                 </Form.Group>
+                <Form.Group>
+                <Form.Label>
+                    Forgot Your Password?
+                </Form.Label>
+                </Form.Group>
                 <Button
-            block
-            bsSize="large"
+            
+            
             disabled={!this.validateForm()}
             type="submit"
           >
             Login
+          </Button> 
+          <Button className="ml-3" type="submit">
+            Don't Have An Account?
           </Button>
-                </form>
-            </div>
+                </StyledForm>
+            </LoginDiv>
         );
     }
 }
