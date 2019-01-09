@@ -73,7 +73,7 @@ export default class Signup extends Component {
                 <Container>
                     <Row>
 
-                        	<DisplayMedium className="mx-auto text-center">
+                        	<DisplayMedium className="mx-auto mt-4 text-center">
                     Sign Up
 					</DisplayMedium>
                     </Row>
@@ -99,7 +99,15 @@ export default class Signup extends Component {
 
                         <Form.Group as={Col}>
                          <Form.Label>University</Form.Label>
-                         <Form.Control type="text" placeholder="email@example.com"/>
+                         <Form.Control as="select">
+                         {['UCT', 'TUKS', 'UFS'].map(
+                             university => (
+                             
+                            <option>{university}</option>
+                         
+                             )
+                         )}
+                         </Form.Control>
                         </Form.Group>
                     </Form.Row>
 
@@ -145,7 +153,7 @@ export default class Signup extends Component {
              type="submit"
           /> 
           
-         <LinkButton sm href="/Login" >Already got an Account??</LinkButton>
+         <LinkButton sm href="/Login" >Already got an Account?</LinkButton>
         
           
                 
