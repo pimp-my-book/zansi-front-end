@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SecondaryButton from "../components/SecondaryButton";
 import PrimaryButton from "../components/PrimaryButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
+import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import { Button, Form, Col,Container, Row} from "react-bootstrap";
 
@@ -24,9 +25,9 @@ export default class Signup extends Component {
        cellNumber: "",
        address: "",
        confirmationCode: "",
-       newUser: null
+       newUser: true
    };
-    }
+}
 
     //validateForm
 
@@ -43,9 +44,32 @@ export default class Signup extends Component {
 
         this.setState({isLoading: true});
 
-        this.setState({newUser: "test"});
 
-        this.setState({isLaoding: false});
+        try {
+            const newUser = await Auth.signIn({
+                username: this.state.email,
+                password: this.state.password,
+                attributes: {
+                   'studentNumber': this.state.studentNumber,
+                   'FullName': this.state.FullName,
+                   'univeristy': this.state.university,
+                   'degree': this.state.degree,
+                   'bursary': this.state.bursary,
+                   'cellNumber': this.state.cellNumber,
+                   'address': this.state.address
+                }
+            });
+            this.setState({
+                newUser
+            });
+        }
+        catch(e){
+            alert(e.message);
+        }
+
+        //this.setState({newUser: "test"});
+
+        this.setState({isLoading: false});
     }
 
 
@@ -54,15 +78,55 @@ export default class Signup extends Component {
 
         this.setState({isLoading: true});
 
+        try {
+            await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+            await Auth.signIn(this.state.email,this.state.password);
+
+            this.props.userHasAuthenticated(true);
+            this.props.history.push("/");
+        } catch (e){
+            alert(e.message);
+            this.setState({isLoading: false});
+        }
 
     }
 
 
     renderConfirmationForm(){
         return(
-            <div>
-                Conform
-            </div>
+            <Container>
+                    <Row>
+                        <Col>
+                        <DisplayMedium className="mx-auto mt-4 text-center">
+                    Confirmation Code
+					</DisplayMedium>
+                    <Textbody className="text-center">
+                        We have sent an email to <strong>{this.state.email}</strong> with a confirmation code. 
+                    </Textbody>
+                        </Col>
+
+                    </Row>
+
+                        <Row className="justify-content-center">
+                            <Col sm={8} lg={3}>
+                            <Form onSubmit={this.handleConfirmationSubmit}>
+                             <Form.Group>
+                             <Form.Label classname="text-center">Confirmation Code</Form.Label>
+                             <Form.Control type="text" 
+                         placeholder="The Code"
+                         onChange={this.handleChange}
+                         />
+                             </Form.Group>
+                             <PrimaryButton
+             text="Verify Code"
+             
+             className="justify-content-center"
+             type="submit"
+          /> 
+                            </Form>
+                            </Col>
+                        </Row>
+            </Container>
         )
     }
 
@@ -79,27 +143,39 @@ export default class Signup extends Component {
                     </Row>
                     <Row className="justify-content-center">
                         <Col sm={8} lg={10}>
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                     <Form.Row lg={2}>
                         <Form.Group as={Col}>
                          <Form.Label>Full Name</Form.Label>
-                         <Form.Control type="text" placeholder="eg: Steve Biko"/>
+                         <Form.Control type="text" 
+                         placeholder="eg: Steve Biko"
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label>Email</Form.Label>
-                         <Form.Control type="email" placeholder="email@example.com"/>
+                         <Form.Control type="email" 
+                         placeholder="email@example.com"
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Student Number</Form.Label>
-                         <Form.Control type="number" placeholder="eg: Steve Biko"/>
+                         <Form.Control type="number" 
+                         placeholder="eg: Steve Biko"
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label>University</Form.Label>
-                         <Form.Control as="select">
+                         <Form.Control 
+                         as="select"
+                         onChange={this.handleChange}
+                         >
                          {['UCT', 'TUKS', 'UFS'].map(
                              university => (
                              
@@ -114,34 +190,53 @@ export default class Signup extends Component {
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Bursary</Form.Label>
-                         <Form.Control type="text" placeholder="eg: Steve Biko"/>
+                         <Form.Control 
+                         type="text" 
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label>Degree</Form.Label>
-                         <Form.Control type="text" placeholder="eg: BSC Engineering"/>
+                         <Form.Control 
+                         type="text" 
+                         placeholder="eg: BSC Engineering"
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Delivery Address</Form.Label>
-                         <Form.Control as="textarea" placeholder="eg: Steve Biko"/>
+                         <Form.Control as="textarea" 
+                         placeholder="eg: 12 Imaginary Road"
+                         />
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label>Phone Number</Form.Label>
-                         <Form.Control  type="number" placeholder="eg: BSC Engineering"/>
+                         <Form.Control  type="number" 
+                         placeholder="eg: BSC Engineering"
+                         onChange={this.handleChange}
+
+                         />
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Password</Form.Label>
-                         <Form.Control type="password" placeholder="Something Secret"/>
+                         <Form.Control type="password" 
+                         placeholder="Something Secret"
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label>Confirm Password</Form.Label>
-                         <Form.Control  type="password" placeholder="Something Secret"/>
+                         <Form.Control  type="password" 
+                         placeholder="Something Secret"
+                         onChange={this.handleChange}
+                         />
                         </Form.Group>
                     </Form.Row>
                 </Form>
