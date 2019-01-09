@@ -9,11 +9,20 @@ const CardStyles = styled(Card)`
     height: 150px;
     border: none;
       box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
-      background-color: var(--bubblegum);
+      background-color: var(--white);
   }
  `;
   
+const LinkStyles = styled(Card.Link)`
+ &&& {
+     text-decoration: none;
+     color: var(--rose-pink);
 
+     :hover {
+         color: var(--medium-sky-blue);
+     }
+ }
+`;
 
 
 
@@ -28,7 +37,7 @@ const CardStructure = ({
        >
            <Card.Body>
            <Card.Text>{textBody}</Card.Text>
-               <Card.Link className="mt-3"{...props}> {textLink}</Card.Link>
+               <LinkStyles className="mt-3"{...props}> {textLink}</LinkStyles>
            </Card.Body>
           
        </CardStyles>
