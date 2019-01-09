@@ -16,7 +16,6 @@ const Body = () => {
 	const Comms = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_mail_2_tqip.svg";
 	const Deliver = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_logistics_x4dc.svg";
 	const Forgot = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_forgot_password_gi2d.svg";
-	const Questions = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_questions_75e0.svg";
 	const Email = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_emails_6uqr.svg";
 	const Empty = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_empty_xct9.svg";
 

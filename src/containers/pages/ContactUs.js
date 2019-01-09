@@ -22,11 +22,11 @@ const HowItWorks = () => {
    }
   `;
 
-	const Progress = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_in_progress_ql66.svg";
+  const Questions = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_questions_75e0.svg";
 
 
   const TextDiv = styled.div`
-    margin-left: 40px;
+    margin-left: 20px;
   `;
 
 
@@ -34,12 +34,12 @@ const HowItWorks = () => {
 		<div>
 			<Header>
 				<div className="ml-4">
-					<DisplayMedium>How It works</DisplayMedium>
-					<Heading className=" mt-4">This page is meant to fimilarize you with the process of how the we at Pimp My Book will get you the books you ordered.</Heading>
+					<DisplayMedium>Get In Touch</DisplayMedium>
+					<Heading className=" mt-4">How to get a hold of us.</Heading>
 
 				</div>
 				<Image
-					src={Progress}
+					src={Questions}
 					width={200}
 					fluid
 					className=" d-none d-lg-block"
@@ -48,10 +48,16 @@ const HowItWorks = () => {
 			</Header>
 
 			<TextDiv>
-				<Subheading> 1. Placing Orders</Subheading>
-				<Textbody>Go to www.zansi.co.za 
-           Click “order now” and complete the order google form
-				</Textbody>
+				<Subheading> Email:moshal@pimpmybook.co.za
+
+
+
+</Subheading>
+
+<Subheading>Whatsapp:  065 850 5225</Subheading>
+<Subheading>Call Us:     065 850 5225</Subheading>
+				<Textbody>In case of any serious issue, delays with orders, bad service and complaints please contact Thandi via her personal watsapp number: 084 336 2139.
+</Textbody>
 			</TextDiv>
         
 
