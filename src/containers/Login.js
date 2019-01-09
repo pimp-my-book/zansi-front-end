@@ -50,10 +50,7 @@ export default class Login extends Component {
 
         }
         
-        @media (max-width:600px){
-            margin-left:20px;
-        }
-        
+      
         `;
 
         const LoginDiv = styled.div`
