@@ -10,8 +10,9 @@ const PrimaryButtonStyles = styled(Button)`
 color: var(--rasin-black);
 background-color: var(--rose-pink);
 border: 2px solid var(--rose-pink) ;
-width: 156px;
+width: ${props => props.sm ? '100px' : '150px'};
 font-size: 20px;
+padding: 2px;
 
 :hover {
  background-color: var(--rose-pink);

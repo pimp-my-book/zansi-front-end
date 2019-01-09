@@ -3,6 +3,8 @@ import { Button, Form, Col} from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import styled from "styled-components";
 import SecondaryButton from "../components/SecondaryButton";
+import PrimaryButton from "../components/PrimaryButton";
+import LinkButton from "../components/LinkButton";
 
 
 export default class Login extends Component {
@@ -44,15 +46,20 @@ export default class Login extends Component {
                
             margin: 0 auto;
             max-width: 320px;
+            
+
         }
         
-      
+        @media (max-width:600px){
+            margin-left:20px;
+        }
         
         `;
 
         const LoginDiv = styled.div`
 
          margin-top: 150px;
+         
 
         @media all and (min-width: 480px) {
            
@@ -75,7 +82,7 @@ export default class Login extends Component {
         return (
             <LoginDiv>
                 
-                <StyledForm onSubmit={this.handleSubmit}>
+                <StyledForm className="justify-content-center" onSubmit={this.handleSubmit}>
                 <Form.Group bsSize="small" controlId="email" >
                 <Form.Label>Email</Form.Label>
                 <Input
@@ -101,17 +108,17 @@ export default class Login extends Component {
                     Forgot Your Password?
                 </Form.Label>
                 </Form.Group>
-                <Button
-            
-            
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </Button> 
-          <Button className="ml-3" type="submit">
-            Don't Have An Account?
-          </Button>
+                
+          <PrimaryButton
+             text="Login"
+             sm
+             disabled={!this.validateForm()}
+             className="mr-3"
+          /> 
+          
+         <LinkButton sm >Don't Have An Account?</LinkButton>
+        
+          
                 </StyledForm>
             </LoginDiv>
         );
