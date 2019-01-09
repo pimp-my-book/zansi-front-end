@@ -9,17 +9,17 @@ const CardStyles = styled(Card)`
     height: 150px;
     border: none;
       box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
-      background-color: var(--white);
+      background-color: white;
   }
  `;
   
 const LinkStyles = styled(Card.Link)`
  &&& {
      text-decoration: none;
-     color: var(--rose-pink);
+     color: #ff6bd6;
 
      :hover {
-         color: var(--medium-sky-blue);
+         color: #64E9EE;
      }
  }
 `;
