@@ -5,6 +5,8 @@ import DisplaySmall from "./typography/DisplaySmall";
 import styled from "styled-components";
 import Textbody from "./typography/Textbody";
 import Card from "./Card";
+import {Container, Col, Row} from "react-bootstrap";
+
 
 const Body = () => {
 
@@ -33,6 +35,15 @@ const Body = () => {
         margin:20px;
      }
     `;
+
+
+	const CardGrid = styled.div`
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	margin-top: 10px;
+	
+	`;
 
     const ResponsiveWrapper = styled.div`
      @media (max-width:600px){
@@ -115,16 +126,21 @@ const Body = () => {
 				</div>
 
 			</Grid>
-			<div>
-    <Card
-	textBody="Click here for a more detailed breakdown"
-	textLink="Go Here"
-	href="/login"
-	/>
+
+		<CardGrid>
+					<Card
+	                    textBody="This is just a break down, please click below for a detailed overview."
+	               textLink="More Details"
+	              href="/login"
+	                      />
+				</CardGrid>
+			
+			
+    
 	
 	
 		
-			</div>
+			
 
 		</div>
 

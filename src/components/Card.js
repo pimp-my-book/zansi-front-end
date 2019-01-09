@@ -35,9 +35,9 @@ const CardStructure = ({
        <CardStyles
        {...props}
        >
-           <Card.Body>
+           <Card.Body className="text-align-center justify-content-center">
            <Card.Text>{textBody}</Card.Text>
-               <LinkStyles className="mt-3"{...props}> {textLink}</LinkStyles>
+               <LinkStyles className="mt-3 " {...props}> {textLink}</LinkStyles>
            </Card.Body>
           
        </CardStyles>
