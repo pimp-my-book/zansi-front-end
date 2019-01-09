@@ -6,7 +6,7 @@ import Heading from "../../components/typography/Heading";
 import Subheading from "../../components/typography/Subheading";
 import Textbody from "../../components/typography/Textbody";
 
-const HowItWorks = () => {
+const ContactUs = () => {
 
 	const Header = styled.header`
    display: grid;
@@ -22,7 +22,7 @@ const HowItWorks = () => {
    }
   `;
 
-  const Questions = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_questions_75e0.svg";
+  const Email = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_emails_6uqr.svg";
 
 
   const TextDiv = styled.div`
@@ -39,7 +39,7 @@ const HowItWorks = () => {
 
 				</div>
 				<Image
-					src={Questions}
+					src={Email}
 					width={200}
 					fluid
 					className=" d-none d-lg-block"
@@ -65,6 +65,6 @@ const HowItWorks = () => {
 	);
 };
 
-export default HowItWorks;
+export default ContactUs;
 
 

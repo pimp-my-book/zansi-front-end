@@ -96,6 +96,16 @@ class App extends Component {
 							</DisplaySmall>
 							
 						 </Nav.Item>
+						 <Nav.Item className="mt-4 mr-4">
+							<DisplaySmall normal>
+							<LinkA
+							href="/FAQ"
+							>
+							FAQ
+							</LinkA>
+							</DisplaySmall>
+							
+						 </Nav.Item>
 						 
 						 
 						  <Nav.Item className="mt-4 mr-4">
