@@ -114,6 +114,7 @@ export default class Login extends Component {
              sm
              disabled={!this.validateForm()}
              className="mr-3"
+             type="submit"
           /> 
           
          <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
