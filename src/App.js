@@ -76,7 +76,16 @@ class App extends Component {
 
 						: 
 						<Fragment> 
-
+                            <Nav.Item className="mt-4 mr-4">
+							<DisplaySmall normal>
+							<LinkA
+							href="/how-it-works"
+							>
+							How It Works
+							</LinkA>
+							</DisplaySmall>
+							
+						 </Nav.Item>
 						 
 						 
 						 

@@ -6,6 +6,7 @@ import Playground from "./containers/Playground";
 import Login from "./containers/Login";
 import AppliedRoute from "./components/AppliedRoute";
 import WithTracker from "./components/WithTracker";
+import HowItWorks from "./containers/pages/HowItWorks";
 
 export default ({childProps}) => 
 <div>
@@ -13,6 +14,8 @@ export default ({childProps}) =>
 		<AppliedRoute exact path="/" component={WithTracker(Home)} props={childProps}/>
         <AppliedRoute  path="/playground-test" component={Playground} props={childProps}/>
 		<AppliedRoute  path="/login" component={WithTracker(Login)} props={childProps}/>
+		<AppliedRoute  path="/how-it-works" component={WithTracker(HowItWorks)} props={childProps}/>
+
 		<Route component={NotFound}/>
 	</Switch>
 </div>;

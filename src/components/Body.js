@@ -131,7 +131,7 @@ const Body = () => {
 					<Card
 	                    textBody="This is just a break down, please click below for a detailed overview."
 	               textLink="More Details"
-	              href="/login"
+	              href="/how-it-works"
 	                      />
 				</CardGrid>
 			
