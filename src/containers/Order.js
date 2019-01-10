@@ -5,6 +5,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import PrimaryButton from "../components/PrimaryButton";
 import PLACE_ORDER_MUTATION from "../constants";
 import {Mutation} from 'react-apollo';
+import ModalDialog from "../components/ModalDialog";
 
 export default class Order extends Component {
     constructor(props){
@@ -12,12 +13,16 @@ export default class Order extends Component {
 
         this.state = {
             isLoading: false,
+            show: false,
             title: "",
             ISBN: "",
             author: "",
             edition: ""
 
         };
+
+        this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     }
 
     handleChange = name => event => {
@@ -25,7 +30,24 @@ export default class Order extends Component {
             [name]: event.target.value
         });
     }
-    render(){
+
+    handleClose(){
+        this.setState({show: false});
+    }
+
+    handleShow(){
+        this.setState({show: true});
+    }
+
+    renderSuccess(){
+        return(
+            <div>
+                You have placed an order!
+            </div>
+        )
+    }
+
+    renderOrder(){
         const OrderBackground = styled.div`
           background-color: white;
           height: 100vh;
@@ -58,6 +80,7 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                value={title}
                                 onChange={this.handleChange('title')}
                                 />
                              </Form.Group>
@@ -66,6 +89,7 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                value={ISBN}
                                 onChange={this.handleChange('ISBN')}
 
                                 />
@@ -75,6 +99,7 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                value={edition}
                                 onChange={this.handleChange('edition')}
                                 />
                              </Form.Group>
@@ -83,18 +108,29 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                value={author}
                                 onChange={this.handleChange('author')}
                                 />
                              </Form.Group>
-                           
+                            
 
                <PrimaryButton
              text="Login"
              small="true"
              className="mr-3"
              type="submit"
+             onClick={this.handleShow}
              //isLoading={this.state.isLoading}
              /> 
+
+                          <ModalDialog
+                             show={this.state.show}
+                             onHide={this.handleClose}
+                             title="test"
+                             body="haha ahah has"
+                             buttonText="Place Order"
+                             onClick={this.renderSuccess()}
+                             />
                            </FormStyles>
                         </Col>
                         
@@ -103,6 +139,14 @@ export default class Order extends Component {
                 </Container>
             </OrderBackground>
         );
+    }
+
+    render(){
+        return(
+            {
+                this.state.ordered ? 
+            }
+        )
     }
 }
 
