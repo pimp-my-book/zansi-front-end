@@ -61,7 +61,7 @@ const Body = () => {
 					<DisplaySmall main>Placing Orders
 					</DisplaySmall> 
                     <ResponsiveWrapper>
-                    <Textbody>Click the "Order Now" button to be redirected to the Google Form ad complete it.</Textbody>
+                    <Textbody>Click the "Order Now" button to be redirected to the Google Form and complete it.</Textbody>
                     </ResponsiveWrapper>
                 </div>
 				<div>
@@ -76,7 +76,7 @@ const Body = () => {
 					<DisplaySmall main>Status Updates
 					</DisplaySmall>
                     <ResponsiveWrapper> 
-                    <Textbody>You will recieve status updates, which will be communicated to via the email address you provided.</Textbody>
+                    <Textbody>You will recieve status updates, which will be communicated to you via the email address you provided.</Textbody>
                     </ResponsiveWrapper>
 
                 </div>
