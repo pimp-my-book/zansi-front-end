@@ -10,8 +10,9 @@ const PrimaryButtonStyles = styled(Button)`
 color: var(--rasin-black);
 background-color: var(--rose-pink);
 border: 2px solid var(--rose-pink) ;
-width: 156px;
+width: ${props => props.small ? '100px' : '150px'};
 font-size: 20px;
+padding: 2px;
 
 :hover {
  background-color: var(--rose-pink);
@@ -28,6 +29,10 @@ font-size: 20px;
 .btn:active {
     background-color: var(--linen);
 }
+
+
+
+
 `;
 
 const rotate = keyframes`
@@ -42,7 +47,7 @@ const rotate = keyframes`
 
 const Spinner = styled.span`
  display: inline-block;
- animation: ${rotate} 4s  infinite linear;
+ animation: ${rotate} 2s  infinite linear;
 `;
 
 
@@ -61,7 +66,7 @@ const PrimaryButton = ({
 			{...props}
 			disabled={disabled || isLoading}
 		>
-		     {isLoading && <Spinner><Icon.RotateCcw/></Spinner>}
+		     {isLoading && <Spinner><Icon.RefreshCcw/></Spinner>}
 			{!isLoading ? text: loadingText}
 		</PrimaryButtonStyles>
 	);

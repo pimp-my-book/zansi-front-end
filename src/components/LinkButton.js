@@ -16,8 +16,8 @@ border-bottom: 2px solid var(--rose-pink);
 line-height: 0.85;
 padding: 10px;
 border-radius: 0px;
-width: 156px;
-font-size: 20px;
+width:  ${props => props.sm ? '100px' : '150px'};
+font-size: 15px;
 padding: 2px;
 
 
@@ -29,6 +29,11 @@ padding: 2px;
 
 }
 
+
+@media (max-width:600px){
+    width: 70px;
+    font-size: 11px;
+}
 
 
 `;
