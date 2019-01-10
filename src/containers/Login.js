@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import { Button, Form, Col} from "react-bootstrap";
+import { Form, Col, Container, Row} from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import styled from "styled-components";
-import SecondaryButton from "../components/SecondaryButton";
 import PrimaryButton from "../components/PrimaryButton";
 import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
@@ -22,11 +21,12 @@ export default class Login extends Component {
         return this.state.email.length > 0 && this.state.password.length > 0;
     }
 
-    handleChange = event => {
+    handleChange = name => event =>{
         this.setState({
-            [event.target.id]: event.target.value
+            [name]: event.target.value
         });
-    }
+    } 
+
 
 
     handleSubmit = async event => {
@@ -41,71 +41,33 @@ export default class Login extends Component {
     }
 
     render(){
-
-        const StyledForm = styled.form`
-        @media all and (min-width: 480px) {
-               
-            margin: 0 auto;
-            max-width: 320px;
-            
-
-        }
-        
-        @media (max-width:600px){
-            margin-left:20px;
-            margin: 0 auto;
-            max-width: 320px;
-        }
-        
-        `;
-
-        const LoginDiv = styled.div`
-
-         margin-top: 150px;
-         
-
-        @media all and (min-width: 480px) {
-           
-              padding: 60px 0;
-           
-          
-            
-              margin: 0 auto;
-              max-width: 320px;
-           
-          }
-        `
-
-        const Input = styled(Form.Control)`
-         &&& {
-             width: 300px;
-         }
-        `;
-
         return (
-            <LoginDiv>
-                <DisplayMedium>Welcome Back!</DisplayMedium>
+            <Container>
+                <Row className="justify-content-center">
+                    <Col sm={6} lg={4}>
+                    
+                <DisplayMedium className="text-center">Welcome Back!</DisplayMedium>
              
-                <StyledForm className="justify-content-center" onSubmit={this.handleSubmit}>
-                <Form.Group bsSize="small" controlId="email" >
+                <Form className="justify-content-center" onSubmit={this.handleSubmit}>
+                <Form.Group  controlId="email" >
                 <Form.Label>Email</Form.Label>
-                <Input
-                autoFocus
+                <Form.Control
+
                 required
                 type="email"
                 value={this.state.email}
-                onChange={this.handleChange}
+                onChange={this.handleChange('email')}
                 />
                 </Form.Group>
                 <Form.Group controlId="password" >
                 <Form.Label>Password</Form.Label>
-                <Input
+                <Form.Control
                 type="password"
                 required
-               
+                
                 value={this.state.password}
-                onChange={this.handleChange}
-                />
+                onChange={this.handleChange('password')}
+                               />
                 </Form.Group>
                 <Form.Group>
                 <LinkButton sm href="/forgot-password" >
@@ -115,7 +77,7 @@ export default class Login extends Component {
                 
           <PrimaryButton
              text="Login"
-             sm
+             small="true"
              disabled={!this.validateForm()}
              className="mr-3"
              type="submit"
@@ -124,8 +86,13 @@ export default class Login extends Component {
          <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
         
           
-                </StyledForm>
-            </LoginDiv>
+                </Form>
+
+                    </Col>
+                </Row>
+            </Container>
+            
+         
         );
     }
 }

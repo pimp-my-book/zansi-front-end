@@ -30,6 +30,11 @@ padding: 2px;
 }
 
 
+@media (max-width:600px){
+    width: 70px;
+    font-size: 11px;
+}
+
 
 `;
 
