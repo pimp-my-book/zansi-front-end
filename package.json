@@ -33,7 +33,6 @@
   ],
   "devDependencies": {
     "babel-plugin-macros": "^2.4.5",
-    "tailwind.macro": "^0.5.10",
-    "tailwindcss": "^0.7.3"
+    "tailwind.macro": "^0.5.10"
   }
 }

@@ -7,14 +7,14 @@ import PrimaryButton from "../components/PrimaryButton";
 import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 
-
 export default class Login extends Component {
     constructor(props){
         super(props);
 
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            fullName: ""
         };
     }
 
@@ -85,6 +85,7 @@ export default class Login extends Component {
         return (
             <LoginDiv>
                 <DisplayMedium>Welcome Back!</DisplayMedium>
+             
                 <StyledForm className="justify-content-center" onSubmit={this.handleSubmit}>
                 <Form.Group bsSize="small" controlId="email" >
                 <Form.Label>Email</Form.Label>

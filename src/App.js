@@ -8,15 +8,15 @@ import DisplayXlarge from "./components/typography/DisplayXlarge";
 import DisplaySmall from "./components/typography/DisplaySmall";
 import Footer from "./components/Footer";
 import styled from "styled-components";
+import NavToggler from "./components/NavToggler";
 
- import NavToggler from "./components/NavToggler";
 class App extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
 			isAuthenticated: false,
-			isAuthenticating: true
+			isAuthenticating: true,
 			
 		};
 	}
@@ -44,6 +44,8 @@ class App extends Component {
 
 		this.setState({isAuthenticating: false});
 	}
+
+	
 	render() {
 		const childProps = {
 			isAuthenticated: this.state.isAuthenticated,
@@ -60,7 +62,7 @@ class App extends Component {
 					<Navigation>
 					
 						<Navbar.Brand href="/"><DisplayXlarge normal>Zansi</DisplayXlarge></Navbar.Brand>
-			
+			     
 						 <NavToggler>Menu</NavToggler>
 						 <Navbar.Collapse >
 						<Nav className="ml-auto">
