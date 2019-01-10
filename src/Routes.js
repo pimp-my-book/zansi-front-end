@@ -9,6 +9,7 @@ import AppliedRoute from "./components/AppliedRoute";
 import HowItWorks from "./containers/pages/HowItWorks";
 import ContactUs from "./containers/pages/ContactUs";
 import FAQ from "./containers/pages/FAQ";
+import Order from "./containers/Order";
 
 export default ({childProps}) => 
 <div>
@@ -20,6 +21,7 @@ export default ({childProps}) =>
 		<AppliedRoute  path="/how-it-works" component={HowItWorks} props={childProps}/>
 		<AppliedRoute  path="/contact-us" component={ContactUs} props={childProps}/>
 		<AppliedRoute  path="/faq" component={FAQ} props={childProps}/>
+		<AppliedRoute  path="/order" component={Order} props={childProps}/>
 
 		<Route component={NotFound}/>
 	</Switch>
