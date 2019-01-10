@@ -3,18 +3,28 @@ import styled from "styled-components";
 import { Form, Col, Container, Row} from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import PrimaryButton from "../components/PrimaryButton";
-
+import PLACE_ORDER_MUTATION from "../constants";
+import {Mutation} from 'react-apollo';
 
 export default class Order extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            isLoading: false
+            isLoading: false,
+            title: "",
+            ISBN: "",
+            author: "",
+            edition: ""
 
         };
     }
 
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value
+        });
+    }
     render(){
         const OrderBackground = styled.div`
           background-color: white;
@@ -28,6 +38,13 @@ export default class Order extends Component {
         box-shadow: 0px 2px 4px var(--bubblegum);
         paddig: 30px;
         `;
+
+        const {
+            title,
+            ISBN,
+            author,
+            edition,
+        } = this.state 
         return(
             <OrderBackground>
                 <Container>
@@ -41,6 +58,7 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                onChange={this.handleChange('title')}
                                 />
                              </Form.Group>
                              <Form.Group controlId="ISBN">
@@ -48,6 +66,8 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                onChange={this.handleChange('ISBN')}
+
                                 />
                              </Form.Group>
                              <Form.Group controlId="Edition">
@@ -55,6 +75,7 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                onChange={this.handleChange('edition')}
                                 />
                              </Form.Group>
                              <Form.Group controlId="Author">
@@ -62,16 +83,18 @@ export default class Order extends Component {
                                 <Form.Control
                                 required
                                 type="text"
+                                onChange={this.handleChange('author')}
                                 />
                              </Form.Group>
-                             <PrimaryButton
+                           
+
+               <PrimaryButton
              text="Login"
              small="true"
              className="mr-3"
              type="submit"
-             isLoading={this.state.isLoading}
-             
-          /> 
+             //isLoading={this.state.isLoading}
+             /> 
                            </FormStyles>
                         </Col>
                         
@@ -82,3 +105,18 @@ export default class Order extends Component {
         );
     }
 }
+
+/*
+
+  <Mutation
+                             mutation={PLACE_ORDER_MUTATION}
+                             variables={{
+                                title,
+                                ISBN,
+                                author,
+                                edition
+                             }}
+                             >
+                           
+             </Mutation>
+*/
