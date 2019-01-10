@@ -47,7 +47,7 @@ export default class Order extends Component {
         )
     }
 
-    renderOrder(){
+    render(){
         const OrderBackground = styled.div`
           background-color: white;
           height: 100vh;
@@ -139,14 +139,6 @@ export default class Order extends Component {
                 </Container>
             </OrderBackground>
         );
-    }
-
-    render(){
-        return(
-            {
-                this.state.ordered ? 
-            }
-        )
     }
 }
 

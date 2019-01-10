@@ -18,7 +18,7 @@ const ModalDialog = ({
     buttonText,
     show,
     onHide,
-    onClick,
+    onPASS,
     ...props,
     
 
@@ -38,7 +38,7 @@ const ModalDialog = ({
             <Modal.Footer>
             <PrimaryButton
             text={buttonText}
-            onClick={onClick}
+            onClick={onPASS}
             />
             </Modal.Footer>
             
