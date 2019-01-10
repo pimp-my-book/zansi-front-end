@@ -130,7 +130,7 @@ class App extends Component {
 					
 					
 				<Routes childProps={childProps}/>
-				{/*<Footer/> */}
+				<Footer/> 
 				</div>
 		);
 	}
