@@ -11,6 +11,7 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
+            isLoading: false,
             email: "",
             password: "",
             fullName: ""
@@ -31,13 +32,15 @@ export default class Login extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-
+        this.setState({isLoading: true});
         try {
             await Auth.signIn(this.state.email,this.state.password);
             this.props.userHasAuthenticated(true);
         } catch (e){
             alert(e.message);
         }
+        this.setState({isLoading: false});
+
     }
 
     render(){
@@ -81,6 +84,8 @@ export default class Login extends Component {
              disabled={!this.validateForm()}
              className="mr-3"
              type="submit"
+             isLoading={true}
+             
           /> 
           
          <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
