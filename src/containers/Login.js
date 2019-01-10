@@ -84,7 +84,7 @@ export default class Login extends Component {
              disabled={!this.validateForm()}
              className="mr-3"
              type="submit"
-             isLoading={true}
+             isLoading={this.state.isLoading}
              
           /> 
           

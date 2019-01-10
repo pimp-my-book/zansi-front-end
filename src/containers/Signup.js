@@ -5,7 +5,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import {  Form, Col,Container, Row} from "react-bootstrap";
-
+import {Univeristies} from "../constants";
 
  export default class Signup extends Component {
      constructor(props){
@@ -146,7 +146,7 @@ import {  Form, Col,Container, Row} from "react-bootstrap";
                     </Row>
 
                     <Row className="justify-content-center">
-                        <Col sm={8} lg={10}>
+                        <Col sm={1} lg={10}>
 
                         <Form onSubmit={this.handleSubmit}>
                     <Form.Row lg={2}>
@@ -173,7 +173,7 @@ import {  Form, Col,Container, Row} from "react-bootstrap";
                         <Form.Group as={Col}>
                          <Form.Label>Student Number</Form.Label>
                          <Form.Control type="number" 
-                         placeholder="eg: Steve Biko"
+                         placeholder="123456789"
                          value={this.state.studentNumber}
                          onChange={this.handleChange('studentNumber')}
                          />
@@ -187,7 +187,7 @@ import {  Form, Col,Container, Row} from "react-bootstrap";
                          onChange={this.handleChange('university')}
 
                          >
-                         {['UCT', 'TUKS', 'UFS'].map(
+                         {Univeristies.map(
                              universityOp => (
                              
                             <option
@@ -233,7 +233,7 @@ import {  Form, Col,Container, Row} from "react-bootstrap";
                         <Form.Group as={Col}>
                          <Form.Label>Phone Number</Form.Label>
                          <Form.Control  type="number" 
-                         placeholder="eg: BSC Engineering"
+                         placeholder="0745896313"
                          value={this.state.cellNumber}
                          onChange={this.handleChange('cellNumber')}
 
@@ -253,7 +253,7 @@ import {  Form, Col,Container, Row} from "react-bootstrap";
                         <Form.Group as={Col}>
                          <Form.Label>Confirm Password</Form.Label>
                          <Form.Control  type="password" 
-                         placeholder="Something Secret"
+                         placeholder="Confirm The Secret"
                          value={this.state.confirmPassword}
                          onChange={this.handleChange('confirmPassword')}
                          />
@@ -261,15 +261,16 @@ import {  Form, Col,Container, Row} from "react-bootstrap";
                     </Form.Row>
                     <PrimaryButton
              isLoading={this.state.isLoading}
-             text="Signup"
+             text="Sign Up"
              loadingText="Signing up…"
              type="submit"
           /> 
+                   <LinkButton className="ml-3"sm href="/Login" >Already got an Account?</LinkButton>
+
                 </Form>
 
          
           
-         <LinkButton sm href="/Login" >Already got an Account?</LinkButton>
         
           
                 
