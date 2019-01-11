@@ -17,7 +17,9 @@ export default class Order extends Component {
             title: "",
             ISBN: "",
             author: "",
-            edition: ""
+            edition: "",
+            orderID: "",
+            newOrder: null
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -31,19 +33,54 @@ export default class Order extends Component {
         });
     }
 
+
+    _GetOrderID = data => {
+
+        if (data){
+            this.setState({orderID: data.placeOrder.orderId})
+        }
+    }
+
+
+    _SetNewOrder = () => {
+        this.setState({newOrder: true});
+
+
+    }
+
+    componentWillMount(){
+
+        this._SetNewOrder();
+    }
+
+    componentDidMount(){
+        this.handleChange();
+        this._GetOrderID();
+       
+    }
+
+    renderOrderConfirmationForm(){
+        const {orderID, title} = this.state;
+        return(
+            <div>
+                Your order is confirmed! 
+                
+                ID: <strong>{orderID}</strong>
+                Book: {orderID}
+            </div>
+        )
+    }
+
+    
    
 
     renderOrderForm(){
-       
-    
-
-   
-
         const {
             title,
             ISBN,
             author,
             edition,
+            orderID,
         } = this.state; 
         return(
             <div>
@@ -62,14 +99,20 @@ export default class Order extends Component {
                              }} 
                              onCompleted={() => alert(`you place this order ${title}`)}
                              >
-                             {(order, {error, loading,called, data}) => {
+                             {(order, {error, loading,called, data, _GetOrderID}) => {
                                 console.log(data);
+
+                                
+                                    this._GetOrderID(data);
+                                
+                                //
                                 return(
                                     <Form onSubmit={
                                         async e => {
                                             e.preventDefault();
                                             await order();
-                                            
+                                            this._SetNewOrder();
+
                                         }}>
     
                                       {!error && !loading && called && 
@@ -161,6 +204,17 @@ export default class Order extends Component {
                 </Container>
             </div>
         );
+    }
+
+    render(){
+        return(
+            <div>
+                { this.state.newOrder !== null ?
+                  this.renderOrderForm()
+                  : this.renderOrderConfirmationForm()    
+            }
+            </div>
+        )
     }
 }
 
