@@ -9,7 +9,7 @@
  : Redirect to place order page 
 
  - Post Conditon for success: 
- There should be a modal indicating the orderId and name of order
+ There should be a alert indicating the orderId and name of order
 Then be redirected to place order page:
 
 
