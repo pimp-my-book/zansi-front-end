@@ -23,10 +23,17 @@ It should whip up a modal confirminh they were not logged in.
 
 
 --Post Condition for failure
+there should be an error message about the form detailing whether the user 
+does not exist or incorrect username/password
 
 Component Contracts
 
+* renders a form with two textboxes and a button
+*  the button is supposed to set off a spinner after it ism submitting
+*  state: password, email & errors
+* props: it emits userHasAuthenticated props
 
+after interaction => navbar must have logout in it,
 
 */
 //////////////////////////////////////////////////
