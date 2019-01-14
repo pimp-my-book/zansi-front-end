@@ -89,7 +89,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 :root{
-	@import url('https://fonts.googleapis.com/css?family=Poppins|Paytone+One');
+	
 	--rose-pink: #ff6bd6;
 	--linen: #fbe8e7;
 	--space-cadet: #1b335f;
@@ -109,7 +109,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 
-
+@import url('https://fonts.googleapis.com/css?family=Poppins|Paytone+One');
 	body {
 
 		margin: 0 0 100px;
