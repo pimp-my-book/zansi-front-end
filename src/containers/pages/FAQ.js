@@ -98,7 +98,7 @@ const FAQ = () => {
                     <li>Overseas books which are not available anywhere in the country could take longer than 3 weeks to bring in. In such cases we will try to offer you an e-book or find an alternative.
 </li>
                 </ul>
-                <Subheading>7.	Can I chose if I want a new or used book?</Subheading>
+                <Subheading>7.	Can I choose if I want a new or used book?</Subheading>
                 <ul>
                     <li>Your bursary decides whether we should supply used or new books, so you cannot chose.
 </li>
