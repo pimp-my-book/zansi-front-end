@@ -43,7 +43,7 @@ export default class Order extends Component {
         }
     }
 
-    componentDidUpdat(){
+    componentDidUpdate(){
         this._GetOrderID();
     }
 
@@ -138,7 +138,7 @@ export default class Order extends Component {
                                 author,
                                 edition
                              }} 
-                             //onCompleted={() => alert(`you place this order ${title}`)}
+                             onCompleted={() => alert(`you place this order ${title}`)}
                              >
                              {(order, {error, loading,called, data, _GetOrderID}) => {
                                 console.log(data);
@@ -154,7 +154,7 @@ export default class Order extends Component {
                                     return(
                                         <Form 
                                         onSubmit={
-                                            async (e, newID) => {
+                                            async e  => {
                                                 e.preventDefault();
                                                 await order();
                                                 this.setState({
