@@ -88,6 +88,7 @@ const client = new ApolloClient({
 const GlobalStyle = createGlobalStyle`
 
 
+
 :root{
 	
 	--rose-pink: #ff6bd6;

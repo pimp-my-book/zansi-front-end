@@ -35,7 +35,7 @@ const HowItWorks = () => {
 			<Header>
 				<div className="ml-4">
 					<DisplayMedium>How It works</DisplayMedium>
-					<Heading className=" mt-4">This page is meant to fimilarize you with the process of how the we at Pimp My Book will get you the books you ordered.</Heading>
+					<Heading className=" mt-4">This page is meant to fimilarize you with the process of how we at Pimp My Book will get you the books you ordered.</Heading>
 
 				</div>
 				<Image
@@ -55,7 +55,7 @@ const HowItWorks = () => {
 			</TextDiv>
            
       <TextDiv>
-         <Subheading>2.	Status Updates</Subheading>
+         <Subheading>2.	Order Status Update</Subheading>
          <Textbody>You will get the following order status updates</Textbody>
          <ul>
            <li>Confirmation of order received – 24 hours</li>
