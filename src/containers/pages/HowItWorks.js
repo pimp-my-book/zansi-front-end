@@ -35,7 +35,7 @@ const HowItWorks = () => {
 			<Header>
 				<div className="ml-4">
 					<DisplayMedium>How It works</DisplayMedium>
-					<Heading className=" mt-4">This page is meant to fimilarize you with the process of how the we at Pimp My Book will get you the books you ordered.</Heading>
+					<Heading className=" mt-4">This page is meant to fimilarize you with the process of how we at Pimp My Book will get you the books you ordered.</Heading>
 
 				</div>
 				<Image
