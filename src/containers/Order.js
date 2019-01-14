@@ -26,12 +26,11 @@ export default class Order extends Component {
 
         
     }
-
-    handleChange = name => event => {
+    handleChange = event => {
         this.setState({
-            [name]: event.target.value
+          [event.target.id]: event.target.value
         });
-    }
+      }
 
 
     _GetOrderID = data => {
@@ -41,23 +40,21 @@ export default class Order extends Component {
         }
     }
 
-
-    _SetNewOrder = () => {
-        this.setState({newOrder: true});
-
-
+    componentDidUpdat(){
+        this._GetOrderID();
     }
 
-    componentWillMount(){
 
-        this._SetNewOrder();
-    }
+   
+  
 
     componentDidMount(){
-        this.handleChange();
-        this._GetOrderID();
+        //this.handleChange();
+
        
     }
+
+
 
     renderOrderConfirmationForm(){
         const {orderID, title} = this.state;
@@ -66,7 +63,7 @@ export default class Order extends Component {
                 Your order is confirmed! 
                 
                 ID: <strong>{orderID}</strong>
-                Book: {orderID}
+                Book: {title}
             </div>
         )
     }
@@ -101,98 +98,108 @@ export default class Order extends Component {
                              >
                              {(order, {error, loading,called, data, _GetOrderID}) => {
                                 console.log(data);
-
                                 
-                                    this._GetOrderID(data);
-                                
-                                //
-                                return(
-                                    <Form onSubmit={
-                                        async e => {
-                                            e.preventDefault();
-                                            await order();
-                                            this._SetNewOrder();
-
-                                        }}>
-    
-                                      {!error && !loading && called && 
-                                      
-                                      
-                                        <div>
-                                        You have successfully placed an order for {title} 
-                                        your order number is : {data.placeOrder.orderId}
-                                    
-                                    </div>
-                                    }
-    
-                                     {error &&
-                                    <p>{error.message.replace('GraphQL error:', '')}
-                                    </p>
-                                }                                  
-                                {loading && <p>Loading...</p>}
-                 
-                                      <Form.Group controlId="title">
-                                        <Form.Label>Title</Form.Label>
-                                         <Form.Control
-                                         required
-                                 
-                                         
-                                         type="text"
-                                         value={this.state.title}
-                                         placeholder="eg: Steve Jobs"
-                                         onChange={this.handleChange('title')}
-                                         />
-                                         
-                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                      </Form.Group>
-                                      <Form.Group controlId="ISBN">
-                                        <Form.Label>ISBN</Form.Label>
-                                         <Form.Control
-                                         required
-                                         
-                                         as="input"
-                                         type="number"
-                                         value={this.state.ISBN}
-                                         onChange={this.handleChange('ISBN')}
-         
-                                         />
-                                      </Form.Group>
-                                      <Form.Group controlId="Edition">
-                                        <Form.Label>Edition</Form.Label>
-                                         <Form.Control
-                                         required
-                                         as="input"
-                                         type="text"
-                                         
-                                         value={this.state.edition}
-                                         onChange={this.handleChange('edition')}
-                                         />
-                                      </Form.Group>
-                                      <Form.Group controlId="Author">
-                                        <Form.Label>Author</Form.Label>
-                                         <Form.Control
-                                         required
-                                         type="text"
-                                         
-                                         value={author}
-                                         onChange={this.handleChange('author')}
-                                         />
-                                      </Form.Group>
-                                     
-         
-                        <PrimaryButton
-                      text="Login"
-                      small="true"
-                      className="mr-3"
-                      type="Place Order"
-                      //onClick={order}
-                      //isLoading={this.state.isLoading}
-                      /> 
-         
+                                 if (data){
                                   
-                                    </Form>
+                                    const newID = data.placeOrder.orderId;
 
-                                )
+                                 }
+                             
+                                 
+
+                                    return(
+                                        <Form onSubmit={
+                                            async (e, newID) => {
+                                                e.preventDefault();
+                                                await order();
+                                                this.setState({
+                                                    newOrder: true,
+                                                    orderID: newID
+                                                });
+    
+                                            }}>
+        
+                                          {!error && !loading && called && 
+                                          
+                                          
+                                            <div>
+                                            You have successfully placed an order for {title} 
+                                            your order number is : {data.placeOrder.orderId}
+                                        
+                                        </div>
+                                        }
+        
+                                         {error &&
+                                        <p>{error.message.replace('GraphQL error:', '')}
+                                        </p>
+                                    }                                  
+                                    {loading && <p>Loading...</p>}
+                     
+                                          <Form.Group controlId="title">
+                                            <Form.Label>Title</Form.Label>
+                                             <Form.Control
+                                             required
+                                             type="text"
+                                             value={this.state.title}
+                                             placeholder="eg: Steve Jobs"
+                                             onChange={e => this.setState({title: e.target.value})}
+                                             />
+                                             
+                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                          </Form.Group>
+                                          <Form.Group controlId="ISBN">
+                                            <Form.Label>ISBN</Form.Label>
+                                             <Form.Control
+                                             required
+                                             
+                                             as="input"
+                                             type="number"
+                                             value={this.state.ISBN}
+                                             onChange={e => this.setState({ISBN: e.target.value})}
+             
+                                             />
+                                          </Form.Group>
+                                          <Form.Group controlId="Edition">
+                                            <Form.Label>Edition</Form.Label>
+                                             <Form.Control
+                                             required
+                                             as="input"
+                                             type="text"
+                                             
+                                             value={this.state.edition}
+                                             onChange={e => this.setState({edition: e.target.value})}
+                                             />
+                                          </Form.Group>
+                                          <Form.Group controlId="Author">
+                                            <Form.Label>Author</Form.Label>
+                                             <Form.Control
+                                             required
+                                             type="text"
+                                             
+                                             value={this.state.author}
+                                             onChange={e => this.setState({author: e.target.value})}
+                                              />
+                                          </Form.Group>
+                                         
+             
+                            <PrimaryButton
+                          text="Place Order"
+                          
+                          className="mr-3 "
+                          type="Place Order"
+                          //onClick={order}
+                          //isLoading={this.state.isLoading}
+                          /> 
+             
+                                      
+                                        </Form>
+    
+                                    )
+                                
+                                   
+                                    
+                              
+                               
                                   
                              }}
                           
@@ -209,8 +216,8 @@ export default class Order extends Component {
     render(){
         return(
             <div>
-                { this.state.newOrder !== null ?
-                  this.renderOrderForm()
+                { this.state.newOrder === null 
+                  ? this.renderOrderForm()
                   : this.renderOrderConfirmationForm()    
             }
             </div>
