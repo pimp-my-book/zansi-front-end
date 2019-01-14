@@ -63,6 +63,7 @@ const PrimaryButton = ({
 
 	return (
 		<PrimaryButtonStyles
+		onClick={onClick}
 			{...props}
 			disabled={disabled || isLoading}
 		>
