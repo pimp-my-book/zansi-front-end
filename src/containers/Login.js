@@ -14,7 +14,8 @@ export default class Login extends Component {
             isLoading: false,
             email: "",
             password: "",
-            fullName: ""
+            fullName: "",
+            errors: ""
         };
     }
 
@@ -37,7 +38,7 @@ export default class Login extends Component {
             await Auth.signIn(this.state.email,this.state.password);
             this.props.userHasAuthenticated(true);
         } catch (e){
-            alert(e.message);
+            this.setState({errors: e.message})
         }
         this.setState({isLoading: false});
 
@@ -51,6 +52,11 @@ export default class Login extends Component {
                     
                 <DisplayMedium className="text-center">Welcome Back!</DisplayMedium>
              
+
+              {
+                  this.state.errors && 
+                  <p>{this.state.errors}</p>
+              }
                 <Form className="justify-content-center" onSubmit={this.handleSubmit}>
                 <Form.Group  controlId="email" >
                 <Form.Label>Email</Form.Label>
