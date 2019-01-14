@@ -5,7 +5,8 @@ import NotFound from "./containers/NotFound";
 import Playground from "./containers/Playground";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
-import AppliedRoute from "./components/AppliedRoute";
+import AuthenticatedRoute from "./components/routes/AuthenticatedRoute";
+import UnathenticatedRoute from "./components/routes/UnathenticatedRoute";
 import HowItWorks from "./containers/pages/HowItWorks";
 import ContactUs from "./containers/pages/ContactUs";
 import FAQ from "./containers/pages/FAQ";
@@ -14,14 +15,14 @@ import Order from "./containers/Order";
 export default ({childProps}) => 
 <div>
 	<Switch>
-		<AppliedRoute exact path="/" component={Home} props={childProps}/>
-        <AppliedRoute  path="/playground-test" component={Playground} props={childProps}/>
-		<AppliedRoute  path="/login" component={Login} props={childProps}/>
-		<AppliedRoute  path="/signup" component={Signup} props={childProps}/>
-		<AppliedRoute  path="/how-it-works" component={HowItWorks} props={childProps}/>
-		<AppliedRoute  path="/contact-us" component={ContactUs} props={childProps}/>
-		<AppliedRoute  path="/faq" component={FAQ} props={childProps}/>
-		<AppliedRoute  path="/order" component={Order} props={childProps}/>
+		<UnathenticatedRoute exact path="/" component={Home} props={childProps}/>
+        <UnathenticatedRoute  path="/playground-test" component={Playground} props={childProps}/>
+		<UnathenticatedRoute  path="/login" component={Login} props={childProps}/>
+		<UnathenticatedRoute  path="/signup" component={Signup} props={childProps}/>
+		<UnathenticatedRoute  path="/how-it-works" component={HowItWorks} props={childProps}/>
+		<UnathenticatedRoute  path="/contact-us" component={ContactUs} props={childProps}/>
+		<UnathenticatedRoute  path="/faq" component={FAQ} props={childProps}/>
+		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
 
 		<Route component={NotFound}/>
 	</Switch>
