@@ -152,7 +152,8 @@ export default class Order extends Component {
                                  
 
                                     return(
-                                        <Form onSubmit={
+                                        <Form 
+                                        onSubmit={
                                             async (e, newID) => {
                                                 e.preventDefault();
                                                 await order();
