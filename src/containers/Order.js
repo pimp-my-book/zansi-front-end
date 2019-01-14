@@ -1,7 +1,10 @@
 import React ,{Component} from "react";
 import styled from "styled-components";
-import { Form, Col, Container, Row} from "react-bootstrap";
+import { Form, Col, Container, Row, Image} from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
+import DisplaySmall from "../components/typography/DisplaySmall";
+import Heading from "../components/typography/Heading";
+import Textbody from "../components/typography/Textbody";
 import PrimaryButton from "../components/PrimaryButton";
 import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
 import ModalDialog from "../components/ModalDialog";
@@ -57,14 +60,55 @@ export default class Order extends Component {
 
 
     renderOrderConfirmationForm(){
-        const {orderID, title} = this.state;
+        const {
+            orderID, 
+            title,
+            ISBN,
+            author,
+            edition
+        } = this.state;
+            const SuccessImage = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_winners_ao2o.svg";
+        
+            const OrderInfo = styled.div`
+         width: 300px;
+         height: 200px;
+         box-shadow: 0px 2px 4px rgba(0,0,0,0.18); 
+         `;
         return(
-            <div>
-                Your order is confirmed! 
-                
-                ID: <strong>{orderID}</strong>
-                Book: {title}
-            </div>
+            <Container>
+               
+                <Row>
+                    <Col>
+                    <DisplayMedium className="text-center mt-4"> Order Confirmation</DisplayMedium>
+
+                    </Col>
+                   
+                </Row>
+                <Row >
+                <Col sm={4} lg={12} >
+                    <DisplaySmall className="text-center">Congrats! Your Order has been successfully processed and recieved by our staff.</DisplaySmall>
+  
+                    </Col>
+                </Row>
+                <Row >
+                    <Col className="text-center mb-5">
+                    <Image
+                    fluid
+                    width={400}
+                    src={SuccessImage}
+                    />
+                    </Col>
+                </Row>
+                <Row className="justify-content-center">
+                <OrderInfo className="text-center">
+                 <Heading>Your Order Details</Heading>
+                     <Textbody><strong>Title</strong>: {title}</Textbody>
+                     <Textbody><strong>ISBN</strong>: {ISBN}</Textbody>  
+                     <Textbody><strong>edition</strong>: {edition}</Textbody> 
+                     <Textbody><strong>Author</strong>: {author}</Textbody> 
+                 </OrderInfo>
+                </Row>
+                </Container>
         )
     }
 
@@ -94,7 +138,7 @@ export default class Order extends Component {
                                 author,
                                 edition
                              }} 
-                             onCompleted={() => alert(`you place this order ${title}`)}
+                             //onCompleted={() => alert(`you place this order ${title}`)}
                              >
                              {(order, {error, loading,called, data, _GetOrderID}) => {
                                 console.log(data);
@@ -133,7 +177,7 @@ export default class Order extends Component {
                                         <p>{error.message.replace('GraphQL error:', '')}
                                         </p>
                                     }                                  
-                                    {loading && <p>Loading...</p>}
+                                    {loading && <p>Hang tight, we're busy processing your order...</p>}
                      
                                           <Form.Group controlId="title">
                                             <Form.Label>Title</Form.Label>
@@ -141,7 +185,7 @@ export default class Order extends Component {
                                              required
                                              type="text"
                                              value={this.state.title}
-                                             placeholder="eg: Steve Jobs"
+                                             placeholder="eg: Communist Manifesto"
                                              onChange={e => this.setState({title: e.target.value})}
                                              />
                                              
@@ -151,7 +195,7 @@ export default class Order extends Component {
                                             <Form.Label>ISBN</Form.Label>
                                              <Form.Control
                                              required
-                                             
+                                             placeholder="eg: 0199535566"
                                              as="input"
                                              type="number"
                                              value={this.state.ISBN}
@@ -165,7 +209,7 @@ export default class Order extends Component {
                                              required
                                              as="input"
                                              type="text"
-                                             
+                                             placeholder="eg: 3rd"
                                              value={this.state.edition}
                                              onChange={e => this.setState({edition: e.target.value})}
                                              />
@@ -175,7 +219,7 @@ export default class Order extends Component {
                                              <Form.Control
                                              required
                                              type="text"
-                                             
+                                             placeholder="eg: Karl Marx"
                                              value={this.state.author}
                                              onChange={e => this.setState({author: e.target.value})}
                                               />
