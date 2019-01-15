@@ -58,25 +58,45 @@ export default class Order extends Component {
        
     }
 
-
-
-    renderOrderConfirmationForm(){
+    renderOrderForm(){
         const {
-            orderID, 
             title,
             ISBN,
             author,
-            edition
-        } = this.state;
-            const SuccessImage = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_winners_ao2o.svg";
-        
-            const OrderInfo = styled.div`
-         width: 300px;
-         height: 200px;
-         box-shadow: 0px 2px 4px rgba(0,0,0,0.18); 
-         `;
+            edition,
+            orderID,
+        } = this.state; 
+
+        const SuccessImage = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_winners_ao2o.svg";
+        const OrderInfo = styled.div`
+        width: 300px;
+        height: 300px;
+        box-shadow: 0px 2px 4px rgba(0,0,0,0.18); 
+        `;
         return(
-            <Container>
+            <div>
+                
+                        <Mutation
+                             mutation={PLACE_ORDER_MUTATION}
+                             variables={{
+                                title,
+                                ISBN,
+                                author,
+                                edition
+                             }} 
+              
+                             
+                             >
+                             {(order, {error, loading,called, data,client }) => {
+                                console.log(data);
+                                
+                     
+                                 if (called && data){
+                                     return (
+
+                                     
+                                         
+                                         <Container>
                
                 <Row>
                     <Col>
@@ -103,17 +123,8 @@ export default class Order extends Component {
                 <Row className="justify-content-center">
                 <OrderInfo className="text-center">
                  <Heading>Your Order Details</Heading>
-                 <Query query={query.GET_ORDERS}>
-                {({loading, error, data}) => {
-                    if (loading) return "loading";
-                    if (error) return `${error.message}`;
-                    console.log(data)
-                    return (
-                        <Textbody><strong>Title</strong>: {data.order.orderId}</Textbody>
-
-                    )
-                }}
-                </Query>
+             
+                 <Textbody><strong>Order ID</strong>: {data.placeOrder.orderId} </Textbody>
                      <Textbody><strong>Title</strong>: {title}</Textbody>
                      <Textbody><strong>ISBN</strong>: {ISBN}</Textbody>  
                      <Textbody><strong>edition</strong>: {edition}</Textbody> 
@@ -121,51 +132,16 @@ export default class Order extends Component {
                      
                  </OrderInfo>
                 </Row>
-                </Container>
-        )
-    }
-
-    
-   
-
-    renderOrderForm(){
-        const {
-            title,
-            ISBN,
-            author,
-            edition,
-            orderID,
-        } = this.state; 
-        return(
-            <div>
-                <Container>
-                    <Row className="justify-content-center">
-                <Col sm={6} lg={4}>
-                
-                        <DisplayMedium className="text-center mt-4">Place an Order</DisplayMedium>
-                        <Mutation
-                             mutation={PLACE_ORDER_MUTATION}
-                             variables={{
-                                title,
-                                ISBN,
-                                author,
-                                edition
-                             }} 
-              
-                             //onCompleted={() => alert(`you place this order ${title}`)}
-                             >
-                             {(order, {error, loading,called, data,client }) => {
-                                console.log(data);
-                                
-                                 if (data){
-                                  
-                                    client.writeData({data: {order: data.placeOrder.orderId} }); 
-
-                                 }
-                             
-                                 
-
+                </Container>)
+                                     
+                                 } else {
                                     return(
+                                        <Container>
+                                        <Row className="justify-content-center">
+                                    <Col sm={6} lg={4}>
+                                    
+                                            <DisplayMedium className="text-center mt-4">Place an Order</DisplayMedium>
+
                                         <Form onSubmit={
                                             async e => {
                                                 e.preventDefault();
@@ -251,22 +227,16 @@ export default class Order extends Component {
              
                                       
                                         </Form>
+                                        </Col>
+                        
+                        </Row>
     
-                                    )
-                                
-                                   
-                                    
-                              
-                               
-                                  
+                    </Container>
+                                    )}
                              }}
                           
                            </Mutation>
-                        </Col>
-                        
-                    </Row>
-
-                </Container>
+                     
             </div>
         );
     }
@@ -274,23 +244,13 @@ export default class Order extends Component {
     render(){
         return(
             <div>
-                { this.state.newOrder === null 
-                  ? this.renderOrderForm()
-                  : this.renderOrderConfirmationForm()    
-            }
+               
+                  {this.renderOrderForm()}
+                  
+            
             </div>
         )
     }
 }
 
 
-/*
-
- <ModalDialog
-                             show={this.state.show}
-                             onHide={this.handleClose}
-                             title="test"
-                             body="haha ahah has"
-                             buttonText="Place Order"
-                             onClick={this.renderSuccess()}
-                             /> */
