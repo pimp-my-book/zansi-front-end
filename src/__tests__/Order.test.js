@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import renderer from "react-test-renderer";
+import Signup from '../containers/Order';
+
 ////////////////////////////////////////////////////
 /* Component behaviours
 
@@ -20,9 +25,25 @@ Then be redirected to place order page:
 Components Contracts:
 
 - Waht does it render ?
+first an orderForm then a ConfirmOrderForm 
+
 - What props does it recieve?
+It uses a mutation component from Apollo to interact with the API
+it has an error, loading and data props and an order props to trigger the mutaion. 
+
 - What state does it hold?
+             isLoading
+            show
+            title
+            ISBN
+            author
+            edition
+            orderID
+            newOrder
+
 - what does it do when a user has interacted with it? 
+
+Once the order form has been submitted it should render a orderConfirmationForm. 
 
 --Look for if states & ternary operators.
 
