@@ -93,8 +93,11 @@ export default class ForgotPassword extends Component {
     renderRequestCodeForm(){
         return(
             <Container>
-                <Row>
+                <Row className="justify-content-center">
+
                     <Col sm={6} lg={4}>
+                    <DisplayMedium className="text-center">Reset Password</DisplayMedium>
+                       {this.state.emailError && <p>{this.state.emailError}</p>}
                        <Form>
                            <Form.Group controlId="email">
                            <Form.Label>Email</Form.Label>
@@ -122,14 +125,77 @@ export default class ForgotPassword extends Component {
 
 
     ///renderConfirmationForm
+    renderConfirmationForm(){
+        return(
+            <Container>
+                <Row className="justify-content-center">
+                <Col sm={6} lg={4}>
+                    <DisplayMedium className="text-center">Confirmation Form</DisplayMedium>
+                       <p>Check your email : {this.state.email} for the confirmaton code!</p>
+                       {this.state.confirmError && <p>{this.state.confirmError}</p>}
+                       <Form>
+                       <Form.Group controlId="code">
+                       <Form.Label>Confirmation Code</Form.Label>
+                       <Form.Control
+                        type="tel"
+                        value={this.state.code}
+                        onChange={this.handleChange}
+                       />
+                       </Form.Group>
+                       <Form.Group controlId="password">
+                       <Form.Label>Password</Form.Label>
+                       <Form.Control
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                       />
+                       </Form.Group>
+                       <Form.Group controlId="confirmPassword">
+                       <Form.Label>Confirm Password</Form.Label>
+                       <Form.Control
+                        type="password"
+                        value={this.state.confirmPassword}
+                        onChange={this.handleChange}
+                       />
+                       </Form.Group>
+                       <PrimaryButton
+                           type="submit"
+                           loadingText="Confirming..."
+                           text="Confirm"
+                           isLoading={this.state.isConfirming}
+                           disabled={!this.validateCodeForm()}
+                           />
+                       </Form>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 
     //render success message
+    renderSuccessMessage(){
+        return(
+            <Container>
+                <Row>
+                    <Col>
+                    <DisplayMedium className="text-center">You Have a New Password!</DisplayMedium>
+                     
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="justify-content-center">
+                    <LinkButton href="/login">Click here to login with your new password.</LinkButton>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 
     // decided which form to render
 	render(){
 		return (
 			<div>
-                {this.renderRequestCodeForm()}
+                {this.renderSuccessMessage()}
             </div>
 		);
 	}
