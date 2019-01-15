@@ -53,7 +53,7 @@ export default class ForgotPassword extends Component {
 
     /// Sumbit event for Sending code to email
 
-    handleSendCodeClick = async event = > {
+    handleSendCodeClick = async event => {
         event.preventDefault();
 
         this.setState({isSendingCode: true});
@@ -90,6 +90,35 @@ export default class ForgotPassword extends Component {
 
 
     //renderRequestCodeForm
+    renderRequestCodeForm(){
+        return(
+            <Container>
+                <Row>
+                    <Col sm={6} lg={4}>
+                       <Form>
+                           <Form.Group controlId="email">
+                           <Form.Label>Email</Form.Label>
+                           <Form.Control 
+                           required
+                           type="email"
+                           value={this.state.email}
+                           onChange={this.handleChange}
+                           />
+
+                           </Form.Group>
+                           <PrimaryButton
+                           type="submit"
+                           loadingText="Sending..."
+                           text="Send Confirmation"
+                           isLoading={this.state.isSendingCode}
+                           disabled={!this.validateCodeForm()}
+                           />
+                       </Form>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
 
 
     ///renderConfirmationForm
@@ -99,7 +128,9 @@ export default class ForgotPassword extends Component {
     // decided which form to render
 	render(){
 		return (
-			<div>ForgotPassword</div>
+			<div>
+                {this.renderRequestCodeForm()}
+            </div>
 		);
 	}
 }
