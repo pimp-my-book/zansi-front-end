@@ -6,3 +6,12 @@ export const HELLO_QUERY = gql`
      hello 
  }
 `;
+
+
+export const GET_ORDERS = gql`
+   {
+      order @client {
+          orderId
+      }
+  }
+`;
