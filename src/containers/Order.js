@@ -7,8 +7,9 @@ import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import PrimaryButton from "../components/PrimaryButton";
 import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
+import * as query from "../graphql/Queries";
 import ModalDialog from "../components/ModalDialog";
-import {Mutation} from "react-apollo"
+import {Mutation, Query} from "react-apollo"
 
 export default class Order extends Component {
     constructor(props){
@@ -57,25 +58,45 @@ export default class Order extends Component {
        
     }
 
-
-
-    renderOrderConfirmationForm(){
+    renderOrderForm(){
         const {
-            orderID, 
             title,
             ISBN,
             author,
-            edition
-        } = this.state;
-            const SuccessImage = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_winners_ao2o.svg";
-        
-            const OrderInfo = styled.div`
-         width: 300px;
-         height: 200px;
-         box-shadow: 0px 2px 4px rgba(0,0,0,0.18); 
-         `;
+            edition,
+            orderID,
+        } = this.state; 
+
+        const SuccessImage = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_winners_ao2o.svg";
+        const OrderInfo = styled.div`
+        width: 300px;
+        height: 300px;
+        box-shadow: 0px 2px 4px rgba(0,0,0,0.18); 
+        `;
         return(
-            <Container>
+            <div>
+                
+                        <Mutation
+                             mutation={PLACE_ORDER_MUTATION}
+                             variables={{
+                                title,
+                                ISBN,
+                                author,
+                                edition
+                             }} 
+              
+                             
+                             >
+                             {(order, {error, loading,called, data,client }) => {
+                                console.log(data);
+                                
+                     
+                                 if (called && data){
+                                     return (
+
+                                     
+                                         
+                                         <Container>
                
                 <Row>
                     <Col>
@@ -102,12 +123,16 @@ export default class Order extends Component {
                 <Row className="justify-content-center">
                 <OrderInfo className="text-center">
                  <Heading>Your Order Details</Heading>
+             
+                 <Textbody><strong>Order ID</strong>: {data.placeOrder.orderId} </Textbody>
                      <Textbody><strong>Title</strong>: {title}</Textbody>
                      <Textbody><strong>ISBN</strong>: {ISBN}</Textbody>  
                      <Textbody><strong>edition</strong>: {edition}</Textbody> 
                      <Textbody><strong>Author</strong>: {author}</Textbody> 
+                     
                  </OrderInfo>
                 </Row>
+
                 </Container>
         )
     }
@@ -155,11 +180,25 @@ export default class Order extends Component {
                                         <Form 
                                         onSubmit={
                                             async e  => {
+
+                </Container>)
+                                     
+                                 } else {
+                                    return(
+                                        <Container>
+                                        <Row className="justify-content-center">
+                                    <Col sm={6} lg={4}>
+                                    
+                                            <DisplayMedium className="text-center mt-4">Place an Order</DisplayMedium>
+
+                                        <Form onSubmit={
+                                            async e => {
+
                                                 e.preventDefault();
                                                 await order();
                                                 this.setState({
                                                     newOrder: true,
-                                                    orderID: newID
+                                                    
                                                 });
     
                                             }}>
@@ -238,22 +277,16 @@ export default class Order extends Component {
              
                                       
                                         </Form>
+                                        </Col>
+                        
+                        </Row>
     
-                                    )
-                                
-                                   
-                                    
-                              
-                               
-                                  
+                    </Container>
+                                    )}
                              }}
                           
                            </Mutation>
-                        </Col>
-                        
-                    </Row>
-
-                </Container>
+                     
             </div>
         );
     }
@@ -261,23 +294,13 @@ export default class Order extends Component {
     render(){
         return(
             <div>
-                { this.state.newOrder === null 
-                  ? this.renderOrderForm()
-                  : this.renderOrderConfirmationForm()    
-            }
+               
+                  {this.renderOrderForm()}
+                  
+            
             </div>
         )
     }
 }
 
 
-/*
-
- <ModalDialog
-                             show={this.state.show}
-                             onHide={this.handleClose}
-                             title="test"
-                             body="haha ahah has"
-                             buttonText="Place Order"
-                             onClick={this.renderSuccess()}
-                             /> */

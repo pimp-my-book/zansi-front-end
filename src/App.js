@@ -37,7 +37,7 @@ class App extends Component {
 			this.userHasAuthenticated(true);
 		}
 		catch (e){
-			if (e !== 'No Current User') {
+			if (e !== 'No Current User!') {
 				console.log(e);
 			}
 		}
