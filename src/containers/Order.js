@@ -7,8 +7,9 @@ import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import PrimaryButton from "../components/PrimaryButton";
 import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
+import * as query from "../graphql/Queries";
 import ModalDialog from "../components/ModalDialog";
-import {Mutation} from "react-apollo"
+import {Mutation, Query} from "react-apollo"
 
 export default class Order extends Component {
     constructor(props){
@@ -102,10 +103,22 @@ export default class Order extends Component {
                 <Row className="justify-content-center">
                 <OrderInfo className="text-center">
                  <Heading>Your Order Details</Heading>
+                 <Query query={query.GET_ORDERS}>
+                {({loading, error, data}) => {
+                    if (loading) return "loading";
+                    if (error) return `${error.message}`;
+                    console.log(data)
+                    return (
+                        <Textbody><strong>Title</strong>: {data.order.orderId}</Textbody>
+
+                    )
+                }}
+                </Query>
                      <Textbody><strong>Title</strong>: {title}</Textbody>
                      <Textbody><strong>ISBN</strong>: {ISBN}</Textbody>  
                      <Textbody><strong>edition</strong>: {edition}</Textbody> 
                      <Textbody><strong>Author</strong>: {author}</Textbody> 
+                     
                  </OrderInfo>
                 </Row>
                 </Container>
@@ -138,14 +151,15 @@ export default class Order extends Component {
                                 author,
                                 edition
                              }} 
+              
                              //onCompleted={() => alert(`you place this order ${title}`)}
                              >
-                             {(order, {error, loading,called, data, _GetOrderID}) => {
+                             {(order, {error, loading,called, data,client }) => {
                                 console.log(data);
                                 
                                  if (data){
                                   
-                                    const newID = data.placeOrder.orderId;
+                                    client.writeData({data: {order: data.placeOrder.orderId} }); 
 
                                  }
                              
@@ -153,12 +167,12 @@ export default class Order extends Component {
 
                                     return(
                                         <Form onSubmit={
-                                            async (e, newID) => {
+                                            async e => {
                                                 e.preventDefault();
                                                 await order();
                                                 this.setState({
                                                     newOrder: true,
-                                                    orderID: newID
+                                                    
                                                 });
     
                                             }}>
