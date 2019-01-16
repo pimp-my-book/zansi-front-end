@@ -5,6 +5,8 @@ import styled from "styled-components";
 import PrimaryButton from "../components/PrimaryButton";
 import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
+import Info from "../components/Info";
+import Textbody from "../components/typography/Textbody";
 
 export default class Login extends Component {
     constructor(props){
@@ -14,12 +16,20 @@ export default class Login extends Component {
             isLoading: false,
             email: "",
             password: "",
-            fullName: ""
+            fullName: "",
+            newPassword: "",
+            passwordChallenge: false,
+            newPassword: "",
+            confirmNewPassord: ""
         };
     }
 
     validateForm(){
         return this.state.email.length > 0 && this.state.password.length > 0;
+    }
+
+    validateConfirmForm(){
+        return this.state.newPassword === this.state.confirmNewPassord;
     }
 
     handleChange = name => event =>{
@@ -43,7 +53,7 @@ export default class Login extends Component {
 
     }
 
-    render(){
+    renderLoginForm(){
         return (
             <Container>
                 <Row className="justify-content-center">
@@ -99,5 +109,65 @@ export default class Login extends Component {
             
          
         );
+    }
+
+    renderChallengeForm(){
+        return(
+            <Container>
+                <Row className="justify-content-center">
+
+                    <Col sm={6} lg={4}>
+                    <DisplayMedium className="text-center">Reset Password</DisplayMedium>
+                       {this.state.emailError && 
+                       <Info 
+                       text={this.state.emailError}
+                       variant="danger"
+                       />
+                       }
+                       <Textbody>Please Provide us with your email address so we verify you. </Textbody>
+                      
+                       <Form onSubmit={this.handleSendCodeClick}>
+                           <Form.Group controlId="newPassword">
+                           <Form.Label>New Password</Form.Label>
+                           <Form.Control 
+                           required
+                           type="email"
+                           value={this.state.newPassword}
+                           onChange={this.handleChange}
+                           />
+
+                           </Form.Group>
+                           <Form.Group controlId="confirmNewPassord">
+                           <Form.Label>Confirm Password</Form.Label>
+                           <Form.Control 
+                           required
+                           type="password"
+                           value={this.state.confirmNewPassord}
+                           onChange={this.handleChange}
+                           />
+
+                           </Form.Group>
+                           <PrimaryButton
+                           type="submit"
+                           loadingText="Creating..."
+                           text="Confirm New Password"
+                           isLoading={this.state.isSendingCode}
+                           disabled={!this.validateConfirmForm()}
+                           />
+                       </Form>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
+
+    render(){
+        return(
+            <div>
+                {this.state.passwordChallenge 
+                ? this.renderLoginForm()
+                : this.renderChallengeForm()}
+            </div>
+        )
     }
 }
