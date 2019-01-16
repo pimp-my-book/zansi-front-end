@@ -4,6 +4,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
+import Info from "../components/Info";
 import {  Form, Col,Container, Row} from "react-bootstrap";
 
 
@@ -62,8 +63,9 @@ export default class ForgotPassword extends Component {
             await Auth.forgotPassword(this.state.email);
             this.setState({codeSent: true});
         } catch (e) {
-            alert(e.message);
-            this.setState({emailError: e.message});
+            //alert(e.message);
+            this.setState({emailError: e.message,
+                isSendingCode: false});
         }
     }
 
@@ -97,8 +99,15 @@ export default class ForgotPassword extends Component {
 
                     <Col sm={6} lg={4}>
                     <DisplayMedium className="text-center">Reset Password</DisplayMedium>
-                       {this.state.emailError && <p>{this.state.emailError}</p>}
-                       <Form>
+                       {this.state.emailError && 
+                       <Info 
+                       text={this.state.emailError}
+                       variant="danger"
+                       />
+                       }
+                       <Textbody>Please Provide us with your email address so we verify you. </Textbody>
+                      
+                       <Form onSubmit={this.handleSendCodeClick}>
                            <Form.Group controlId="email">
                            <Form.Label>Email</Form.Label>
                            <Form.Control 
@@ -133,7 +142,7 @@ export default class ForgotPassword extends Component {
                     <DisplayMedium className="text-center">Confirmation Form</DisplayMedium>
                        <p>Check your email : {this.state.email} for the confirmaton code!</p>
                        {this.state.confirmError && <p>{this.state.confirmError}</p>}
-                       <Form>
+                       <Form onSubmit={this.handleConfirmClick}>
                        <Form.Group controlId="code">
                        <Form.Label>Confirmation Code</Form.Label>
                        <Form.Control
@@ -195,7 +204,12 @@ export default class ForgotPassword extends Component {
 	render(){
 		return (
 			<div>
-                {this.renderSuccessMessage()}
+                {!this.state.codeSent
+                    ? this.renderRequestCodeForm()
+                    : !this.state.confirmed 
+                       ? this.renderConfirmationForm()
+                       : this.renderSuccessMessage()
+                }
             </div>
 		);
 	}
