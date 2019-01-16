@@ -5,6 +5,7 @@ import NotFound from "./containers/NotFound";
 import Playground from "./containers/Playground";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
+import ForgotPassword from "./containers/ForgotPassword";
 import AuthenticatedRoute from "./components/routes/AuthenticatedRoute";
 import UnathenticatedRoute from "./components/routes/UnathenticatedRoute";
 import HowItWorks from "./containers/pages/HowItWorks";
@@ -22,6 +23,7 @@ export default ({childProps}) =>
 		<UnathenticatedRoute  path="/how-it-works" component={HowItWorks} props={childProps}/>
 		<UnathenticatedRoute  path="/contact-us" component={ContactUs} props={childProps}/>
 		<UnathenticatedRoute  path="/faq" component={FAQ} props={childProps}/>
+		<UnathenticatedRoute  path="/forgot-password" component={ForgotPassword} props={childProps}/>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
 
 		<Route component={NotFound}/>
