@@ -8,3 +8,13 @@ export const Univeristies = [
     'Rhodes'
 
 ]
+
+export const Bursaries = [
+    "MSP",
+    "AGOF",
+    "OA",
+    "ACC",
+    "JGF",
+    "MAD",
+    "ST"
+]

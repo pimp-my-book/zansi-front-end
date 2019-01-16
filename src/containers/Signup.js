@@ -5,7 +5,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import {  Form, Col,Container, Row} from "react-bootstrap";
-import {Univeristies} from "../constants";
+import {Univeristies,Bursaries} from "../constants";
 
  export default class Signup extends Component {
      constructor(props){
@@ -153,6 +153,7 @@ import {Univeristies} from "../constants";
                         <Form.Group as={Col}>
                          <Form.Label>Full Name</Form.Label>
                          <Form.Control 
+                         required
                           value={this.state.fullName}
                          placeholder="eg: Steve Biko"
                          onChange={this.handleChange('fullName')}
@@ -162,7 +163,9 @@ import {Univeristies} from "../constants";
 
                         <Form.Group as={Col}>
                          <Form.Label>Email</Form.Label>
-                         <Form.Control type="email" 
+                         <Form.Control 
+                         required
+                         type="email" 
                          placeholder="email@example.com"
                          value={this.state.email}
                          onChange={this.handleChange('email')}
@@ -172,7 +175,9 @@ import {Univeristies} from "../constants";
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Student Number</Form.Label>
-                         <Form.Control type="number" 
+                         <Form.Control 
+                         type="text"
+                         required 
                          placeholder="123456789"
                          value={this.state.studentNumber}
                          onChange={this.handleChange('studentNumber')}
@@ -183,6 +188,7 @@ import {Univeristies} from "../constants";
                          <Form.Label>University</Form.Label>
                          <Form.Control 
                          as="select"
+                         required
                          value={this.state.university}
                          onChange={this.handleChange('university')}
 
@@ -204,16 +210,27 @@ import {Univeristies} from "../constants";
                         <Form.Group as={Col}>
                          <Form.Label>Bursary</Form.Label>
                          <Form.Control 
-                         type="text" 
+                         as="select"
+                         required
                          value={this.state.bursary}
                          onChange={this.handleChange('bursary')}
-                         />
+                         />{
+                            Bursaries.map(
+                                bursaryOp => (
+                                    <option
+                                    key={bursaryOp}
+                                    >
+                                        {bursaryOp}
+                                    </option>
+                                )
+                            )}
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label>Degree</Form.Label>
                          <Form.Control 
                          type="text" 
+                         required
                          placeholder="eg: BSC Engineering"
                          value={this.state.degree}
                          onChange={this.handleChange('degree')}
@@ -223,8 +240,10 @@ import {Univeristies} from "../constants";
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Delivery Address</Form.Label>
-                         <Form.Control as="textarea" 
-                         placeholder="eg: 12 Imaginary Road"
+                         <Form.Control 
+                         as="textarea" 
+                         required
+                         placeholder="eg: 12 Imaginary Road, Suburb, City, Province,Zip Code"
                          value={this.state.address}
                          onChange={this.handleChange('address')}
                          />
@@ -232,7 +251,9 @@ import {Univeristies} from "../constants";
 
                         <Form.Group as={Col}>
                          <Form.Label>Phone Number</Form.Label>
-                         <Form.Control  type="number" 
+                         <Form.Control  
+                         type="number" 
+                         required
                          placeholder="0745896313"
                          value={this.state.cellNumber}
                          onChange={this.handleChange('cellNumber')}
@@ -243,7 +264,9 @@ import {Univeristies} from "../constants";
                     <Form.Row>
                         <Form.Group as={Col}>
                          <Form.Label>Password</Form.Label>
-                         <Form.Control type="password" 
+                         <Form.Control 
+                         type="password" 
+                         required
                          placeholder="Something Secret"
                          onChange={this.handleChange('password')}
                          value={this.state.password}
@@ -252,7 +275,9 @@ import {Univeristies} from "../constants";
 
                         <Form.Group as={Col}>
                          <Form.Label>Confirm Password</Form.Label>
-                         <Form.Control  type="password" 
+                         <Form.Control  
+                         type="password" 
+                         required
                          placeholder="Confirm The Secret"
                          value={this.state.confirmPassword}
                          onChange={this.handleChange('confirmPassword')}
