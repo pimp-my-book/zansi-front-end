@@ -53,7 +53,7 @@ Amplify.configure({
 //Providing the user access to the api
 const authLink = setContext(async (_, {headers}) => {
 	
-	const token = await Auth.currentSession();
+	const token = await console.log(Auth.currentSession());
 		return {
 			headers: {
 				...headers,
