@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
-import ForgotPassword from '../containers/ForgotPassword';
-const wait = require('waait');
-import {mount,configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {wrap} from 'module';
+import ForgotPassword from "../containers/ForgotPassword";
+//const wait = require("waait");
+import {mount,configure} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import {wrap} from "module";
 /////////////////////////////////////////////////////////////////////////////////
 /* Component Behaviours
 
@@ -47,37 +47,49 @@ User needs to see a message telling them to be redirected to the Login Page
 
 */
 /////////////////////////////////////////////////////////////////////////////////
-describe('<ForgotPassword/>', () => {
+//configure enzyme adpater
+configure({adapter: new Adapter()});
+
+
+describe("<ForgotPassword/>", () => {
 
 
 
-    it('renders without crashing', () => {
-        renderer.create(
-            <ForgotPassword/>
-        )
+	it("renders without crashing", () => {
+		const component = renderer.create(
+			<ForgotPassword/>
+		);
+
+		const tree = component.toJSON();
+		expect(tree).toMatchSnapshot();
+	});
+    
+    
+	it("calls the submit event for RequestCodeForm ", () =>{
+		const onSubmitFn = jest.fn();
+		const wrapper = mount(<ForgotPassword onSubmit={onSubmitFn}/>);
+        
+        const form = wrapper.find('.Request__Form');
+        form.simulate('submit');
+        expect(onSubmitFn).toHaveBeenCalledTimes(1);
     });
     
-    
-    it('calls the submit event for RequestCodeForm ', () =>{
-    
-    });
-    
-    it('Dispalys an error for email that is not on file', () =>{
-    
-    });
+	it("Dispalys an error for email that is not on file", () =>{
+      return null;
+	});
     
     
-    it('calls the submit event for RequestConfirmationForm', () =>{
+	it("calls the submit event for RequestConfirmationForm", () =>{
+        return null;
+	});
     
-    });
+	it("Dispalys an error for incorrect code or non-matching passwords", () =>{
+        return null;
+	});
     
-    it('Dispalys an error for incorrect code or non-matching passwords', () =>{
-    
-    });
-    
-    it('renders the success page', () =>{
-    
-    });
+	it("renders the success page", () =>{
+        return null;
+	});
 
 
 });

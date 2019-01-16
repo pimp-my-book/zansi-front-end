@@ -107,7 +107,7 @@ export default class ForgotPassword extends Component {
                        }
                        <Textbody>Please Provide us with your email address so we verify you. </Textbody>
                       
-                       <Form onSubmit={this.handleSendCodeClick}>
+                       <Form className="Request__Form" onSubmit={this.handleSendCodeClick}>
                            <Form.Group controlId="email">
                            <Form.Label>Email</Form.Label>
                            <Form.Control 
