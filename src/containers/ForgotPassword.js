@@ -5,7 +5,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
-import {  Form, Col,Container, Row} from "react-bootstrap";
+import {  Form, Col,Container, Row, Image} from "react-bootstrap";
 
 
 export default class ForgotPassword extends Component {
@@ -141,7 +141,12 @@ export default class ForgotPassword extends Component {
                 <Col sm={6} lg={4}>
                     <DisplayMedium className="text-center">Confirmation Form</DisplayMedium>
                        <p>Check your email : {this.state.email} for the confirmaton code!</p>
-                       {this.state.confirmError && <p>{this.state.confirmError}</p>}
+                       {this.state.confirmError && 
+                         <Info 
+                         text={this.state.confirmError}
+                         variant="danger"
+                         />
+                        }
                        <Form onSubmit={this.handleConfirmClick}>
                        <Form.Group controlId="code">
                        <Form.Label>Confirmation Code</Form.Label>
@@ -183,16 +188,21 @@ export default class ForgotPassword extends Component {
 
     //render success message
     renderSuccessMessage(){
+        const ImgURL = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_finish_line_katerina_limpitsouni_xy20.svg";
         return(
             <Container>
-                <Row>
-                    <Col>
+                <Row className="justify-content-center">
+                    <Col sm={6} lg={4}>
                     <DisplayMedium className="text-center">You Have a New Password!</DisplayMedium>
-                     
+                     <Image
+                      src={ImgURL}
+                      fluid
+                      width={200}
+                     />
                     </Col>
                 </Row>
-                <Row>
-                    <Col className="justify-content-center">
+                <Row className="justify-content-center mt-5"> 
+                    <Col sm={6} lg={4}>
                     <LinkButton href="/login">Click here to login with your new password.</LinkButton>
                     </Col>
                 </Row>
@@ -204,11 +214,7 @@ export default class ForgotPassword extends Component {
 	render(){
 		return (
 			<div>
-                {!this.state.codeSent
-                    ? this.renderRequestCodeForm()
-                    : !this.state.confirmed 
-                       ? this.renderConfirmationForm()
-                       : this.renderSuccessMessage()
+                {this.renderSuccessMessage()
                 }
             </div>
 		);
