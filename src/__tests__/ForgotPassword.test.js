@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from "react-test-renderer";
 import ForgotPassword from '../containers/ForgotPassword';
-
+const wait = require('waait');
+import {mount,configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import {wrap} from 'module';
 /////////////////////////////////////////////////////////////////////////////////
 /* Component Behaviours
 
@@ -44,9 +47,37 @@ User needs to see a message telling them to be redirected to the Login Page
 
 */
 /////////////////////////////////////////////////////////////////////////////////
+describe('<ForgotPassword/>', () => {
 
-it('renders without crashing', () => {
-    renderer.create(
-        <ForgotPassword/>
-    )
-})
+
+
+    it('renders without crashing', () => {
+        renderer.create(
+            <ForgotPassword/>
+        )
+    });
+    
+    
+    it('calls the submit event for RequestCodeForm ', () =>{
+    
+    });
+    
+    it('Dispalys an error for email that is not on file', () =>{
+    
+    });
+    
+    
+    it('calls the submit event for RequestConfirmationForm', () =>{
+    
+    });
+    
+    it('Dispalys an error for incorrect code or non-matching passwords', () =>{
+    
+    });
+    
+    it('renders the success page', () =>{
+    
+    });
+
+
+});
