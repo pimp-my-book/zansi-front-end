@@ -214,7 +214,7 @@ import {Univeristies,Bursaries} from "../constants";
                          required
                          value={this.state.bursary}
                          onChange={this.handleChange('bursary')}
-                         />{
+                         >{
                             Bursaries.map(
                                 bursaryOp => (
                                     <option
@@ -224,6 +224,7 @@ import {Univeristies,Bursaries} from "../constants";
                                     </option>
                                 )
                             )}
+                            </Form.Control>
                         </Form.Group>
 
                         <Form.Group as={Col}>
