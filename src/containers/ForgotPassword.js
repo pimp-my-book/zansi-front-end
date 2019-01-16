@@ -177,7 +177,7 @@ export default class ForgotPassword extends Component {
                            loadingText="Confirming..."
                            text="Confirm"
                            isLoading={this.state.isConfirming}
-                           disabled={!this.validateCodeForm()}
+                           disabled={!this.validateResetForm()}
                            />
                        </Form>
                     </Col>
@@ -214,8 +214,11 @@ export default class ForgotPassword extends Component {
 	render(){
 		return (
 			<div>
-                {this.renderSuccessMessage()
-                }
+                {!this.state.codeSent
+          ? this.renderRequestCodeForm()
+          : !this.state.confirmed
+            ? this.renderConfirmationForm()
+            : this.renderSuccessMessage()}
             </div>
 		);
 	}
