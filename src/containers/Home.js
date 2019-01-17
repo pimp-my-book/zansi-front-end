@@ -37,7 +37,7 @@ font-size: 20px;
 		<Header>
             <Container>
                 <Row>
-                   <Col classname="">
+                   <Col >
                      <DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
                      
                      <DisplaySmall normal>Zansi is a new Pimp My Book service designed to help bursary students to order textbooks.</DisplaySmall>

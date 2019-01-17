@@ -39,19 +39,71 @@ export default class Login extends Component {
     } 
 
 
-
     handleSubmit = async event => {
         event.preventDefault();
         this.setState({isLoading: true});
+
         try {
-            await Auth.signIn(this.state.email,this.state.password);
-            this.props.userHasAuthenticated(true);
+
+            await Auth.signIn({username:this.state.email,password:this.state.password})
+                  .then(user => {
+                    console.log(user);
+                      if (user.challengeName === 'NEW_PASSWORD_REQUIRED'){
+                        this.setState({passwordChallenge: true,isLoading: false});
+                        Auth.completeNewPassword({
+                            user,
+                            //password: this.state.password,
+                            newPassword: this.state.newPassword
+                        }).then(user => {
+                            Auth.signIn({username: user.username,password: this.state.newPassword })      
+                          this.props.userHasAuthenticated(true);
+                              
+                        }).catch(e => {
+                            console.log(e);
+                            
+                        });
+                        
+                      } else {
+                        this.props.userHasAuthenticated(true);
+                        this.props.history.push("/order");
+
+                      }
+                  })
+                   
         } catch (e){
-            alert(e.message);
+            alert(e.message)
+            this.setState({isLoading: false});
+
         }
-        this.setState({isLoading: false});
+
 
     }
+
+/*
+    handlePasswordSubmit = async event => {
+        try {
+            await Auth.currentAuthenticatedUser()
+            .then(user => {
+                Auth.completeNewPassword({
+                    user,
+                    newPassword: this.state.newPassword
+                }).then(user => {
+                  this.props.userHasAuthenticated(true);
+        
+                }).catch(e => {
+                    console.log(e);
+                    
+                });
+
+            })
+        
+
+        } catch(e){
+            alert(e.message)
+            console.log(e)
+        }
+    } */
+
 
     renderLoginForm(){
         return (
@@ -83,11 +135,38 @@ export default class Login extends Component {
                                />
                 </Form.Group>
                 <Form.Group>
+                
+                </Form.Group>
+                   {this.state.passwordChallenge &&
+                    <Form.Group controlId="newPassword">
+                           <Form.Label>New Password</Form.Label>
+                         
+                         <Form.Control 
+                         required
+                         type="email"
+                         type="password"
+                         value={this.state.newPassword}
+                         onChange={this.handleChange('newPassword')}
+                         /> </Form.Group>
+                        
+                        }  
+
+                          
+                           {this.state.passwordChallenge &&
+                           <Form.Group controlId="confirmNewPassord">
+                           <Form.Label>Confirm Password</Form.Label>
+                           <Form.Control 
+                           required
+                           type="password"
+                           value={this.state.confirmNewPassord}
+                           onChange={this.handleChange('confirmNewPassord')}
+                           />
+
+                           </Form.Group>}
+
                 <LinkButton sm href="/forgot-password" >
                 Forgot Your Password?
                 </LinkButton>
-                </Form.Group>
-                
           <PrimaryButton
              text="Login"
              small="true"
@@ -126,14 +205,15 @@ export default class Login extends Component {
                        }
                        <Textbody>Please Provide us with your email address so we verify you. </Textbody>
                       
-                       <Form onSubmit={this.handleSendCodeClick}>
+                       <Form onSubmit={this.handleSubmit}>
                            <Form.Group controlId="newPassword">
                            <Form.Label>New Password</Form.Label>
                            <Form.Control 
                            required
                            type="email"
+                           type="password"
                            value={this.state.newPassword}
-                           onChange={this.handleChange}
+                           onChange={this.handleChange('newPassword')}
                            />
 
                            </Form.Group>
@@ -143,15 +223,18 @@ export default class Login extends Component {
                            required
                            type="password"
                            value={this.state.confirmNewPassord}
-                           onChange={this.handleChange}
+                           onChange={this.handleChange('confirmNewPassord')}
                            />
 
                            </Form.Group>
+
+
+                           
                            <PrimaryButton
                            type="submit"
                            loadingText="Creating..."
                            text="Confirm New Password"
-                           isLoading={this.state.isSendingCode}
+                           //isLoading={this.state.isLoading}
                            disabled={!this.validateConfirmForm()}
                            />
                        </Form>
@@ -164,9 +247,8 @@ export default class Login extends Component {
     render(){
         return(
             <div>
-                {this.state.passwordChallenge 
-                ? this.renderLoginForm()
-                : this.renderChallengeForm()}
+                {this.renderLoginForm()
+               }
             </div>
         )
     }
