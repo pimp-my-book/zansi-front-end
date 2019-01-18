@@ -8,11 +8,13 @@ import Signup from "./containers/Signup";
 import ForgotPassword from "./containers/ForgotPassword";
 import AuthenticatedRoute from "./components/routes/AuthenticatedRoute";
 import UnathenticatedRoute from "./components/routes/UnathenticatedRoute";
+import StaffAuthRoute from "./components/routes/StaffAuthRoute";
 import HowItWorks from "./containers/pages/HowItWorks";
 import ContactUs from "./containers/pages/ContactUs";
 import FAQ from "./containers/pages/FAQ";
 import Order from "./containers/Order";
 import StaffLogin from "./containers/StaffLogin";
+import Dashboard from "./containers/Dashboard";
 
 export default ({childProps}) => 
 <div>
@@ -27,6 +29,7 @@ export default ({childProps}) =>
 		<UnathenticatedRoute  path="/forgot-password" component={ForgotPassword} props={childProps}/>
 		<UnathenticatedRoute  path="/staff" component={StaffLogin} props={childProps}/>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
+		<StaffAuthRoute  path="/dashboard" component={Dashboard} props={childProps}/>
 
 		<Route component={NotFound}/>
 	</Switch>
