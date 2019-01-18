@@ -9,8 +9,12 @@ export default class Dashboard extends Component {
     }
     
     render(){
-        return(
-            <p>DASHBOARD</p>
-        )
+
+        
+            return(
+                <p>DASHBOARD</p>
+            )
+        
+        
     }
 }

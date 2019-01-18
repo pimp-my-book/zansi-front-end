@@ -66,7 +66,8 @@ class App extends Component {
 		const childProps = {
 			isAuthenticated: this.state.isAuthenticated,
 			userHasAuthenticated: this.userHasAuthenticated,
-			userIsStaff: this.userIsStaff
+			userIsStaff: this.userIsStaff,
+			isStaff: this.state.isStaff
 		};
 		const LinkA = styled.a`
             text-decoration: none;
