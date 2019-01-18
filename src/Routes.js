@@ -12,6 +12,7 @@ import HowItWorks from "./containers/pages/HowItWorks";
 import ContactUs from "./containers/pages/ContactUs";
 import FAQ from "./containers/pages/FAQ";
 import Order from "./containers/Order";
+import StaffLogin from "./containers/StaffLogin";
 
 export default ({childProps}) => 
 <div>
@@ -24,6 +25,7 @@ export default ({childProps}) =>
 		<UnathenticatedRoute  path="/contact-us" component={ContactUs} props={childProps}/>
 		<UnathenticatedRoute  path="/faq" component={FAQ} props={childProps}/>
 		<UnathenticatedRoute  path="/forgot-password" component={ForgotPassword} props={childProps}/>
+		<UnathenticatedRoute  path="/staff" component={StaffLogin} props={childProps}/>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
 
 		<Route component={NotFound}/>
