@@ -33,10 +33,17 @@ class App extends Component {
 
 	async componentDidMount(){
 		try {
-			 await Auth.currentSession();
-			this.userHasAuthenticated(true);
-		}
-		catch (e){
+			 await Auth.currentSession()
+			 .then(data =>  {
+				if(data.idToken.payload['cognito:groups']){
+					console.log('true');
+					this.userHasAuthenticated(true);
+				} else {
+					console.log(false);
+				}
+			})
+		
+			}catch (e){
 			if (e !== 'No Current User!') {
 				console.log(e);
 			}

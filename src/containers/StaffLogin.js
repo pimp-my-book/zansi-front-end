@@ -142,7 +142,7 @@ export default class StaffLogin extends Component {
                 <Row className="justify-content-center">
                     <Col sm={6} lg={4}>
                     
-                <DisplayMedium className="text-center">Welcome Back!</DisplayMedium>
+                <DisplayMedium className="text-center">Staff Sign Up</DisplayMedium>
                 {this.state.error && 
                        <Info 
                        text={this.state.error}
