@@ -16,20 +16,12 @@ export default class Login extends Component {
             isLoading: false,
             email: "",
             password: "",
-            fullName: "",
-            newPassword: "",
-            passwordChallenge: false,
-            newPassword: "",
-            confirmNewPassord: ""
+            error: ""
         };
     }
 
     validateForm(){
         return this.state.email.length > 0 && this.state.password.length > 0;
-    }
-
-    validateConfirmForm(){
-        return this.state.newPassword === this.state.confirmNewPassord;
     }
 
     handleChange = name => event =>{
@@ -39,83 +31,36 @@ export default class Login extends Component {
     } 
 
 
+
     handleSubmit = async event => {
         event.preventDefault();
         this.setState({isLoading: true});
-
         try {
-
-            await Auth.signIn({username:this.state.email,password:this.state.password})
-                  .then(user => {
-                    console.log(user);
-                      if (user.challengeName === 'NEW_PASSWORD_REQUIRED'){
-                        this.setState({passwordChallenge: true,isLoading: false});
-                        Auth.completeNewPassword({
-                            user,
-                            //password: this.state.password,
-                            newPassword: this.state.newPassword
-                        }).then(user => {
-                            Auth.signIn({username: user.username,password: this.state.newPassword })      
-                          this.props.userHasAuthenticated(true);
-                              
-                        }).catch(e => {
-                            console.log(e);
-                            
-                        });
-                        
-                      } else {
-                        this.props.userHasAuthenticated(true);
-                        this.props.history.push("/order");
-
-                      }
-                  })
-                   
+            await Auth.signIn(this.state.email,this.state.password);
+            this.props.userHasAuthenticated(true);
         } catch (e){
-            alert(e.message)
-            this.setState({isLoading: false});
-
+            this.setState({error: e.message});
         }
-
+        this.setState({isLoading: false});
 
     }
 
-/*
-    handlePasswordSubmit = async event => {
-        try {
-            await Auth.currentAuthenticatedUser()
-            .then(user => {
-                Auth.completeNewPassword({
-                    user,
-                    newPassword: this.state.newPassword
-                }).then(user => {
-                  this.props.userHasAuthenticated(true);
-        
-                }).catch(e => {
-                    console.log(e);
-                    
-                });
-
-            })
-        
-
-        } catch(e){
-            alert(e.message)
-            console.log(e)
-        }
-    } */
-
-
-    renderLoginForm(){
+    render(){
         return (
             <Container>
                 <Row className="justify-content-center">
                     <Col sm={6} lg={4}>
                     
                 <DisplayMedium className="text-center">Welcome Back!</DisplayMedium>
-             
+                {this.state.error && 
+                       <Info 
+                       text={this.state.error}
+                       variant="danger"
+                       />
+                       }
                 <Form className="justify-content-center" onSubmit={this.handleSubmit}>
                 <Form.Group  controlId="email" >
-                <Form.Label>Email</Form.Label>
+                <Form.Label><Textbody>Email</Textbody></Form.Label>
                 <Form.Control
 
                 required
@@ -125,7 +70,7 @@ export default class Login extends Component {
                 />
                 </Form.Group>
                 <Form.Group controlId="password" >
-                <Form.Label>Password</Form.Label>
+                <Form.Label><Textbody>Password</Textbody></Form.Label>
                 <Form.Control
                 type="password"
                 required
@@ -135,38 +80,11 @@ export default class Login extends Component {
                                />
                 </Form.Group>
                 <Form.Group>
-                
-                </Form.Group>
-                   {this.state.passwordChallenge &&
-                    <Form.Group controlId="newPassword">
-                           <Form.Label>New Password</Form.Label>
-                         
-                         <Form.Control 
-                         required
-                         type="email"
-                         type="password"
-                         value={this.state.newPassword}
-                         onChange={this.handleChange('newPassword')}
-                         /> </Form.Group>
-                        
-                        }  
-
-                          
-                           {this.state.passwordChallenge &&
-                           <Form.Group controlId="confirmNewPassord">
-                           <Form.Label>Confirm Password</Form.Label>
-                           <Form.Control 
-                           required
-                           type="password"
-                           value={this.state.confirmNewPassord}
-                           onChange={this.handleChange('confirmNewPassord')}
-                           />
-
-                           </Form.Group>}
-
                 <LinkButton sm href="/forgot-password" >
                 Forgot Your Password?
                 </LinkButton>
+                </Form.Group>
+                
           <PrimaryButton
              text="Login"
              small="true"
@@ -181,75 +99,11 @@ export default class Login extends Component {
         
           
                 </Form>
-
                     </Col>
                 </Row>
             </Container>
             
          
         );
-    }
-
-    renderChallengeForm(){
-        return(
-            <Container>
-                <Row className="justify-content-center">
-
-                    <Col sm={6} lg={4}>
-                    <DisplayMedium className="text-center">Reset Password</DisplayMedium>
-                       {this.state.emailError && 
-                       <Info 
-                       text={this.state.emailError}
-                       variant="danger"
-                       />
-                       }
-                       <Textbody>Please Provide us with your email address so we verify you. </Textbody>
-                      
-                       <Form onSubmit={this.handleSubmit}>
-                           <Form.Group controlId="newPassword">
-                           <Form.Label>New Password</Form.Label>
-                           <Form.Control 
-                           required
-                           type="email"
-                           type="password"
-                           value={this.state.newPassword}
-                           onChange={this.handleChange('newPassword')}
-                           />
-
-                           </Form.Group>
-                           <Form.Group controlId="confirmNewPassord">
-                           <Form.Label>Confirm Password</Form.Label>
-                           <Form.Control 
-                           required
-                           type="password"
-                           value={this.state.confirmNewPassord}
-                           onChange={this.handleChange('confirmNewPassord')}
-                           />
-
-                           </Form.Group>
-
-
-                           
-                           <PrimaryButton
-                           type="submit"
-                           loadingText="Creating..."
-                           text="Confirm New Password"
-                           //isLoading={this.state.isLoading}
-                           disabled={!this.validateConfirmForm()}
-                           />
-                       </Form>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
-
-    render(){
-        return(
-            <div>
-                {this.renderLoginForm()
-               }
-            </div>
-        )
     }
 }
