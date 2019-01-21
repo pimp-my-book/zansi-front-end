@@ -29,8 +29,9 @@ export default ({childProps}) =>
 		<UnathenticatedRoute  path="/forgot-password" component={ForgotPassword} props={childProps}/>
 		<UnathenticatedRoute  path="/staff" component={StaffLogin} props={childProps}/>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
-		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}/>
+		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
 		<AuthenticatedRoute  path="/dashboard" component={Dashboard} props={childProps}/>
+		</StaffAuthRoute >
 		<Route component={NotFound}/>
 	</Switch>
 </div>;

@@ -66,7 +66,7 @@ const authLink = setContext(async (_, {headers}) => {
 
 //Connecting the GraphQL API to REACT-APOLLO 'http://localhost:4000/graphql' 
 const httpLink = createHttpLink({
-	uri: 'https://kzgb176292.execute-api.us-east-1.amazonaws.com/dev/graphql'
+	uri: 'http://localhost:4000/graphql'
 });
 
 const client = new ApolloClient({
