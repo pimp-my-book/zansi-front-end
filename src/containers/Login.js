@@ -5,6 +5,8 @@ import styled from "styled-components";
 import PrimaryButton from "../components/PrimaryButton";
 import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
+import Info from "../components/Info";
+import Textbody from "../components/typography/Textbody";
 
 export default class Login extends Component {
     constructor(props){
@@ -14,7 +16,7 @@ export default class Login extends Component {
             isLoading: false,
             email: "",
             password: "",
-            fullName: ""
+            error: ""
         };
     }
 
@@ -37,7 +39,7 @@ export default class Login extends Component {
             await Auth.signIn(this.state.email,this.state.password);
             this.props.userHasAuthenticated(true);
         } catch (e){
-            alert(e.message);
+            this.setState({error: e.message});
         }
         this.setState({isLoading: false});
 
@@ -50,10 +52,15 @@ export default class Login extends Component {
                     <Col sm={6} lg={4}>
                     
                 <DisplayMedium className="text-center">Welcome Back!</DisplayMedium>
-             
+                {this.state.error && 
+                       <Info 
+                       text={this.state.error}
+                       variant="danger"
+                       />
+                       }
                 <Form className="justify-content-center" onSubmit={this.handleSubmit}>
                 <Form.Group  controlId="email" >
-                <Form.Label>Email</Form.Label>
+                <Form.Label><Textbody>Email</Textbody></Form.Label>
                 <Form.Control
 
                 required
@@ -63,7 +70,7 @@ export default class Login extends Component {
                 />
                 </Form.Group>
                 <Form.Group controlId="password" >
-                <Form.Label>Password</Form.Label>
+                <Form.Label><Textbody>Password</Textbody></Form.Label>
                 <Form.Control
                 type="password"
                 required
@@ -92,7 +99,6 @@ export default class Login extends Component {
         
           
                 </Form>
-
                     </Col>
                 </Row>
             </Container>

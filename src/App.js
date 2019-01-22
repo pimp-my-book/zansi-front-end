@@ -17,6 +17,7 @@ class App extends Component {
 		this.state = {
 			isAuthenticated: false,
 			isAuthenticating: true,
+			isStaff: false
 			
 		};
 	}
@@ -25,18 +26,33 @@ class App extends Component {
 		this.setState({isAuthenticated:authenticated })
 	}
 
+	userIsStaff = verified => {
+		this.setState({isStaff: verified});
+	}
+
 	handleLogout = async event => {
 		await Auth.signOut();
 
-      this.userHasAuthenticated(false);
+	  this.userHasAuthenticated(false);
+	  this.userIsStaff(false);
+
 	}
 
 	async componentDidMount(){
 		try {
-			 await Auth.currentSession();
-			this.userHasAuthenticated(true);
-		}
-		catch (e){
+			 await Auth.currentSession()
+			 .then(data =>  {
+				this.userHasAuthenticated(true);
+				if(data.idToken.payload['cognito:groups']){
+					console.log('true');
+					
+					this.userIsStaff(true);
+				} else {
+					console.log(false);
+				}
+			})
+		
+			}catch (e){
 			if (e !== 'No Current User!') {
 				console.log(e);
 			}
@@ -49,7 +65,9 @@ class App extends Component {
 	render() {
 		const childProps = {
 			isAuthenticated: this.state.isAuthenticated,
-			userHasAuthenticated: this.userHasAuthenticated
+			userHasAuthenticated: this.userHasAuthenticated,
+			userIsStaff: this.userIsStaff,
+			isStaff: this.state.isStaff
 		};
 		const LinkA = styled.a`
             text-decoration: none;
@@ -73,6 +91,9 @@ class App extends Component {
 						  onClick={this.handleLogout}
 						>Logout
 						</Nav.Item>
+						{this.state.isStaff &&
+						<p>I am staff</p>
+						}
 						</Fragment>
 						
 
