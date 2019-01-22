@@ -48,7 +48,7 @@ Amplify.configure({
 	
 
 //Identyifying the different enviromental stages
-//const stage = process.env.REACT_APP_STAGE === "prod";
+const stage = process.env.REACT_APP_STAGE === "prod";
 
 //Providing the user access to the api
 const authLink = setContext(async (_, {headers}) => {
@@ -66,7 +66,7 @@ const authLink = setContext(async (_, {headers}) => {
 
 //Connecting the GraphQL API to REACT-APOLLO 'http://localhost:4000/graphql' 
 const httpLink = createHttpLink({
-	uri: process.env.REACT_APP_API_ENDPOINT_DEV
+	uri: stage ? process.env.REACT_APP_API_ENDPOINT_PROD  : process.env.REACT_APP_API_ENDPOINT_DEV
 });
 
 const client = new ApolloClient({
