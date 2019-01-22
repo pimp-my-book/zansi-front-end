@@ -53,7 +53,7 @@ Amplify.configure({
 //Providing the user access to the api
 const authLink = setContext(async (_, {headers}) => {
 	
-	const token = await console.log(Auth.currentSession());
+	const token = await Auth.currentSession();
 		return {
 			headers: {
 				...headers,
@@ -66,7 +66,7 @@ const authLink = setContext(async (_, {headers}) => {
 
 //Connecting the GraphQL API to REACT-APOLLO 'http://localhost:4000/graphql' 
 const httpLink = createHttpLink({
-	uri: 'http://localhost:4000/graphql'
+	uri: process.env.REACT_APP_API_ENDPOINT_DEV
 });
 
 const client = new ApolloClient({
