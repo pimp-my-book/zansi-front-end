@@ -1,6 +1,7 @@
 import React, {Component} from "react"; 
 import {Mutation, Query} from "react-apollo";
-import {EXPORT_TO_EXCEL}from "../graphql/Queries";
+import {Link} from "react-router-dom";
+import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink, CSVDownload } from "react-csv";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
@@ -20,7 +21,7 @@ export default class Dashboard extends Component {
 		return(
 			<div>
 				<p>DASHBOARD</p>
-				<Query query={EXPORT_TO_EXCEL}>
+				<Query query={ORDER_LIST}>
 					{({data}, loading, error) => {
 						const fields = [
 							"userId",
@@ -49,7 +50,7 @@ export default class Dashboard extends Component {
 						if (error) return <p>something is up</p>;
 						if(!data) return <p>Something is wrong with the API</p>;
                         if (data){
-                            const csv = json2csvParser.parse(data.exportToExcel);
+                            const csv = json2csvParser.parse(data.orderList);
                             console.log(data);
                             
                             return (
@@ -64,12 +65,12 @@ export default class Dashboard extends Component {
 
 
 				</Query>
-                <Query query={EXPORT_TO_EXCEL}>
+                <Query query={ORDER_LIST}>
                 {({data, loading, error}) => {
 
           if (loading) return <p>loading...</p>;
           if(error) return <p>Something is in the water</p>;
-            const Orders = data.exportToExcel;
+            const Orders = data.orderList;
            console.log(Orders); 
               if (!data){
                   return <p>An issue has arisen</p>; 
@@ -82,49 +83,44 @@ export default class Dashboard extends Component {
                           <thead>
                               <tr>
                                   <th>Order ID</th>
-                                  <th>User Id</th>
+                                  
                                   <th>studentNumber</th>
                                   <th>Name</th>
-                                  <th>Email</th>
-                                  <th>univeristy</th>
-                                  <th>Degree</th>
-                                  <th>Bursary</th>
-                                  <th>Cell Number</th>
-                                  <th>Address</th>
-                                  <th>ISBN</th>
+                                 
                                   <th>Title</th>
-                                  <th>Edition</th>
-                                  <th>Author</th>
+                                 
                                   <th>Date Ordered</th>
                                   <th>Status</th>
                               </tr>
                           </thead>
+                          {Orders.map(orders =>(
+                             
                           <tbody>
-                            {Orders.map(orders =>(
+                             <Link
+                              key={orders.id}
+                              to={`/orderinfo/${orders.orderId}/${orders.userId}`}
+                              >
+                                
                                 <tr key={orders}>
+                                
                                 <td>{orders.orderId}</td>
-                                <td>{orders.userId}</td>
+                                
                                 <td>{orders.studentNumber}</td>
                                 <td>{orders.name}</td>
-                                <td>{orders.email}</td>
-                                <td>{orders.univeristy}</td>
-                                <td>{orders.degree}</td>
-                                <td>{orders.bursary}</td>
-                                <td>{orders.cellNumber}</td>
-                                <td>{orders.address}</td>
-                                <td>{orders.ISBN}</td>
                                 <td>{orders.title}</td>
-                                <td>{orders.edition}</td>
-                                <td>{orders.author}</td>
+                                
                                 <td>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</td>
                                 <td>{orders.status}</td>
-                             
+                                
                             </tr>
-
-                            )
-                              
-                            )}
+                                
+                            
+                            </Link>
+                           
                           </tbody>
+                          
+                          )
+                           )}
                      </Table>
                         </Col>
                     </Row>
