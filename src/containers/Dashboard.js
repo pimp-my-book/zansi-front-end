@@ -2,9 +2,14 @@ import React, {Component} from "react";
 import {Mutation, Query} from "react-apollo";
 import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
+import * as Icon from 'react-feather';
 import { Col, Container, Row, Table } from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
+import DisplayLarge from "../components/typography/DisplayLarge";
+import Heading from "../components/typography/Heading";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Info from "../components/Info";
 const Json2csvParser = require("json2csv").Parser;
 
 
@@ -20,8 +25,16 @@ export default class Dashboard extends Component {
         
 		return(
 			<div>
-				<p>DASHBOARD</p>
-				<Query query={ORDER_LIST}>
+				<Container>
+                    <Row>
+                        <Col>
+                        <DisplayLarge>Dashboard</DisplayLarge>
+                        </Col>
+                    </Row>
+                </Container>
+
+				<Container>
+                <Query query={ORDER_LIST}>
 					{({data}, loading, error) => {
 						const fields = [
 							"userId",
@@ -45,18 +58,22 @@ export default class Dashboard extends Component {
 					
                     
 						
-                   
-						if (loading) return <p>loading...</p>;
-						if (error) return <p>something is up</p>;
-						if(!data) return <p>Something is wrong with the API</p>;
+                  
+						if (loading) return <LoadingSpinner/>;
+                        if (error) return <Info
+                            text={`${error}`}
+                            variant="danger"/>;
+						if(!data) return <Info
+                        text="Something went wrong, Please contact support if the issue persists"
+                        variant="danger"/>;
                         if (data){
                             const csv = json2csvParser.parse(data.orderList);
                             console.log(data);
                             
                             return (
                                 <div>
-                               export to excel: 
-                                    <CSVLink  data={csv}>Download</CSVLink>
+                              <Heading>Export Orders to excel:</Heading>  
+                                    <CSVLink  data={csv}><Icon.Download/></CSVLink>
                                    
                                 </div>
                             );
@@ -65,11 +82,14 @@ export default class Dashboard extends Component {
 
 
 				</Query>
+                </Container>
                 <Query query={ORDER_LIST}>
                 {({data, loading, error}) => {
 
-          if (loading) return <p>loading...</p>;
-          if(error) return <p>Something is in the water</p>;
+          if (loading) return <LoadingSpinner/>;
+          if(error) return <Info
+                            text={`${error}`}
+                            variant="danger"/>;
             const Orders = data.orderList;
            console.log(Orders); 
               if (!data){
