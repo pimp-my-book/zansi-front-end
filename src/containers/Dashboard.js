@@ -95,16 +95,22 @@ export default class Dashboard extends Component {
                           </thead>
                           {Orders.map(orders =>(
                              
-                          <tbody>
-                             <Link
-                              key={orders.id}
-                              to={`/orderinfo/${orders.orderId}/${orders.userId}`}
-                              >
+                          <tbody
+                          key={orders.orderId}
+                          >
+                             
                                 
                                 <tr key={orders}>
-                                
-                                <td>{orders.orderId}</td>
-                                
+                               
+                                <td>
+                                <Link
+                              
+                              to={`/orderinfo/${orders.orderId}/${orders.userId}`}
+                              >
+                              {orders.orderId} 
+                              </Link>
+                              </td>
+                             
                                 <td>{orders.studentNumber}</td>
                                 <td>{orders.name}</td>
                                 <td>{orders.title}</td>
@@ -115,7 +121,6 @@ export default class Dashboard extends Component {
                             </tr>
                                 
                             
-                            </Link>
                            
                           </tbody>
                           
