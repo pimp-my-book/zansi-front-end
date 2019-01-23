@@ -116,7 +116,7 @@ export default class Dashboard extends Component {
                                 <td>{orders.title}</td>
                                 <td>{orders.edition}</td>
                                 <td>{orders.author}</td>
-                                <td>{new Date(orders.dateOrdered).toLocaleString()}</td>
+                                <td>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</td>
                                 <td>{orders.status}</td>
                              
                             </tr>
