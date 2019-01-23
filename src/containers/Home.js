@@ -1,5 +1,4 @@
 import React from "react";
-
 import styled from "styled-components";
 import {Image, Row, Col, Container} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";

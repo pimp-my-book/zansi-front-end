@@ -15,6 +15,7 @@ import FAQ from "./containers/pages/FAQ";
 import Order from "./containers/Order";
 import StaffLogin from "./containers/StaffLogin";
 import Dashboard from "./containers/Dashboard";
+import OrderInfo from "./containers/OrderInfo";
 
 export default ({childProps}) => 
 <div>
@@ -31,6 +32,9 @@ export default ({childProps}) =>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
 		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
 		<AuthenticatedRoute  path="/dashboard" component={Dashboard} props={childProps}/>
+		</StaffAuthRoute >
+		<StaffAuthRoute path="/orderinfo/:orderId/:userId" component={OrderInfo}  props={childProps}>
+		<AuthenticatedRoute  path="/orderinfo/:orderId/:userId" component={OrderInfo} props={childProps}/>
 		</StaffAuthRoute >
 		<Route component={NotFound}/>
 	</Switch>

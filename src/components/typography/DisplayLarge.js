@@ -5,6 +5,7 @@ import styled from "styled-components";
   line-height: 100%;
   font-weight: 500;
   color: #ffc4d0;
+  font-family: 'Paytone One', sans-serif;
 `;
 
 export default DisplayLarge;

@@ -18,9 +18,9 @@ export const GET_ORDERS = gql`
 
 
 
-export const EXPORT_TO_EXCEL = gql`
-   query EXPORT_TO_EXCEL{
-       exportToExcel{
+export const ORDER_LIST = gql`
+   query ORDER_LIST{
+    orderList{
      orderId
      userId
      studentNumber
@@ -40,4 +40,27 @@ export const EXPORT_TO_EXCEL = gql`
      status
        }
    }
+`;
+
+export const VIEW_ORDER = gql`
+  query VIEW_ORDER($orderId:String!,$userId:String!){
+      viewOrder(orderId:$orderId, userId:$userId ){
+     orderId
+     userId
+     studentNumber
+     name
+     email
+     univeristy
+     degree
+     bursary
+     cellNumber
+     address
+     ISBN
+     title
+     edition
+     author
+     dateOrdered
+     status
+      }
+  }
 `;
