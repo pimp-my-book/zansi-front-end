@@ -9,6 +9,7 @@ import ForgotPassword from "./containers/ForgotPassword";
 import AuthenticatedRoute from "./components/routes/AuthenticatedRoute";
 import UnathenticatedRoute from "./components/routes/UnathenticatedRoute";
 import StaffAuthRoute from "./components/routes/StaffAuthRoute";
+import NonStaffRoute from "./components/routes/NonStaffRoute";
 import HowItWorks from "./containers/pages/HowItWorks";
 import ContactUs from "./containers/pages/ContactUs";
 import FAQ from "./containers/pages/FAQ";
@@ -29,10 +30,14 @@ export default ({childProps}) =>
 		<UnathenticatedRoute  path="/faq" component={FAQ} props={childProps}/>
 		<UnathenticatedRoute  path="/forgot-password" component={ForgotPassword} props={childProps}/>
 		<UnathenticatedRoute  path="/staff" component={StaffSignup} props={childProps}/>
+		
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
+		
+
 		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
 		<AuthenticatedRoute  path="/dashboard" component={Dashboard} props={childProps}/>
 		</StaffAuthRoute >
+
 		<StaffAuthRoute path="/orderinfo/:orderId/:userId" component={OrderInfo}  props={childProps}>
 		<AuthenticatedRoute  path="/orderinfo/:orderId/:userId" component={OrderInfo} props={childProps}/>
 		</StaffAuthRoute >

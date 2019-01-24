@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Routes from "./Routes";
 import {Auth} from "aws-amplify";
-//import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import { Navbar,Nav} from "react-bootstrap";
 import Navigation from "./components/Navigation";
 import DisplayXlarge from "./components/typography/DisplayXlarge";
@@ -35,6 +35,7 @@ class App extends Component {
 
 	  this.userHasAuthenticated(false);
 	  this.userIsStaff(false);
+      this.props.history.push("/login");
 
 	}
 
@@ -47,6 +48,7 @@ class App extends Component {
 					console.log('true');
 					
 					this.userIsStaff(true);
+					
 				} else {
 					console.log(false);
 				}
@@ -176,5 +178,5 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default withRouter(App);
   

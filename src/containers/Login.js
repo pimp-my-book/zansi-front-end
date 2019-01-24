@@ -37,7 +37,22 @@ export default class Login extends Component {
         this.setState({isLoading: true});
         try {
             await Auth.signIn(this.state.email,this.state.password);
-            this.props.userHasAuthenticated(true);
+            await Auth.currentSession()
+            .then(data => {
+                
+                if(data.idToken.payload['cognito:groups']){
+					
+					
+                    this.props.userIsStaff(true);
+                    this.props.userHasAuthenticated(true);
+					this.props.history.push("/dashboard");
+				} else {
+                    this.props.userHasAuthenticated(true);
+                    this.props.history.push("/order");
+					console.log(false);
+				}
+            })
+            
         } catch (e){
             this.setState({error: e.message});
         }
