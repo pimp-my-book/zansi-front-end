@@ -101,7 +101,7 @@ export default class Dashboard extends Component {
                             text={`${error}`}
                             variant="danger"/>;
             const Orders = data.orderList;
-           console.log(Orders); 
+           console.log(Orders.length); 
               if (!data){
                   return <p>An issue has arisen</p>; 
               } else {
@@ -109,6 +109,7 @@ export default class Dashboard extends Component {
                     <Container>
                     <Row>
                         <Col>
+                        <Subheading>There are a total of {Orders.length} orders.</Subheading>
                      <Table striped bordered hover>
                           <thead>
                               <tr>
