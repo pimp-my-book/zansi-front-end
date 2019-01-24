@@ -31,8 +31,9 @@ export default ({childProps}) =>
 		<UnathenticatedRoute  path="/forgot-password" component={ForgotPassword} props={childProps}/>
 		<UnathenticatedRoute  path="/staff" component={StaffSignup} props={childProps}/>
 		
+		<NonStaffRoute path="/order" component={Order} props={childProps}>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
-		
+		</NonStaffRoute>
 
 		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
 		<AuthenticatedRoute  path="/dashboard" component={Dashboard} props={childProps}/>
