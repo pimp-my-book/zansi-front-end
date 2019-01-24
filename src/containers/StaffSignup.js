@@ -65,7 +65,6 @@ export default class StaffSignup extends Component {
             this.setState({error: e.message});
         }
 
-        //this.setState({newUser: "test"});
 
         this.setState({isLoading: false});
     }
@@ -83,7 +82,6 @@ export default class StaffSignup extends Component {
             this.props.userHasAuthenticated(true);
             this.props.history.push("/dashboard");
         } catch (e){
-           alert(e.message);
             this.setState({isLoading: false,error: e.message});
         }
 

@@ -4,6 +4,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
+import Info from "../components/Info";
 import {  Form, Col,Container, Row} from "react-bootstrap";
 import {Univeristies,Bursaries} from "../constants";
 
@@ -24,7 +25,8 @@ import {Univeristies,Bursaries} from "../constants";
             cellNumber: "",
             address: "",
             confirmationCode: "",
-            newUser: null
+            newUser: null,
+            error: ""
          };
 
          this.handleChange = this.handleChange.bind(this);
@@ -64,10 +66,10 @@ import {Univeristies,Bursaries} from "../constants";
             });
         }
         catch(e){
-            alert(e.message);
+            this.setState({error: e.message});
         }
 
-        //this.setState({newUser: "test"});
+       
 
         this.setState({isLoading: false});
     }
@@ -85,8 +87,8 @@ import {Univeristies,Bursaries} from "../constants";
             this.props.userHasAuthenticated(true);
             this.props.history.push("/order");
         } catch (e){
-            alert(e.message);
-            this.setState({isLoading: false});
+            
+            this.setState({isLoading: false,error: e.message});
         }
 
     }
@@ -100,6 +102,12 @@ import {Univeristies,Bursaries} from "../constants";
                         <DisplayMedium className="mx-auto mt-4 text-center">
                     Confirmation Code
 					</DisplayMedium>
+                    {this.state.error && 
+                       <Info 
+                       text={this.state.error}
+                       variant="danger"
+                       />
+                       }
                     <Textbody className="text-center">
                         We have sent an email to <strong>{this.state.email}</strong> with a confirmation code. 
                     </Textbody>
@@ -111,7 +119,7 @@ import {Univeristies,Bursaries} from "../constants";
                             <Col sm={8} lg={3}>
                             <Form onSubmit={this.handleConfirmationSubmit}>
                              <Form.Group>
-                             <Form.Label classname="text-center">Confirmation Code</Form.Label>
+                             <Form.Label classname="text-center"><Textbody>Confirmation Code</Textbody></Form.Label>
                              <Form.Control type="text" 
                          placeholder="The Code"
                          value={this.state.confirmationCode}
@@ -144,6 +152,12 @@ import {Univeristies,Bursaries} from "../constants";
                     Sign Up
 					</DisplayMedium>
                     </Row>
+                    {this.state.error && 
+                       <Info 
+                       text={this.state.error}
+                       variant="danger"
+                       />
+                       }
 
                     <Row className="justify-content-center">
                         <Col sm={1} lg={10}>
@@ -151,7 +165,7 @@ import {Univeristies,Bursaries} from "../constants";
                         <Form onSubmit={this.handleSubmit}>
                     <Form.Row lg={2}>
                         <Form.Group as={Col}>
-                         <Form.Label>Full Name</Form.Label>
+                         <Form.Label><Textbody>Full Name</Textbody></Form.Label>
                          <Form.Control 
                          required
                           value={this.state.fullName}
@@ -162,7 +176,7 @@ import {Univeristies,Bursaries} from "../constants";
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                         <Form.Label>Email</Form.Label>
+                         <Form.Label><Textbody>Email</Textbody></Form.Label>
                          <Form.Control 
                          required
                          type="email" 
@@ -174,7 +188,7 @@ import {Univeristies,Bursaries} from "../constants";
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                         <Form.Label>Student Number</Form.Label>
+                         <Form.Label><Textbody>Student Number</Textbody></Form.Label>
                          <Form.Control 
                          type="text"
                          required 
@@ -185,7 +199,7 @@ import {Univeristies,Bursaries} from "../constants";
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                         <Form.Label>University</Form.Label>
+                         <Form.Label><Textbody>University</Textbody></Form.Label>
                          <Form.Control 
                          as="select"
                          required
@@ -208,7 +222,7 @@ import {Univeristies,Bursaries} from "../constants";
 
                     <Form.Row>
                         <Form.Group as={Col}>
-                         <Form.Label>Bursary</Form.Label>
+                         <Form.Label><Textbody>Bursary</Textbody></Form.Label>
                          <Form.Control 
                          as="select"
                          required
@@ -228,7 +242,7 @@ import {Univeristies,Bursaries} from "../constants";
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                         <Form.Label>Degree</Form.Label>
+                         <Form.Label><Textbody>Degree</Textbody></Form.Label>
                          <Form.Control 
                          type="text" 
                          required
@@ -240,7 +254,7 @@ import {Univeristies,Bursaries} from "../constants";
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                         <Form.Label>Delivery Address</Form.Label>
+                         <Form.Label><Textbody>Delivery Address</Textbody></Form.Label>
                          <Form.Control 
                          as="textarea" 
                          required
@@ -251,7 +265,7 @@ import {Univeristies,Bursaries} from "../constants";
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                         <Form.Label>Phone Number</Form.Label>
+                         <Form.Label><Textbody>Phone Number</Textbody></Form.Label>
                          <Form.Control  
                          type="number" 
                          required
@@ -264,7 +278,7 @@ import {Univeristies,Bursaries} from "../constants";
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                         <Form.Label>Password</Form.Label>
+                         <Form.Label><Textbody>Password</Textbody></Form.Label>
                          <Form.Control 
                          type="password" 
                          required
@@ -275,7 +289,7 @@ import {Univeristies,Bursaries} from "../constants";
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                         <Form.Label>Confirm Password</Form.Label>
+                         <Form.Label><Textbody>Confirm Password</Textbody></Form.Label>
                          <Form.Control  
                          type="password" 
                          required
