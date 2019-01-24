@@ -20,6 +20,11 @@ export default class Dashboard extends Component {
 	constructor(props){
 		super(props);
 
+
+        this.state = {
+            orders: [],
+            loading: false
+        }
 		
     }
     _formatDate = data => {
@@ -29,6 +34,8 @@ export default class Dashboard extends Component {
         return rawOrders;
     }
     
+
+   
     
 	render(){
 
@@ -106,6 +113,7 @@ export default class Dashboard extends Component {
 
 				</Query>
                 </Container>
+               
                 <Query query={ORDER_LIST}>
                 {({data, loading, error}) => {
 
@@ -123,7 +131,7 @@ export default class Dashboard extends Component {
                     <Row>
                         <Col>
                         <Subheading>There are a total of {Orders.length} orders.</Subheading>
-                     <Table striped bordered hover>
+                     <Table striped  hover>
                           <thead>
                               <tr>
                                   <th>
