@@ -30,7 +30,7 @@ export default class Dashboard extends Component {
 				<Container>
                     <Row>
                         <Col>
-                        <DisplayLarge>Dashboard</DisplayLarge>
+                        <DisplayLarge className="text-center">Dashboard</DisplayLarge>
                         </Col>
                     </Row>
                 </Container>
@@ -73,11 +73,19 @@ export default class Dashboard extends Component {
                             console.log(data);
                             
                             return (
-                                <div>
-                              <Heading>Export Orders to excel:</Heading>  
-                                    <CSVLink  data={csv}><Icon.Download/></CSVLink>
+                                <Row>
+                                    <Col>
+                                    
+                                   <Heading >Export Orders to excel: 
+                                   <CSVLink  data={csv}>
+                                   <Icon.Download className="ml-4"/>
+                                   </CSVLink>
+                                       </Heading>  
+                                  
+                                   </Col>
+                                  
                                    
-                                </div>
+                                </Row>
                             );
 						}
 					}}
