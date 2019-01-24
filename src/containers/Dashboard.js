@@ -12,6 +12,7 @@ import Textbody from "../components/typography/Textbody";
 import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Info from "../components/Info";
+import {timeDifferenceForDate} from '../utils'
 const Json2csvParser = require("json2csv").Parser;
 
 
@@ -20,11 +21,20 @@ export default class Dashboard extends Component {
 		super(props);
 
 		
-	}
+    }
+    _formatDate = data => {
+        //const orders = data.orderList;
+        //return orders;
+        const rawOrders = data.orderList
+        return rawOrders;
+    }
+    
     
 	render(){
 
         
+
+     
 		return(
 			<div>
 				<Container>
@@ -69,6 +79,9 @@ export default class Dashboard extends Component {
                         text="Something went wrong, Please contact support if the issue persists"
                         variant="danger"/>;
                         if (data){
+                         
+                            //const formatedOrders = this._formatDate(data);
+                            //console.log(formatedOrders);
                             const csv = json2csvParser.parse(data.orderList);
                             console.log(data);
                             
@@ -79,7 +92,7 @@ export default class Dashboard extends Component {
                                    <Heading >Export Orders to excel: 
                                    <CSVLink  data={csv}>
                                    <Icon.Download className="ml-4"/>
-                                   </CSVLink>
+                            </CSVLink>
                                        </Heading>  
                                   
                                    </Col>
@@ -150,7 +163,9 @@ export default class Dashboard extends Component {
                                 <td><Textbody>{orders.name}</Textbody></td>
                                 <td><Textbody>{orders.title}</Textbody></td>
                                 
-                                <td><Textbody>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</Textbody></td>
+                                <td><Textbody>{timeDifferenceForDate(parseInt(orders.dateOrdered))}</Textbody>
+                                <Textbody>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</Textbody>
+                                </td>
                                 <td>
                                 <Badge pill variant="info">
                                 {orders.status}
