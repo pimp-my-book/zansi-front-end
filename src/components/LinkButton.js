@@ -17,6 +17,7 @@ line-height: 0.85;
 padding: 10px;
 border-radius: 0px;
 width:  ${props => props.sm ? '100px' : '150px'};
+font-family: 'Poppins', sans-serif;
 font-size: 15px;
 padding: 2px;
 
