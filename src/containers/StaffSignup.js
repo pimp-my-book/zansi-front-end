@@ -65,7 +65,6 @@ export default class StaffSignup extends Component {
             this.setState({error: e.message});
         }
 
-        //this.setState({newUser: "test"});
 
         this.setState({isLoading: false});
     }
@@ -83,7 +82,6 @@ export default class StaffSignup extends Component {
             this.props.userHasAuthenticated(true);
             this.props.history.push("/dashboard");
         } catch (e){
-           alert(e.message);
             this.setState({isLoading: false,error: e.message});
         }
 
@@ -169,6 +167,10 @@ export default class StaffSignup extends Component {
                 value={this.state.password}
                 onChange={this.handleChange('password')}
                                />
+                               <Form.Text className="text-muted">
+                           Your password needs to be a min of 8 characters with uppercase letters,
+                                      contain atleast a number and special characters.
+    </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="confirmPassword" >
                 <Form.Label><Textbody>Confirm Password</Textbody></Form.Label>

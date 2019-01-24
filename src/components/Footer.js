@@ -16,6 +16,8 @@ const Link = styled.a`
  text-decoration: none;
  color: #1b335f;
 `;
+
+
 const Footer = () => 
   <FooterStyles>
       <Container>

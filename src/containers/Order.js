@@ -1,15 +1,19 @@
 import React ,{Component} from "react";
 import styled from "styled-components";
-import { Form, Col, Container, Row, Image} from "react-bootstrap";
+import {Mutation, Query} from "react-apollo";
+import { Form, Col, Container, Row, Image,Alert} from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import DisplaySmall from "../components/typography/DisplaySmall";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import PrimaryButton from "../components/PrimaryButton";
+import LoadingSpinner from "../components/LoadingSpinner";
+import LinkButton from "../components/LinkButton";
 import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
 import * as query from "../graphql/Queries";
 import ModalDialog from "../components/ModalDialog";
-import {Mutation, Query} from "react-apollo"
+import Info from "../components/Info";
+
 
 export default class Order extends Component {
     constructor(props){
@@ -95,48 +99,55 @@ export default class Order extends Component {
                                      return (
 
                                      
-                                         
-                                         <Container>
-               
-                <Row>
-                    <Col>
-                    <DisplayMedium className="text-center mt-4"> Order Confirmation</DisplayMedium>
+                                        <Container>
 
-                    </Col>
-                   
-                </Row>
-                <Row >
-                <Col sm={4} lg={12} >
-                    <DisplaySmall className="text-center">Congrats! Your Order has been successfully processed and recieved by our staff.</DisplaySmall>
-  
-                    </Col>
-                </Row>
-                <Row >
-                    <Col className="text-center mb-5">
-                    <Image
-                    fluid
-                    width={400}
-                    src={SuccessImage}
-                    />
-                    </Col>
-                </Row>
-                <Row className="justify-content-center">
-                <OrderInfo className="text-center">
-                 <Heading>Your Order Details</Heading>
-             
-                 <Textbody><strong>Order ID</strong>: {data.placeOrder.orderId} </Textbody>
-                     <Textbody><strong>Title</strong>: {title}</Textbody>
-                     <Textbody><strong>ISBN</strong>: {ISBN}</Textbody>  
-                     <Textbody><strong>edition</strong>: {edition}</Textbody> 
-                     <Textbody><strong>Author</strong>: {author}</Textbody> 
-                     
-                 </OrderInfo>
-                </Row>
-                </Container>)
+<Row>
+<Col>
+<DisplayMedium className="text-center mt-4"> Order Confirmation</DisplayMedium>
+
+</Col>
+
+</Row>
+<Row >
+<Col sm={4} lg={12} >
+<DisplaySmall className="text-center">Congrats! Your Order has been successfully processed and recieved by our staff.</DisplaySmall>
+<Info
+text="Please keep your Order ID stored somewhere safe, as we will need this to easily help you incase an issue arises."
+variant="warning"
+/>
+</Col>
+</Row>
+<Row >
+<Col className="text-center mb-5">
+<Image
+fluid
+width={400}
+src={SuccessImage}
+/>
+</Col>
+</Row>
+<Row className="justify-content-center">
+<OrderInfo className="text-center">
+<Heading>Your Order Details</Heading>
+
+<Textbody><strong>Order ID</strong>: {data.placeOrder.orderId}</Textbody>
+<Textbody><strong>Title</strong>: {title}</Textbody>
+<Textbody><strong>ISBN</strong>: {ISBN}</Textbody>  
+<Textbody><strong>edition</strong>: {edition}</Textbody> 
+<Textbody><strong>Author</strong>: {author}</Textbody> 
+<LinkButton href="/order">Place another order!</LinkButton>
+
+</OrderInfo>
+
+</Row>
+
+
+</Container>)
                                      
                                  } else {
                                     return(
                                         <Container>
+
                                         <Row className="justify-content-center">
                                     <Col sm={6} lg={4}>
                                     
@@ -148,29 +159,41 @@ export default class Order extends Component {
                                                 await order();
                                                 this.setState({
                                                     newOrder: true,
-                                                    
+                                                    isLoading:true
                                                 });
     
                                             }}>
         
-                                          {!error && !loading && called && 
-                                          
-                                          
-                                            <div>
-                                            You have successfully placed an order for {title} 
-                                            your order number is : {data.placeOrder.orderId}
-                                        
-                                        </div>
-                                        }
+                                   
         
                                          {error &&
                                         <p>{error.message.replace('GraphQL error:', '')}
                                         </p>
                                     }                                  
-                                    {loading && <p>Hang tight, we're busy processing your order...</p>}
+                                    {loading && 
+                                    
+                                    
+                                    <Alert 
+                                    variant="primary"
+                                    >
+                                    <Textbody>Hang tight, we're busy processing your order...</Textbody>
+                                    <Container>
+                                        <Row className="justify-content-center">
+                                            <Col>
+                                            <LoadingSpinner/>
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                    </Alert>
+                                    }
                      
                                           <Form.Group controlId="title">
-                                            <Form.Label>Title</Form.Label>
+
+                                            <Form.Label>
+                                                <Textbody> 
+                                                    Title
+                                                    </Textbody>
+                                                    </Form.Label>
                                              <Form.Control
                                              required
                                              type="text"
@@ -182,7 +205,11 @@ export default class Order extends Component {
                                              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                           </Form.Group>
                                           <Form.Group controlId="ISBN">
-                                            <Form.Label>ISBN</Form.Label>
+                                            <Form.Label>
+                                            <Textbody> 
+                                                ISBN
+                                                </Textbody> 
+                                                </Form.Label>
                                              <Form.Control
                                              required
                                              placeholder="eg: 0199535566"
@@ -194,7 +221,11 @@ export default class Order extends Component {
                                              />
                                           </Form.Group>
                                           <Form.Group controlId="Edition">
-                                            <Form.Label>Edition</Form.Label>
+                                          <Form.Label>
+                                            <Textbody> 
+                                                Edition
+                                                </Textbody> 
+                                                </Form.Label>
                                              <Form.Control
                                              required
                                              as="input"
@@ -205,7 +236,11 @@ export default class Order extends Component {
                                              />
                                           </Form.Group>
                                           <Form.Group controlId="Author">
-                                            <Form.Label>Author</Form.Label>
+                                          <Form.Label>
+                                            <Textbody> 
+                                                Author
+                                                </Textbody> 
+                                                </Form.Label>
                                              <Form.Control
                                              required
                                              type="text"
@@ -218,11 +253,11 @@ export default class Order extends Component {
              
                             <PrimaryButton
                           text="Place Order"
-                          
+                        
                           className="mr-3 "
                           type="Place Order"
                           //onClick={order}
-                          //isLoading={this.state.isLoading}
+                          isLoading={this.state.isLoading}
                           /> 
              
                                       
