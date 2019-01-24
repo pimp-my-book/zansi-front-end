@@ -4,10 +4,12 @@ import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
 import * as Icon from 'react-feather';
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row, Table, Badge } from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
+import Textbody from "../components/typography/Textbody";
+import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Info from "../components/Info";
 const Json2csvParser = require("json2csv").Parser;
@@ -102,15 +104,22 @@ export default class Dashboard extends Component {
                      <Table striped bordered hover>
                           <thead>
                               <tr>
-                                  <th>Order ID</th>
+                                  <th>
+                                    <Subheading>Order ID
+                                        </Subheading>
+                                    </th>
                                   
-                                  <th>studentNumber</th>
-                                  <th>Name</th>
+                                  <th>
+                                      <Subheading>Student Number
+                                          </Subheading>
+                                    </th>
+                                  <th><Subheading>Name</Subheading></th>
                                  
-                                  <th>Title</th>
+                                  <th><Subheading>Title</Subheading></th>
                                  
-                                  <th>Date Ordered</th>
-                                  <th>Status</th>
+                                  <th><Subheading>Date Ordered</Subheading></th>
+                                  <th><Subheading>Status</Subheading></th>
+                                  <th><Subheading>View</Subheading></th>
                               </tr>
                           </thead>
                           {Orders.map(orders =>(
@@ -123,21 +132,28 @@ export default class Dashboard extends Component {
                                 <tr key={orders}>
                                
                                 <td>
-                                <Link
-                              
-                              to={`/orderinfo/${orders.orderId}/${orders.userId}`}
-                              >
+                                <Textbody>
                               {orders.orderId} 
-                              </Link>
+                              </Textbody>
                               </td>
                              
-                                <td>{orders.studentNumber}</td>
-                                <td>{orders.name}</td>
-                                <td>{orders.title}</td>
+                                <td><Textbody>{orders.studentNumber}</Textbody></td>
+                                <td><Textbody>{orders.name}</Textbody></td>
+                                <td><Textbody>{orders.title}</Textbody></td>
                                 
-                                <td>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</td>
-                                <td>{orders.status}</td>
-                                
+                                <td><Textbody>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</Textbody></td>
+                                <td>
+                                <Badge pill variant="info">
+                                {orders.status}
+                                </Badge>
+                                </td>
+                                <td> 
+                                <Link
+                              to={`/orderinfo/${orders.orderId}/${orders.userId}`}
+                              >
+                              <Icon.Eye/>
+                              </Link>
+                              </td>
                             </tr>
                                 
                             
