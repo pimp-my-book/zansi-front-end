@@ -8,7 +8,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import Info from "../components/Info";
 import Textbody from "../components/typography/Textbody";
 
-export default class StaffLogin extends Component {
+export default class StaffSignup extends Component {
     constructor(props){
         super(props);
 
