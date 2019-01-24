@@ -5,7 +5,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
-import {  Form, Col,Container, Row} from "react-bootstrap";
+import {  Form, Col,Container, Row, OverlayTrigger, Popover} from "react-bootstrap";
 import {Univeristies,Bursaries} from "../constants";
 
  export default class Signup extends Component {
@@ -278,7 +278,8 @@ import {Univeristies,Bursaries} from "../constants";
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                         <Form.Label><Textbody>Password</Textbody></Form.Label>
+                        <Form.Label><Textbody>Password</Textbody></Form.Label>
+
                          <Form.Control 
                          type="password" 
                          required
@@ -286,10 +287,15 @@ import {Univeristies,Bursaries} from "../constants";
                          onChange={this.handleChange('password')}
                          value={this.state.password}
                          />
+                           <Form.Text className="text-muted">
+                           Your password needs to be a min of 8 characters with uppercase letters,
+                                      contain atleast a number and special characters.
+    </Form.Text>
                         </Form.Group>
 
                         <Form.Group as={Col}>
                          <Form.Label><Textbody>Confirm Password</Textbody></Form.Label>
+                         
                          <Form.Control  
                          type="password" 
                          required

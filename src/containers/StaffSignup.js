@@ -167,6 +167,10 @@ export default class StaffSignup extends Component {
                 value={this.state.password}
                 onChange={this.handleChange('password')}
                                />
+                               <Form.Text className="text-muted">
+                           Your password needs to be a min of 8 characters with uppercase letters,
+                                      contain atleast a number and special characters.
+    </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="confirmPassword" >
                 <Form.Label><Textbody>Confirm Password</Textbody></Form.Label>
