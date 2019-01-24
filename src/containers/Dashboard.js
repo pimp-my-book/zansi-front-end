@@ -141,7 +141,7 @@ export default class Dashboard extends Component {
                                  
                                   <th><Subheading>Date Ordered</Subheading></th>
                                   <th><Subheading>Status</Subheading></th>
-                                  <th><Subheading>View</Subheading></th>
+                                  <th><Subheading></Subheading></th>
                               </tr>
                           </thead>
                           {Orders.map(orders =>(
