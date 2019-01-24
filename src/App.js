@@ -87,13 +87,32 @@ class App extends Component {
 						 {this.state.isAuthenticated
 						? <Fragment>
 						 
+
+
+                          
+						
+						{this.state.isStaff &&
+						<Nav.Item className="mt-4 mr-3">
+                     <DisplaySmall normal>
+						Dashboard
+						</DisplaySmall>
+						</Nav.Item>
+						
+						
+						}
+                          
+						
+						
+						
+						 
 						<Nav.Item className="mt-4"
 						  onClick={this.handleLogout}
-						>Logout
+						>
+						<DisplaySmall normal>
+						Logout
+						</DisplaySmall>
 						</Nav.Item>
-						{this.state.isStaff &&
-						<p>I am staff</p>
-						}
+						
 						</Fragment>
 						
 
