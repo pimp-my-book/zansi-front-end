@@ -20,7 +20,8 @@ export default class StaffSignup extends Component {
             confirmPassword: "",
             error: "",
             confirmationCode: "",
-            newUser: null
+            newUser: null,
+            resend: false
 
         };
     }
@@ -46,6 +47,7 @@ export default class StaffSignup extends Component {
     resendCode = async event => {
         try{
          await Auth.resendSignUp(this.state.email);
+         this.setState({resend: true});
         } catch(e){
             this.setState({error: e.message});
         }
@@ -110,6 +112,13 @@ export default class StaffSignup extends Component {
                        variant="danger"
                        />
                        }
+
+                       {this.state.resend === true && 
+                     <Info 
+                     text="We have resent the code!"
+                     variant="info"
+                     />
+                    }
                     <Textbody className="text-center">
                         We have sent an email to <strong>{this.state.email}</strong> with a confirmation code. 
                     </Textbody>

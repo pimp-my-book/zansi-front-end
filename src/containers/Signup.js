@@ -27,7 +27,8 @@ import {Univeristies,Bursaries} from "../constants";
             address: "",
             confirmationCode: "",
             newUser: null,
-            error: ""
+            error: "",
+            resend: false
          };
 
          this.handleChange = this.handleChange.bind(this);
@@ -95,13 +96,14 @@ import {Univeristies,Bursaries} from "../constants";
     }
 
     resendCode = async event => {
-       try{
-        await Auth.resendSignUp(this.state.email);
-       } catch(e){
-           this.setState({error: e.message});
-       }
-    }
-
+        try{
+         await Auth.resendSignUp(this.state.email);
+         this.setState({resend: true});
+        } catch(e){
+            this.setState({error: e.message});
+        }
+     }
+ 
 
     renderConfirmationForm() {
         return(
@@ -117,6 +119,13 @@ import {Univeristies,Bursaries} from "../constants";
                        variant="danger"
                        />
                        }
+
+                        {this.state.resend === true && 
+                     <Info 
+                     text="We have resent the code!"
+                     variant="info"
+                     />
+                    }
                     <Textbody className="text-center">
                         We have sent an email to <strong>{this.state.email}</strong> with a confirmation code. 
                     </Textbody>
