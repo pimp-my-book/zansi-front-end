@@ -93,16 +93,32 @@ class App extends Component {
 
                           
 						
-						{this.state.isStaff &&
-						<Nav.Item className="mt-4 mr-3">
-                     <DisplaySmall normal>
-						Dashboard
-						</DisplaySmall>
-						</Nav.Item>
-						
-						
+						  {this.state.isStaff &&
+							<Nav.Item className="mt-4 mr-3">
+							<DisplaySmall normal>
+							<LinkA
+							href="/dashboard"
+							>
+							Dashboard
+							</LinkA>
+							   
+							   </DisplaySmall>
+							   </Nav.Item>
 						}
-                          
+						
+
+						  {!this.state.isStaff &&
+							<Nav.Item className="mt-4 mr-3">
+							<DisplaySmall normal>
+							<LinkA
+							href="/order"
+							>
+							Place An Order
+							</LinkA>
+							   
+							   </DisplaySmall>
+							   </Nav.Item>
+						}
 						
 						
 						
@@ -110,7 +126,7 @@ class App extends Component {
 						<Nav.Item className="mt-4"
 						  onClick={this.handleLogout}
 						>
-						<DisplaySmall normal>
+						<DisplaySmall normal pointer>
 						Logout
 						</DisplaySmall>
 						</Nav.Item>
