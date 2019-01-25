@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Image, Row, Col, Container} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplaySmall from "../components/typography/DisplaySmall";
-import Body from "../components/Body";
+import Body from "./pages/Body";
 
 const Home = () => {
 
@@ -42,8 +42,8 @@ font-size: 20px;
                      <DisplaySmall normal>Zansi is a new Pimp My Book service designed to help bursary students to order textbooks.</DisplaySmall>
                      <br/>
                      <LinkButton  
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdKL281Oic4JbxoFCi0q4E_U_X0XtJpIPhYkV_vV4vNi3wVjA/viewform?usp=sf_link">
-            Order Now
+            href="/signup">
+            Sign Up
             </LinkButton>
                     </Col>
                     <Col  className=" d-none d-lg-block">
