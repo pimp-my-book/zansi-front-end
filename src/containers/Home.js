@@ -42,7 +42,7 @@ font-size: 20px;
                      <DisplaySmall normal>Zansi is a new Pimp My Book service designed to help bursary students to order textbooks.</DisplaySmall>
                      <br/>
                      <LinkButton  
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdKL281Oic4JbxoFCi0q4E_U_X0XtJpIPhYkV_vV4vNi3wVjA/viewform?usp=sf_link">
+            href="/signup">
             Order Now
             </LinkButton>
                     </Col>
