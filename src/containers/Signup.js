@@ -96,7 +96,7 @@ import {Univeristies,Bursaries} from "../constants";
 
     resendCode = async event => {
        try{
-        await Auth.resendSignUp("amomoloko@hotmail.com");
+        await Auth.resendSignUp(this.state.email);
        } catch(e){
            this.setState({error: e.message});
        }
@@ -146,7 +146,7 @@ import {Univeristies,Bursaries} from "../constants";
           <SecondaryButton
           className="mt-4"
              text="Resend Code"
-             onClick={this.resendCode()}/>
+             onClick={this.resendCode}/>
                  
                    
                             </Form>
@@ -348,7 +348,7 @@ import {Univeristies,Bursaries} from "../constants";
     render(){
         return (
             <div>
-                {!this.state.newUser === null
+                {this.state.newUser === null
                 ? this.renderForm()
                 : this.renderConfirmationForm()}
             </div>

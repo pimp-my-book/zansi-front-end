@@ -7,6 +7,7 @@ import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Info from "../components/Info";
 import Textbody from "../components/typography/Textbody";
+import SecondaryButton from "../components/SecondaryButton";
 
 export default class StaffSignup extends Component {
     constructor(props){
@@ -42,7 +43,14 @@ export default class StaffSignup extends Component {
         });
     } 
 
-
+    resendCode = async event => {
+        try{
+         await Auth.resendSignUp(this.state.email);
+        } catch(e){
+            this.setState({error: e.message});
+        }
+     }
+ 
 
     handleSubmit = async event => {
         event.preventDefault();
@@ -114,7 +122,7 @@ export default class StaffSignup extends Component {
                             <Col sm={8} lg={3}>
                             <Form onSubmit={this.handleConfirmationSubmit}>
                              <Form.Group>
-                             <Form.Label classname="text-center">Confirmation Code</Form.Label>
+                             <Form.Label className="text-center">Confirmation Code</Form.Label>
                              <Form.Control type="text" 
                          placeholder="The Code"
                          value={this.state.confirmationCode}
@@ -127,6 +135,11 @@ export default class StaffSignup extends Component {
              className="justify-content-center"
              type="submit"
           /> 
+            <SecondaryButton
+          className="mt-4"
+             text="Resend Code"
+             onClick={this.resendCode}/>
+                 
                             </Form>
                             </Col>
                         </Row>
