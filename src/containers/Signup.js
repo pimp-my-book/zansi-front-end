@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import { Auth } from "aws-amplify";
 import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
-import {  Form, Col,Container, Row, OverlayTrigger, Popover} from "react-bootstrap";
+import { ButtonToolbar, Form, Col,Container, Row, OverlayTrigger, Popover} from "react-bootstrap";
 import {Univeristies,Bursaries} from "../constants";
 
  export default class Signup extends Component {
@@ -26,7 +27,8 @@ import {Univeristies,Bursaries} from "../constants";
             address: "",
             confirmationCode: "",
             newUser: null,
-            error: ""
+            error: "",
+            resend: false
          };
 
          this.handleChange = this.handleChange.bind(this);
@@ -93,6 +95,15 @@ import {Univeristies,Bursaries} from "../constants";
 
     }
 
+    resendCode = async event => {
+        try{
+         await Auth.resendSignUp(this.state.email);
+         this.setState({resend: true});
+        } catch(e){
+            this.setState({error: e.message});
+        }
+     }
+ 
 
     renderConfirmationForm() {
         return(
@@ -108,6 +119,13 @@ import {Univeristies,Bursaries} from "../constants";
                        variant="danger"
                        />
                        }
+
+                        {this.state.resend === true && 
+                     <Info 
+                     text="We have resent the code!"
+                     variant="info"
+                     />
+                    }
                     <Textbody className="text-center">
                         We have sent an email to <strong>{this.state.email}</strong> with a confirmation code. 
                     </Textbody>
@@ -126,12 +144,20 @@ import {Univeristies,Bursaries} from "../constants";
                          onChange={this.handleChange('confirmationCode')}
                          />
                              </Form.Group>
-                             <PrimaryButton
+                      
+                 
+                  <PrimaryButton
              text="Verify Code"
-             
              className="justify-content-center"
              type="submit"
-          /> 
+          />  
+          
+          <SecondaryButton
+          className="mt-4"
+             text="Resend Code"
+             onClick={this.resendCode}/>
+                 
+                   
                             </Form>
                             </Col>
                         </Row>
