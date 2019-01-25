@@ -10,8 +10,9 @@ const SecondaryButtonStyles = styled(Button)`
 color: var(--rasin-black);
 background-color: var(--linen);
 border: 2px solid var(--rose-pink) ;
-width: 156px;
+width: 180px;
 font-size: 20px;
+padding: 2px;
 
 :hover {
  background-color: var(--rose-pink);
@@ -57,6 +58,7 @@ const SecondaryButton = ({
 
 	return (
 		<SecondaryButtonStyles
+		onClick={onClick}
 			{...props}
 			disabled={disabled || isLoading}
 		>

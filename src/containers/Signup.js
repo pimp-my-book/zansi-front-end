@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import { Auth } from "aws-amplify";
 import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
-import {  Form, Col,Container, Row, OverlayTrigger, Popover} from "react-bootstrap";
+import { ButtonToolbar, Form, Col,Container, Row, OverlayTrigger, Popover} from "react-bootstrap";
 import {Univeristies,Bursaries} from "../constants";
 
  export default class Signup extends Component {
@@ -93,6 +94,14 @@ import {Univeristies,Bursaries} from "../constants";
 
     }
 
+    resendCode = async event => {
+       try{
+        await Auth.resendSignUp("amomoloko@hotmail.com");
+       } catch(e){
+           this.setState({error: e.message});
+       }
+    }
+
 
     renderConfirmationForm() {
         return(
@@ -126,12 +135,20 @@ import {Univeristies,Bursaries} from "../constants";
                          onChange={this.handleChange('confirmationCode')}
                          />
                              </Form.Group>
-                             <PrimaryButton
+                      
+                 
+                  <PrimaryButton
              text="Verify Code"
-             
              className="justify-content-center"
              type="submit"
-          /> 
+          />  
+          
+          <SecondaryButton
+          className="mt-4"
+             text="Resend Code"
+             onClick={this.resendCode()}/>
+                 
+                   
                             </Form>
                             </Col>
                         </Row>
@@ -331,7 +348,7 @@ import {Univeristies,Bursaries} from "../constants";
     render(){
         return (
             <div>
-                {this.state.newUser === null
+                {!this.state.newUser === null
                 ? this.renderForm()
                 : this.renderConfirmationForm()}
             </div>
