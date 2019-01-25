@@ -9,7 +9,7 @@ const PrimaryButtonStyles = styled(Button)`
 
 color: var(--rasin-black);
 background-color: var(--rose-pink);
-border: 2px solid var(--rose-pink) ;
+border: ${props => props.border ? '2px solid var(--rose-pink)' : 'none'} ;
 width: ${props => props.small ? '100px' : '180px'};
 font-size: 20px;
 padding: 2px;
