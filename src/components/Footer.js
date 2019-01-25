@@ -28,6 +28,10 @@ const Footer = () =>
           <Col className=" mt-4">
           <Textbody className="mx-auto mt-4">Made with <span role="img" aria-labelledby="heart emoji">❤️</span> in Cape Town, <span role="img" aria-label="SA-emoji">🇿🇦</span></Textbody>
           </Col>
+          <Col className=" mt-4">
+          <Textbody className="mx-auto mt-4"> <Link href="https://goo.gl/forms/kkV6DRsqEVXqttbs1
+">Submit Feedback <span role="img" aria-labelledby="horn emoji">📯</span></Link></Textbody>
+          </Col>
           </Row>
       
       </Container>
