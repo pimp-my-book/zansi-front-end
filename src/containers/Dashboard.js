@@ -122,7 +122,7 @@ export default class Dashboard extends Component {
                             text={`${error}`}
                             variant="danger"/>;
             const Orders = data.orderList;
-           console.log(Orders.length); 
+           
               if (!data){
                   return <p>An issue has arisen</p>; 
               } else {

@@ -1,4 +1,5 @@
 export const Univeristies = [
+    "Choose",
     'UKZN',
     'UFS',
     'UP',
@@ -10,6 +11,7 @@ export const Univeristies = [
 ]
 
 export const Bursaries = [
+    "Choose",
     "MSP",
     "AGOF",
     "OA",
