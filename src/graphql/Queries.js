@@ -31,7 +31,7 @@ export const ORDER_LIST = gql`
      bursary
      cellNumber
      address
-
+excelDate
      ISBN
      title
      edition
@@ -59,6 +59,7 @@ export const VIEW_ORDER = gql`
      title
      edition
      author
+     
      dateOrdered
      status
       }

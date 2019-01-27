@@ -121,8 +121,8 @@ export default class Dashboard extends Component {
           if(error) return <Info
                             text={`${error}`}
                             variant="danger"/>;
-            const Orders = data.orderList;
-           
+            const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered.length - l1.dateOrdered.length);
+           console.log(Orders)
               if (!data){
                   return <p>An issue has arisen</p>; 
               } else {
