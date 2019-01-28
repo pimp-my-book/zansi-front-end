@@ -6,6 +6,7 @@ import Playground from "./containers/Playground";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 import ForgotPassword from "./containers/ForgotPassword";
+import StudentOrderList from "./containers/StudentOrderList";
 import AuthenticatedRoute from "./components/routes/AuthenticatedRoute";
 import UnathenticatedRoute from "./components/routes/UnathenticatedRoute";
 import StaffAuthRoute from "./components/routes/StaffAuthRoute";
@@ -33,6 +34,10 @@ export default ({childProps}) =>
 		
 		<NonStaffRoute path="/order" component={Order} props={childProps}>
 		<AuthenticatedRoute  path="/order" component={Order} props={childProps}/>
+		</NonStaffRoute>
+
+	<NonStaffRoute path="/myorders" component={StudentOrderList} props={childProps}>
+		<AuthenticatedRoute  path="/myorders" component={StudentOrderList} props={childProps}/>
 		</NonStaffRoute>
 
 		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
