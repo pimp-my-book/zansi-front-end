@@ -56,22 +56,24 @@ export default class Dashboard extends Component {
                 <Query query={ORDER_LIST}>
 					{({data}, loading, error) => {
 						const fields = [
-							"userId",
-							"orderId",
-							"ISBN",
-							"author",
-							"dateOrdered",
-							"edition",
-							"status",
-							"title",
-							"email",
-							"address",
-							"bursary",
-							"cellNumber",
+							
+                            "studentNumber",
+                            "name",
+                            "univeristy",
+                            "bursary",
 							"degree",
-							"name",
-							"studentNumber",
-							"univeristy",
+                            "cellNumber",
+                            "email",
+                            "address",
+                            "ISBN",
+                            "title",
+                            "edition",
+                            "author",
+                            "dateOrdered",
+                            "excelDate",
+                            "status",
+                            "userId",
+							"orderId",
 						];
 						const json2csvParser = new Json2csvParser({fields});
 					
