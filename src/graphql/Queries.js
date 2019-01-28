@@ -31,7 +31,7 @@ export const ORDER_LIST = gql`
      bursary
      cellNumber
      address
-excelDate
+     excelDate
      ISBN
      title
      edition

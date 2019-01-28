@@ -43,7 +43,7 @@ font-size: 20px;
                      <br/>
                      <LinkButton  
             href="/signup">
-            Order Now
+            Sign Up
             </LinkButton>
                     </Col>
                     <Col  className=" d-none d-lg-block">
