@@ -8,12 +8,12 @@ import {timeDifferenceForDate} from '../utils'
 
 const CardStyles = styled(Card)`
   &&& {
-    width:400px;
+    width:350px;
     height: 200px;
     border-radius: 5px;
     border: none;
-      box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
-      background-color: white;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
+    background-color: white;
   }
  `;
   
@@ -40,9 +40,9 @@ const OrderCard = ({
                      <Card.Title><Heading>{orderTitle}</Heading></Card.Title>
           <Card.Text><Textbody>{orderID}</Textbody></Card.Text>
            <Card.Text><Textbody>{timeDifferenceForDate(parseInt(orderDate))}</Textbody></Card.Text>
-           
+          
                      </Col>
-                     <Col>
+                     <Col className="ml-5">
                      <Card.Text><Badge variant="danger">{orderStatus}</Badge></Card.Text>
                      </Col>
                  </Row>
