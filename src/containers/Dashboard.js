@@ -121,8 +121,8 @@ export default class Dashboard extends Component {
           if(error) return <Info
                             text={`${error}`}
                             variant="danger"/>;
-            const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered.length - l1.dateOrdered.length);
-           console.log(Orders)
+            const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered);
+           
               if (!data){
                   return <p>An issue has arisen</p>; 
               } else {
@@ -175,7 +175,7 @@ export default class Dashboard extends Component {
                                 <Textbody>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</Textbody>
                                 </td>
                                 <td>
-                                <Badge pill variant="info">
+                                <Badge pill variant="danger">
                                 {orders.status}
                                 </Badge>
                                 </td>
