@@ -13,10 +13,4 @@ export const Univeristies = [
 export const Bursaries = [
     "Choose",
     "MSP",
-    "AGOF",
-    "OA",
-    "ACC",
-    "JGF",
-    "MAD",
-    "ST"
 ]
