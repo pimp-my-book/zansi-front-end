@@ -16,6 +16,16 @@ export const GET_ORDERS = gql`
   }
 `;
 
+export const STUDENT_ORDER_LIST = gql`
+  query STUDENT_ORDER_LIST{
+    studentOrderList{
+        orderId
+        title
+        dateOrdered
+        status 
+    }
+  }
+`;
 
 
 export const ORDER_LIST = gql`
