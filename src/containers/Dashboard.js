@@ -174,7 +174,7 @@ export default class Dashboard extends Component {
                                 <td><Textbody>{orders.title}</Textbody></td>
                                 
                                 <td><Textbody>{timeDifferenceForDate(parseInt(orders.dateOrdered))}</Textbody>
-                                <Textbody>{new Intl.DateTimeFormat().format(orders.dateOrdered)}</Textbody>
+                                <Textbody>{orders.excelDate}</Textbody>
                                 </td>
                                 <td>
                                 <Badge pill variant="danger">

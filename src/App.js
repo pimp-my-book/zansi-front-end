@@ -109,6 +109,7 @@ class App extends Component {
 						
 
 						  {!this.state.isStaff &&
+						  <Fragment>
 							<Nav.Item className="mt-4 mr-3">
 							<DisplaySmall normal>
 							<LinkA
@@ -119,8 +120,19 @@ class App extends Component {
 							   
 							   </DisplaySmall>
 							   </Nav.Item>
+
+							   <Nav.Item className="mt-4 mr-3">
+							<DisplaySmall normal>
+							<LinkA
+							href="/myorders"
+							>
+							My Orders
+							</LinkA>
+							   
+							   </DisplaySmall>
+							   </Nav.Item>
+							   </Fragment>
 						}
-						
 						
 						
 						 
