@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from "react";
-import * as Icon from "react-feather";
 import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
 import { Col, Container, Row, Table, Badge } from "react-bootstrap";
@@ -11,6 +10,7 @@ import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import OrderCard from "../components/OrderCard";
 import styled from "styled-components";
+import Info from "../components/Info";
 
 export default class StudentOrderList extends Component{
 	constructor(props){
@@ -46,8 +46,22 @@ export default class StudentOrderList extends Component{
 						<Col sm={8} >
 							<Query query={STUDENT_ORDER_LIST}>
 								{({data,loading, error} ) =>{
-									if (loading) return <p>Loading...</p>;
-									if (error) return <p>Error</p>;
+									if (loading) return (
+									<Container>
+										<Row>
+											<Col>
+                                           <LoadingSpinner/>
+											</Col>
+										</Row>
+									</Container>
+										
+										
+										);
+
+										if (error) return <Fragment><Info text={error.message.replace('GraphQL error:', '')}
+										  variant="danger"/>
+										</Fragment>
+								
 
 									const myOrders = data.studentOrderList;
 									if (!myOrders.length){
@@ -59,6 +73,7 @@ export default class StudentOrderList extends Component{
 										return(
 										
 											<Fragment>
+											    
 											<OrdersGrid>
 										   {myOrders.map((orders) => (
 											   
