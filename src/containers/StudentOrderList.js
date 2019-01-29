@@ -45,43 +45,46 @@ export default class StudentOrderList extends Component{
 					<Row>
 						<Col sm={8} >
 							<Query query={STUDENT_ORDER_LIST}>
-								{({data}, loading, error) =>{
+								{({data,loading, error} ) =>{
 									if (loading) return <p>Loading...</p>;
 									if (error) return <p>Error</p>;
 
 									const myOrders = data.studentOrderList;
-                                    console.log(myOrders);
-									if(!myOrders){
-										return <p>You need to make more orders</p>;
+									if (!myOrders.length){
+										return(
+											<p>Wrong</p>
+										);
+
 									} else {
 										return(
+										
 											<Fragment>
-                                                 <OrdersGrid 
-                                                        
-                                                         >
-												{myOrders.map((orders) => (
-													
-                                                       
-                                                        
-                                                        <Fragment key={orders.orderId}>
-                                                      <OrderCard
-															orderTitle={orders.title}
-															orderID={orders.orderId}
-															orderStatus={orders.status}
-															orderDate={orders.dateOrdered}
-                                                            /> 
-                                                        </Fragment>
-                                                       
-                                                       
-                                                            
-                                                        
-													
-                                                ))}
-                                                </OrdersGrid>
-                                            
-											</Fragment>
-										);
+											<OrdersGrid>
+										   {myOrders.map((orders) => (
+											   
+												  
+												   
+												   <Fragment key={orders.orderId}>
+												 <OrderCard
+													   orderTitle={orders.title}
+													   orderID={orders.orderId}
+													   orderStatus={orders.status}
+													   orderDate={orders.dateOrdered}
+													   /> 
+												   </Fragment>
+												  
+												  
+													   
+												   
+											   
+										   ))}
+										   </OrdersGrid>
+									   
+									   </Fragment>
+										)
 									}
+										
+									
 
 								}}
 							</Query>
