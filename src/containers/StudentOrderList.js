@@ -27,8 +27,7 @@ export default class StudentOrderList extends Component{
         const OrdersGrid = styled.div`
         display: grid;
         grid-gap: 20px;
-        margin-right: 20px;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 3fr);
         `;
 
        
@@ -44,7 +43,7 @@ export default class StudentOrderList extends Component{
 				</Container>
 				<Container>
 					<Row>
-						<Col sm={8} lg={3}>
+						<Col sm={8} >
 							<Query query={STUDENT_ORDER_LIST}>
 								{({data}, loading, error) =>{
 									if (loading) return <p>Loading...</p>;

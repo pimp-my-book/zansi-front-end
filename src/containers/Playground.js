@@ -6,7 +6,7 @@ export default () =>
 <div>
     <h1>Component Palyground</h1>
     <OrderCard
-     orderTitle="Steve Biko"
+     orderTitle="Economics for South African Students"
      orderID="4544545454545"
      orderStatus="Recieved"
      orderDate="3 hr ago"
