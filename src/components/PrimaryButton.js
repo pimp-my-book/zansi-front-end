@@ -57,6 +57,7 @@ const PrimaryButton = ({
 	text,
 	loadingText,
 	disabled=false,
+	type,
 	href,
 	...props 
 }) =>{
@@ -64,6 +65,7 @@ const PrimaryButton = ({
 	return (
 		<PrimaryButtonStyles
 		onClick={onClick}
+		type={type}
 			{...props}
 			disabled={disabled || isLoading}
 		>

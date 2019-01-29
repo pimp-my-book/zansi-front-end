@@ -41,6 +41,7 @@ const ModalDialog = ({
             <PrimaryButton
             text={buttonText}
             onClick={onPASS}
+            type="submit"
             />
             </Modal.Footer>
             

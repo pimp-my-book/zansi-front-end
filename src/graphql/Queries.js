@@ -69,7 +69,7 @@ export const VIEW_ORDER = gql`
      title
      edition
      author
-     
+     orderStatus
      dateOrdered
      status
       }

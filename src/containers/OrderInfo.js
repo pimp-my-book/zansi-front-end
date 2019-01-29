@@ -22,11 +22,12 @@ export default class OrderInfo extends Component {
 
 		this.handleShow = this.handleShow.bind(this);
 		this.handleClose = this.handleClose.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 
 		this.state = {
 			show: false,
             
-			email:"", 
+			
 			orderStatus: "",
 		};
 	}
@@ -39,9 +40,17 @@ export default class OrderInfo extends Component {
 		this.setState({show: true});
 	}
     
+
+    handleChange = name => event =>{
+        this.setState({
+            [name]: event.target.value
+        });
+    } 
+
+
 	render(){
 		const {orderId, userId} = this.props.match.params;
-       
+       const {orderStatus} = this.state;
 
 		return(
 			<div>
@@ -70,7 +79,8 @@ export default class OrderInfo extends Component {
 								<Row>
 									<Col>
 										<Heading>Status: <Badge pill variant="info">{orderInfo.status}</Badge></Heading>
-										<Icon.Package onClick={this.handleShow}/> Update Order Status
+                                        <Heading>Status: <Badge pill variant="danger">{orderInfo.orderStatus}</Badge></Heading>
+                                        <Icon.Package onClick={this.handleShow}/> Update Order Status
 									</Col>
 								</Row>
 								<Row>
@@ -108,6 +118,7 @@ export default class OrderInfo extends Component {
 						);
 					}}
 				</Query>
+
 				<Container>
 					<Row>
 						<Col>
@@ -116,14 +127,27 @@ export default class OrderInfo extends Component {
 					</Row>
 				</Container>
 
-				
-				<Mutation
+                <Query 
+					query={VIEW_ORDER}
+					variables={{
+						orderId: orderId,
+						userId: userId}}
+				>
+					{({error, loading, data}) => {
+						if (loading) return <p>loading</p>;
+						if (error) return <p>error</p>;
+                        const orderInfo = data.viewOrder;
+                        console.log(orderInfo.email)
+                        return (
+                            <Mutation
 					mutation={UPDATE_ORDER_STATUS}
-					variables={
-						this.state.email,
-						this.state.orderStatus
+					variables={{
+                        orderId: orderId,
+						userId: userId,
+                        email: orderInfo.email,
+						orderStatus
 
-					}>
+                    }}>
 					{(statusUpdate , {error, loading, called}) => {
 						if(called){
 							return  (
@@ -135,9 +159,17 @@ export default class OrderInfo extends Component {
 									show={this.state.show}
 									onHide={this.handleClose}
 									title="Update Order Status"
-									text="Heloo"
-								>
-									<Form>
+                                    text="Heloo"
+                                    buttonText="Update Status"
+                                    
+                                >
+									<Form onSubmit={
+                                       async e => {
+                                        e.preventDefault();
+                                        console.log(orderStatus);
+                                        await statusUpdate();
+                                       }
+                                    }>
 										<Form.Group controlId="staus">
 											<Form.Label>
 												<Textbody>
@@ -146,7 +178,9 @@ export default class OrderInfo extends Component {
 											</Form.Label>
 											<Form.Control
 												as="select"
-												required
+                                                required
+                                                value={orderStatus}
+                                            onChange={this.handleChange('orderStatus')}
 											>
 												{Statuses.map(
 													statusOp => (
@@ -159,6 +193,7 @@ export default class OrderInfo extends Component {
 													)
 												)}
 											</Form.Control>
+                                            <button type="submit">Update Status</button>
 										</Form.Group>
 									</Form>
 								</ModalDialog>
@@ -166,7 +201,11 @@ export default class OrderInfo extends Component {
 						}
 					}}
 				</Mutation>
-                      
+
+                        )
+				
+                    }}
+                      </Query>
 				
 			</div>
 		);
