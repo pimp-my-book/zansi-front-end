@@ -10,6 +10,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LinkButton from "../components/LinkButton";
 import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
+import {ORDER_LIST,STUDENT_ORDER_LIST} from "../graphql/Queries";
 import * as query from "../graphql/Queries";
 import ModalDialog from "../components/ModalDialog";
 import Info from "../components/Info";
@@ -41,26 +42,20 @@ export default class Order extends Component {
       }
 
 
-    _GetOrderID = data => {
-
-        if (data){
-            this.setState({orderID: data.placeOrder.orderId})
-        }
-    }
-
-    componentDidUpdat(){
-        this._GetOrderID();
-    }
-
+   update = (store, {data: {order}}) => {
+       const data = store.readQuery({
+           query: STUDENT_ORDER_LIST
+       });
+       data.orderList.unshift(order)
+       store.writeQuery({
+           query: STUDENT_ORDER_LIST,
+           data
+       })
+   }
 
    
   
 
-    componentDidMount(){
-        //this.handleChange();
-
-       
-    }
 
     renderOrderForm(){
         const {
@@ -88,7 +83,7 @@ export default class Order extends Component {
                                 author,
                                 edition
                              }} 
-              
+                             update={this.update}
                              
                              >
                              {(order, {error, loading,called, data,client }) => {
@@ -256,7 +251,6 @@ src={SuccessImage}
                         
                           className="mr-3 "
                           type="Place Order"
-                          //onClick={order}
                           isLoading={this.state.isLoading}
                           /> 
              
