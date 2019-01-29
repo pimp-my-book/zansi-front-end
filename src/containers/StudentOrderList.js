@@ -1,16 +1,14 @@
 import React, {Component, Fragment} from "react";
 import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
-import { Col, Container, Row, Table, Badge } from "react-bootstrap";
-import DisplayMedium from "../components/typography/DisplayMedium";
+import { Col, Container, Row, Table, Badge,Image } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
-import Heading from "../components/typography/Heading";
-import Textbody from "../components/typography/Textbody";
-import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import OrderCard from "../components/OrderCard";
 import styled from "styled-components";
 import Info from "../components/Info";
+import LinkButton from "../components/LinkButton";
+import Textbody from "../components/typography/Textbody";
 
 export default class StudentOrderList extends Component{
 	constructor(props){
@@ -30,7 +28,8 @@ export default class StudentOrderList extends Component{
         grid-template-columns: repeat(2, 3fr);
         `;
 
-       
+		const Email = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_empty_xct9.svg";
+
 
 		return(
 			<Fragment>
@@ -53,20 +52,34 @@ export default class StudentOrderList extends Component{
                                            <LoadingSpinner/>
 											</Col>
 										</Row>
-									</Container>
-										
-										
-										);
+									</Container>);
 
 										if (error) return <Fragment><Info text={error.message.replace('GraphQL error:', '')}
 										  variant="danger"/>
-										</Fragment>
+										</Fragment>;
 								
 
 									const myOrders = data.studentOrderList;
 									if (!myOrders.length){
 										return(
-											<p>Wrong</p>
+											<Fragment>
+												<Container>
+										<Row>
+											<Col>
+											<Image
+					                         src={Email}
+					                         width={200}
+					                           fluid
+					                        className=" d-none d-lg-block"
+				                               />
+                                <Textbody>You have not placed any orders yet. Click below to place your first order.</Textbody>
+                               <LinkButton className="ml-3"sm href="/order" >
+							   Place an Order
+							   </LinkButton>
+											</Col>
+										</Row>
+									</Container>
+											</Fragment>
 										);
 
 									} else {
