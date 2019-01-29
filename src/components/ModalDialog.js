@@ -19,6 +19,7 @@ const ModalDialog = ({
     show,
     onHide,
     onPASS,
+    children,
     ...props,
     
 
@@ -32,6 +33,7 @@ const ModalDialog = ({
             <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                {children}
                 <Textbody>{body}</Textbody>
             </Modal.Body>
 
