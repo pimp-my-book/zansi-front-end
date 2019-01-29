@@ -37,9 +37,9 @@ const OrderCard = ({
              <Container>
                  <Row className="justify-content-end">
                      <Col>
-                     <Card.Title><Heading>{orderTitle}</Heading></Card.Title>
-          <Card.Text><Textbody>{orderID}</Textbody></Card.Text>
-           <Card.Text><Textbody>{timeDifferenceForDate(parseInt(orderDate))}</Textbody></Card.Text>
+                     <Heading>{orderTitle}</Heading>
+         <Textbody>{orderID}</Textbody>
+          <Textbody>{timeDifferenceForDate(parseInt(orderDate))}</Textbody>
           
                      </Col>
                      <Col className="ml-5  order-1">

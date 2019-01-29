@@ -50,7 +50,7 @@ export default class StudentOrderList extends Component{
 									if (error) return <p>Error</p>;
 
 									const myOrders = data.studentOrderList;
-                                    
+                                    console.log(myOrders);
 									if(!myOrders){
 										return <p>You need to make more orders</p>;
 									} else {
@@ -58,7 +58,7 @@ export default class StudentOrderList extends Component{
 											<Fragment>
                                                  <OrdersGrid 
                                                         
-                                                        >
+                                                         >
 												{myOrders.map((orders) => (
 													
                                                        
