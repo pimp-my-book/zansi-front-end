@@ -12,6 +12,7 @@ import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
+import PrimaryButton from "../components/PrimaryButton";
 import ModalDialog from "../components/ModalDialog";
 import {timeDifferenceForDate} from "../utils";
 import {Statuses} from "../constants";
@@ -184,6 +185,7 @@ export default class OrderInfo extends Component {
 							);
 						} else {
 							return(
+								
 								<ModalDialog
 									show={this.state.show}
 									onHide={this.handleClose}
@@ -192,13 +194,14 @@ export default class OrderInfo extends Component {
                                     buttonText="Update Status"
                                     
                                 >
-									<Form onSubmit={
-                                       async e => {
-                                        e.preventDefault();
-                                        console.log(orderStatus);
-                                        await statusUpdate();
-                                       }
-                                    }>
+								<Form onSubmit={
+									async e => {
+									 e.preventDefault();
+									 console.log(orderStatus);
+									 await statusUpdate();
+									}
+								 }>
+									
 										<Form.Group controlId="staus">
 											<Form.Label>
 												<Textbody>
@@ -222,10 +225,15 @@ export default class OrderInfo extends Component {
 													)
 												)}
 											</Form.Control>
-                                            <button type="submit">Update Status</button>
+                                            
 										</Form.Group>
+										<PrimaryButton
+											text="Update Status"
+											type="submit"
+											/>
 									</Form>
 								</ModalDialog>
+								
 							);
 						}
 					}}

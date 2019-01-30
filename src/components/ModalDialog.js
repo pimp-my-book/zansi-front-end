@@ -1,7 +1,6 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
 import Textbody from "./typography/Textbody";
-import PrimaryButton from "./PrimaryButton";
 
 /*
 Behaviours: 
@@ -38,11 +37,7 @@ const ModalDialog = ({
             </Modal.Body>
 
             <Modal.Footer>
-            <PrimaryButton
-            text={buttonText}
-            onClick={onPASS}
-            type="submit"
-            />
+           
             </Modal.Footer>
             
             

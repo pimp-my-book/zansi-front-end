@@ -7,6 +7,7 @@ import * as Icon from "react-feather";
 const PrimaryButtonStyles = styled(Button)`
 &&&{
 
+	font-family: 'Poppins', sans-serif;
 color: var(--rasin-black);
 background-color: var(--rose-pink);
 border: ${props => props.border ? '2px solid var(--rose-pink)' : 'none'} ;
@@ -57,7 +58,7 @@ const PrimaryButton = ({
 	text,
 	loadingText,
 	disabled=false,
-	type,
+	
 	href,
 	...props 
 }) =>{
@@ -65,7 +66,7 @@ const PrimaryButton = ({
 	return (
 		<PrimaryButtonStyles
 		onClick={onClick}
-		type={type}
+		
 			{...props}
 			disabled={disabled || isLoading}
 		>
