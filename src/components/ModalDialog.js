@@ -1,6 +1,7 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
 import Textbody from "./typography/Textbody";
+import Heading from "./typography/Heading";
 
 /*
 Behaviours: 
@@ -29,7 +30,7 @@ const ModalDialog = ({
         show={show} 
         onHide={onHide}>
             <Modal.Header  closeButton>
-            <Modal.Title>{title}</Modal.Title>
+            <Modal.Title><Heading>{title}</Heading></Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {children}

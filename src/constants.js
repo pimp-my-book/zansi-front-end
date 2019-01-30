@@ -16,7 +16,7 @@ export const Bursaries = [
 ];
 
 export const Statuses = [ 
-	"Received", 
+	"Choose", 
 	"In Stock",
 	"On Order",
 	"Over Budget",

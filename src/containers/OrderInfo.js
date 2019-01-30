@@ -216,12 +216,13 @@ export default class OrderInfo extends Component {
 											>
 												{Statuses.map(
 													statusOp => (
-                                                   
+														
 														<option
 															key={statusOp}
 														>
 															{statusOp}
 														</option>
+														
 													)
 												)}
 											</Form.Control>
