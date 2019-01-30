@@ -178,7 +178,7 @@ export default class Dashboard extends Component {
                                 </td>
                                 <td>
                                 <Badge pill variant="danger">
-                                {orders.status}
+                                {orders.orderStatus === null ? 'recieved' : orders.orderStatus}
                                 </Badge>
                                 </td>
                                 <td> 

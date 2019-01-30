@@ -16,6 +16,7 @@ import ModalDialog from "../components/ModalDialog";
 import {timeDifferenceForDate} from "../utils";
 import {Statuses} from "../constants";
 
+
 export default class OrderInfo extends Component {
 	constructor(props){
 		super(props);
@@ -78,8 +79,7 @@ export default class OrderInfo extends Component {
 							<Container>
 								<Row>
 									<Col>
-										<Heading>Status: <Badge pill variant="info">{orderInfo.status}</Badge></Heading>
-                                        <Heading>Status: <Badge pill variant="danger">{orderInfo.orderStatus}</Badge></Heading>
+                                        <Heading>Status: <Badge pill variant="danger">{orderInfo.orderStatus === null ? 'recieved' : orderInfo.orderStatus}</Badge></Heading>
                                         <Icon.Package onClick={this.handleShow}/> Update Order Status
 									</Col>
 								</Row>

@@ -46,6 +46,7 @@ export const ORDER_LIST = gql`
      title
      edition
      author
+     orderStatus
      dateOrdered
      status
        }
