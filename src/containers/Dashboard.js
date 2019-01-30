@@ -177,9 +177,30 @@ export default class Dashboard extends Component {
                                 <Textbody>{orders.excelDate}</Textbody>
                                 </td>
                                 <td>
-                                <Badge pill variant="danger">
-                                {orders.orderStatus === null ? 'recieved' : orders.orderStatus}
+                                    {orders.orderStatus === null &&
+                                    
+                                    <Badge pill variant="danger">
+                                {orders.orderStatus === null ? 'received' : orders.orderStatus}
                                 </Badge>
+                                    }
+
+                                 {orders.orderStatus === "Delivered to Beneficiary" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orders.orderStatus}
+                                </Badge>
+                                    }
+
+                                    {orders.orderStatus !== "Delivered to Beneficiary" && orders.orderStatus !== null && orders.orderStatus !== "received" &&
+                                    
+                                    <Badge pill variant="warning">
+                                {orders.orderStatus}
+                                </Badge>
+                                    }
+                                    {orders.orderStatus === "received" &&
+                                    <Badge pill variant="danger">
+                                { orders.orderStatus}
+                                </Badge>}
                                 </td>
                                 <td> 
                                 <Link

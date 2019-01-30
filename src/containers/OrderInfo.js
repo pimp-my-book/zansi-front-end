@@ -79,7 +79,36 @@ export default class OrderInfo extends Component {
 							<Container>
 								<Row>
 									<Col>
-                                        <Heading>Status: <Badge pill variant="danger">{orderInfo.orderStatus === null ? 'recieved' : orderInfo.orderStatus}</Badge></Heading>
+                                        <Heading>Status: 
+
+                                         {orderInfo.orderStatus === null &&
+                                    
+                                    <Badge pill variant="danger">
+                                {orderInfo.orderStatus === null ? 'received' : orderInfo.orderStatus}
+                                </Badge>
+                                    }
+
+                                 {orderInfo.orderStatus === "Delivered to Beneficiary" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orderInfo.orderStatus}
+                                </Badge>
+                                    }
+
+                                    {orderInfo.orderStatus !== "Delivered to Beneficiary" && orderInfo.orderStatus !== null && orderInfo.orderStatus !== "received" &&
+                                    
+                                    <Badge pill variant="warning">
+                                {orderInfo.orderStatus}
+                                </Badge>
+									}
+									
+                                    {orderInfo.orderStatus === "received" &&
+                                    <Badge pill variant="danger">
+                                { orderInfo.orderStatus}
+								</Badge>
+								}
+
+										</Heading>
                                         <Icon.Package onClick={this.handleShow}/> Update Order Status
 									</Col>
 								</Row>
