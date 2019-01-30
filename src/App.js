@@ -185,8 +185,9 @@ class App extends Component {
 						  <OutlineButton 
 						  text="Login"
 						  to="/login"
-						  small
-						  border />
+						  small="true"
+						  border="true"
+						   />
 						  
             
 			
