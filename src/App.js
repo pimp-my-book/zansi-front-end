@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Routes from "./Routes";
 import {Auth} from "aws-amplify";
-import {Link, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import { Navbar,Nav} from "react-bootstrap";
 import Navigation from "./components/Navigation";
 import DisplayXlarge from "./components/typography/DisplayXlarge";

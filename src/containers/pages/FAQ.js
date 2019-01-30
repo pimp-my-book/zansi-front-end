@@ -4,7 +4,6 @@ import styled from "styled-components";
 import DisplayMedium from "../../components/typography/DisplayMedium";
 import Heading from "../../components/typography/Heading";
 import Subheading from "../../components/typography/Subheading";
-import Textbody from "../../components/typography/Textbody";
 
 const FAQ = () => {
 

@@ -8,7 +8,6 @@ import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
-import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
@@ -41,8 +40,7 @@ export default class OrderInfo extends Component {
 	handleShow(){
 		this.setState({show: true});
 	}
-	
-	
+    
 
     handleChange = name => event =>{
         this.setState({
@@ -81,7 +79,6 @@ export default class OrderInfo extends Component {
 						variant="danger"/>;
 
                         const orderInfo = data.viewOrder;
-                        console.log(orderInfo.email)
                         return (
                             <Mutation
 					mutation={UPDATE_ORDER_STATUS}
@@ -97,7 +94,7 @@ export default class OrderInfo extends Component {
 							return  (
 								<Info
 								variant="success"
-								text="The status of the order has been updated! Refresh the page to see the changed status."
+								text="The status of the order has been updated!"
 								/>
 							);
 						} else {
@@ -176,7 +173,7 @@ export default class OrderInfo extends Component {
 							<Container>
 								<Row>
 									<Col>
-                                        <Heading>Status: 
+                                        <Heading>Status: {' '}
 
                                          {orderInfo.orderStatus === null &&
                                     

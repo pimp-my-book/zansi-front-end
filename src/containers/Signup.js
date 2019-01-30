@@ -6,7 +6,7 @@ import DisplayMedium from "../components/typography/DisplayMedium";
 import Textbody from "../components/typography/Textbody";
 import LinkButton from "../components/LinkButton";
 import Info from "../components/Info";
-import { ButtonToolbar, Form, Col,Container, Row, OverlayTrigger, Popover} from "react-bootstrap";
+import { Form, Col,Container, Row} from "react-bootstrap";
 import {Univeristies,Bursaries} from "../constants";
 
  export default class Signup extends Component {

@@ -1,6 +1,6 @@
 import React ,{Component} from "react";
 import styled from "styled-components";
-import {Mutation, Query} from "react-apollo";
+import {Mutation} from "react-apollo";
 import { Form, Col, Container, Row, Image,Alert} from "react-bootstrap";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import DisplaySmall from "../components/typography/DisplaySmall";
@@ -10,9 +10,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LinkButton from "../components/LinkButton";
 import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
-import {ORDER_LIST,STUDENT_ORDER_LIST} from "../graphql/Queries";
-import * as query from "../graphql/Queries";
-import ModalDialog from "../components/ModalDialog";
+import {STUDENT_ORDER_LIST} from "../graphql/Queries";
 import Info from "../components/Info";
 
 
@@ -27,7 +25,6 @@ export default class Order extends Component {
             ISBN: "",
             author: "",
             edition: "",
-            orderID: "",
             newOrder: null
 
         };
@@ -63,7 +60,7 @@ export default class Order extends Component {
             ISBN,
             author,
             edition,
-            orderID,
+            
         } = this.state; 
 
         const SuccessImage = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_winners_ao2o.svg";
@@ -87,7 +84,6 @@ export default class Order extends Component {
                              
                              >
                              {(order, {error, loading,called, data,client }) => {
-                                console.log(data);
                                 
                      
                                  if (called && data){

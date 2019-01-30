@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { Form, Col, Container, Row} from "react-bootstrap";
 import { Auth } from "aws-amplify";
-import styled from "styled-components";
 import PrimaryButton from "../components/PrimaryButton";
 import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
