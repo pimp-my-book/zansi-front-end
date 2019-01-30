@@ -41,7 +41,8 @@ export default class OrderInfo extends Component {
 	handleShow(){
 		this.setState({show: true});
 	}
-    
+	
+	
 
     handleChange = name => event =>{
         this.setState({
@@ -74,8 +75,11 @@ export default class OrderInfo extends Component {
 						userId: userId}}
 				>
 					{({error, loading, data}) => {
-						if (loading) return <p>loading</p>;
-						if (error) return <p>error</p>;
+						if (loading) return <LoadingSpinner/>;
+						if (error) return <Info
+						text={`${error}`}
+						variant="danger"/>;
+
                         const orderInfo = data.viewOrder;
                         console.log(orderInfo.email)
                         return (
@@ -93,7 +97,7 @@ export default class OrderInfo extends Component {
 							return  (
 								<Info
 								variant="success"
-								text="The status of the order has been updated!"
+								text="The status of the order has been updated! Refresh the page to see the changed status."
 								/>
 							);
 						} else {
@@ -103,14 +107,11 @@ export default class OrderInfo extends Component {
 									show={this.state.show}
 									onHide={this.handleClose}
 									title="Update Order Status"
-                                    text="Heloo"
-                                    buttonText="Update Status"
-                                    
+                                     
                                 >
 								<Form onSubmit={
 									async e => {
 									 e.preventDefault();
-									 console.log(orderStatus);
 									 await statusUpdate();
 									}
 								 }>
@@ -162,11 +163,14 @@ export default class OrderInfo extends Component {
 					query={VIEW_ORDER}
 					variables={{
 						orderId: orderId,
-						userId: userId}}
+						userId: userId
+					}}
 				>
 					{({error, loading, data}) => {
-						if (loading) return <p>loading</p>;
-						if (error) return <p>error</p>;
+						if (loading) return <></>;
+						if (error) return <Info
+                            text={`${error}`}
+                            variant="danger"/>;;
 						const orderInfo = data.viewOrder;
 						return(
 							<Container>
