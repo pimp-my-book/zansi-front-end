@@ -49,6 +49,15 @@ export default class OrderInfo extends Component {
     } 
 
 
+	update = (cache,payload) => {
+		const data = cache.readQuery({query: VIEW_ORDER});
+		const orderItemID = payload.data.viewOrder.orderId;
+		console.log(orderItemID);
+		data.viewOrder = data.viewOrder.filter(orderItem => orderItem.orderId !== orderItemID);
+		console.log(data.viewOrder);
+		cache.writeQuery({query: VIEW_ORDER, data});
+	}
+
 	render(){
 		const {orderId, userId} = this.props.match.params;
        const {orderStatus} = this.state;
@@ -78,7 +87,8 @@ export default class OrderInfo extends Component {
 						text={`${error}`}
 						variant="danger"/>;
 
-                        const orderInfo = data.viewOrder;
+						const orderInfo = data.viewOrder;
+						console.log(orderInfo);
                         return (
                             <Mutation
 					mutation={UPDATE_ORDER_STATUS}
@@ -88,7 +98,17 @@ export default class OrderInfo extends Component {
                         email: orderInfo.email,
 						orderStatus
 
-                    }}>
+					}}
+					update={this.update}
+					optimisticResponse={{
+						__typename: "Mutation",
+						viewOrder: {
+							__typename: "Order",
+							orderId: orderId,
+							orderStatus
+						}
+					}}
+					>
 					{(statusUpdate , {error, loading, called}) => {
 						if(called){
 							return  (
@@ -162,8 +182,9 @@ export default class OrderInfo extends Component {
 						orderId: orderId,
 						userId: userId
 					}}
+					
 				>
-					{({error, loading, data}) => {
+					{({error, loading, data, startPolling, stopPolling}) => {
 						if (loading) return <></>;
 						if (error) return <Info
                             text={`${error}`}

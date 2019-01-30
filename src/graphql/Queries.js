@@ -72,7 +72,7 @@ export const VIEW_ORDER = gql`
      author
      orderStatus
      dateOrdered
-     status
+     statusDate
       }
   }
 `;
