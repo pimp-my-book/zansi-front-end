@@ -65,6 +65,98 @@ export default class OrderInfo extends Component {
 						</Col>
 					</Row>
 				</Container>
+
+				
+                <Query 
+					query={VIEW_ORDER}
+					variables={{
+						orderId: orderId,
+						userId: userId}}
+				>
+					{({error, loading, data}) => {
+						if (loading) return <p>loading</p>;
+						if (error) return <p>error</p>;
+                        const orderInfo = data.viewOrder;
+                        console.log(orderInfo.email)
+                        return (
+                            <Mutation
+					mutation={UPDATE_ORDER_STATUS}
+					variables={{
+                        orderId: orderId,
+						userId: userId,
+                        email: orderInfo.email,
+						orderStatus
+
+                    }}>
+					{(statusUpdate , {error, loading, called}) => {
+						if(called){
+							return  (
+								<Info
+								variant="success"
+								text="The status of the order has been updated!"
+								/>
+							);
+						} else {
+							return(
+								
+								<ModalDialog
+									show={this.state.show}
+									onHide={this.handleClose}
+									title="Update Order Status"
+                                    text="Heloo"
+                                    buttonText="Update Status"
+                                    
+                                >
+								<Form onSubmit={
+									async e => {
+									 e.preventDefault();
+									 console.log(orderStatus);
+									 await statusUpdate();
+									}
+								 }>
+									
+										<Form.Group controlId="staus">
+											<Form.Label>
+												<Textbody>
+                                              Choose a status
+												</Textbody>
+											</Form.Label>
+											<Form.Control
+												as="select"
+                                                required
+                                                value={orderStatus}
+                                            onChange={this.handleChange('orderStatus')}
+											>
+												{Statuses.map(
+													statusOp => (
+														
+														<option
+															key={statusOp}
+														>
+															{statusOp}
+														</option>
+														
+													)
+												)}
+											</Form.Control>
+                                            
+										</Form.Group>
+										<PrimaryButton
+											text="Update Status"
+											type="submit"
+											/>
+									</Form>
+								</ModalDialog>
+								
+							);
+						}
+					}}
+				</Mutation>
+
+                        )
+				
+                    }}
+                      </Query>
                 
 				<Query 
 					query={VIEW_ORDER}
@@ -157,93 +249,6 @@ export default class OrderInfo extends Component {
 					</Row>
 				</Container>
 
-                <Query 
-					query={VIEW_ORDER}
-					variables={{
-						orderId: orderId,
-						userId: userId}}
-				>
-					{({error, loading, data}) => {
-						if (loading) return <p>loading</p>;
-						if (error) return <p>error</p>;
-                        const orderInfo = data.viewOrder;
-                        console.log(orderInfo.email)
-                        return (
-                            <Mutation
-					mutation={UPDATE_ORDER_STATUS}
-					variables={{
-                        orderId: orderId,
-						userId: userId,
-                        email: orderInfo.email,
-						orderStatus
-
-                    }}>
-					{(statusUpdate , {error, loading, called}) => {
-						if(called){
-							return  (
-								<p>The stauts of the order has been changed</p>
-							);
-						} else {
-							return(
-								
-								<ModalDialog
-									show={this.state.show}
-									onHide={this.handleClose}
-									title="Update Order Status"
-                                    text="Heloo"
-                                    buttonText="Update Status"
-                                    
-                                >
-								<Form onSubmit={
-									async e => {
-									 e.preventDefault();
-									 console.log(orderStatus);
-									 await statusUpdate();
-									}
-								 }>
-									
-										<Form.Group controlId="staus">
-											<Form.Label>
-												<Textbody>
-                                              Choose a status
-												</Textbody>
-											</Form.Label>
-											<Form.Control
-												as="select"
-                                                required
-                                                value={orderStatus}
-                                            onChange={this.handleChange('orderStatus')}
-											>
-												{Statuses.map(
-													statusOp => (
-														
-														<option
-															key={statusOp}
-														>
-															{statusOp}
-														</option>
-														
-													)
-												)}
-											</Form.Control>
-                                            
-										</Form.Group>
-										<PrimaryButton
-											text="Update Status"
-											type="submit"
-											/>
-									</Form>
-								</ModalDialog>
-								
-							);
-						}
-					}}
-				</Mutation>
-
-                        )
-				
-                    }}
-                      </Query>
 				
 			</div>
 		);
