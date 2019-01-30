@@ -24,10 +24,12 @@ export default class OrderInfo extends Component {
 		this.handleShow = this.handleShow.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleDetailsClose = this.handleDetailsClose.bind(this);
+		this.handleDetailsShow = this.handleDetailsShow.bind(this);
 
 		this.state = {
 			show: false,
-            
+            showDetails: false,
 			
 			orderStatus: "",
 		};
@@ -40,7 +42,14 @@ export default class OrderInfo extends Component {
 	handleShow(){
 		this.setState({show: true});
 	}
-    
+	
+	handleDetailsClose(){
+		this.setState({showDetails: false});
+	}
+
+	handleDetailsShow(){
+		this.setState({showDetails: true});
+	}
 
     handleChange = name => event =>{
         this.setState({
@@ -53,7 +62,8 @@ export default class OrderInfo extends Component {
 		const {orderId, userId} = this.props.match.params;
 
 		const data = cache.readQuery({query: VIEW_ORDER, variables:{
-			userId,orderId
+			userId,
+			orderId
 		}});
 		const orderItemID = payload.data.viewOrder.orderId;
 		
@@ -83,6 +93,8 @@ export default class OrderInfo extends Component {
 					</Row>
 				</Container>
 
+
+{/*  UPDATE ORDER STATUS MODAL*/}
 				
                 <Query 
 					query={VIEW_ORDER}
@@ -97,7 +109,6 @@ export default class OrderInfo extends Component {
 						variant="danger"/>;
 
 						const orderInfo = data.viewOrder;
-						console.log(orderInfo);
                         return (
                             <Mutation
 					mutation={UPDATE_ORDER_STATUS}
@@ -185,6 +196,90 @@ export default class OrderInfo extends Component {
 				
                     }}
                       </Query>
+
+
+{/*  UPDATE ORDER INFO MODAL*/}
+                <ModalDialog
+				show={this.state.showDetails}
+				onHide={this.handleDetailsClose}
+				title="Update Order Details"
+				>
+				<Form>
+                <Form.Row>
+					<Form.Group as={Col}>
+					<Form.Label><Textbody>ETA</Textbody></Form.Label>
+					<Form.Control
+					type="date"
+					required
+					/>
+					</Form.Group>
+
+					<Form.Group as={Col}>
+					<Form.Label><Textbody>Vendor</Textbody></Form.Label>
+					<Form.Control
+                    required
+					/>
+					</Form.Group>
+				</Form.Row>
+
+				<Form.Row>
+					<Form.Group as={Col}>
+					<Form.Label><Textbody>Condition</Textbody></Form.Label>
+					<Form.Control
+                      required
+					/>
+					</Form.Group>
+
+					<Form.Group as={Col}>
+					<Form.Label><Textbody> Delivery Method</Textbody></Form.Label>
+					<Form.Control
+					required
+					/>
+					</Form.Group>
+				</Form.Row>
+
+
+				<Form.Row>
+					<Form.Group as={Col}>
+					<Form.Label><Textbody>Delivery Date</Textbody></Form.Label>
+					<Form.Control
+					required
+					/>
+					</Form.Group>
+
+					<Form.Group as={Col}>
+					<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
+					<Form.Control
+					required
+					/>
+					</Form.Group>
+				</Form.Row>
+
+				<Form.Row>
+					<Form.Group as={Col}>
+					<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
+					<Form.Control
+					required
+					/>
+					</Form.Group>
+
+					<Form.Group as={Col}>
+					<Form.Label><Textbody>WayBill Number</Textbody></Form.Label>
+					<Form.Control
+					required
+					/>
+					</Form.Group>
+				</Form.Row>
+
+				</Form>
+
+
+				</ModalDialog>
+
+
+
+{/*  Order Infomation*/}
+
                 
 				<Query 
 					query={VIEW_ORDER}
@@ -202,7 +297,7 @@ export default class OrderInfo extends Component {
 						const orderInfo = data.viewOrder;
 						return(
 							<Container>
-								<Row>
+								<Row className="mb-5">
 									<Col>
                                         <Heading>Status: {' '}
 
@@ -234,7 +329,10 @@ export default class OrderInfo extends Component {
 								}
 
 										</Heading>
-                                        <Icon.Package onClick={this.handleShow}/> Update Order Status
+                                        <Icon.Package onClick={this.handleShow}/> <Textbody>Update Order Status</Textbody>
+									</Col>
+									<Col>
+                                    <Icon.Edit onClick={this.handleDetailsShow}/> <Textbody>Edit Order Info</Textbody>
 									</Col>
 								</Row>
 								<Row>
@@ -265,8 +363,12 @@ export default class OrderInfo extends Component {
 									</Col>
 								</Row>
 
-                           
+						   {/*  Order info but add fragment first */}
+						   
+
 							</Container>
+
+							
                         
                         
 						);
