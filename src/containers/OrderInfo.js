@@ -50,12 +50,21 @@ export default class OrderInfo extends Component {
 
 
 	update = (cache,payload) => {
-		const data = cache.readQuery({query: VIEW_ORDER});
+		const {orderId, userId} = this.props.match.params;
+
+		const data = cache.readQuery({query: VIEW_ORDER, variables:{
+			userId,orderId
+		}});
 		const orderItemID = payload.data.viewOrder.orderId;
-		console.log(orderItemID);
-		data.viewOrder = data.viewOrder.filter(orderItem => orderItem.orderId !== orderItemID);
+		
 		console.log(data.viewOrder);
-		cache.writeQuery({query: VIEW_ORDER, data});
+		 delete data.viewOrder;
+		console.log(data.viewOrder);
+		cache.writeQuery({
+			query: VIEW_ORDER,
+			 data,
+			 variables:{userId,orderId}
+			});
 	}
 
 	render(){
@@ -104,10 +113,11 @@ export default class OrderInfo extends Component {
 						__typename: "Mutation",
 						viewOrder: {
 							__typename: "Order",
-							orderId: orderId,
-							orderStatus
+							orderId,
+							
 						}
 					}}
+					refetchQueries={[{query:VIEW_ORDER} ]}
 					>
 					{(statusUpdate , {error, loading, called}) => {
 						if(called){
