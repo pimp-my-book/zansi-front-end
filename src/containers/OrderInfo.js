@@ -26,6 +26,17 @@ export default class OrderInfo extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleDetailsClose = this.handleDetailsClose.bind(this);
 		this.handleDetailsShow = this.handleDetailsShow.bind(this);
+		this.input = React.createRef();
+		this.costRef = React.createRef();
+		this.sellingRef = React.createRef();
+		this.wayRef = React.createRef();
+		this.dateRef = React.createRef();
+		this.methRef = React.createRef();
+		this.conditonRef = React.createRef();
+		this.vendorRef = React.createRef();
+		this.leadRef = React.createRef();
+
+
 
 		this.state = {
 			show: false,
@@ -275,7 +286,9 @@ export default class OrderInfo extends Component {
 									async e => {
 										e.preventDefault();
 										await infoUpdate();
-									}}>
+									}}
+									
+									>
 								<Form.Row>
 									{error &&
 									<p>{error.message}</p>
@@ -285,6 +298,7 @@ export default class OrderInfo extends Component {
 									<Form.Control
 									type="date"
 									defaultValue={orderInfo.ETA}
+                                    ref={this.input}
 									onChange={this.handleChange('eta')}
 									/>
 									</Form.Group>
@@ -294,6 +308,8 @@ export default class OrderInfo extends Component {
 									<Form.Control
 									as="select"
 									defaultValue={orderInfo.Vendor}
+									ref={this.vendorRef}
+								
 									onChange={this.handleChange('vendor')}
 									> 
                                     {Vendors.map(
@@ -315,6 +331,8 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Condition</Textbody></Form.Label>
 									<Form.Control
 									as="select"
+									ref={this.conditonRef}
+									
 									defaultValue={orderInfo.bookCondition}
 									onChange={this.handleChange('conditon')}
 									> 
@@ -336,6 +354,8 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Delivery Method</Textbody></Form.Label>
 									<Form.Control
 									as="select"
+									ref={this.methRef}
+									
 									defaultValue={orderInfo.deliveryMethod}
 									onChange={this.handleChange('deliveryMethod')}
 									> 
@@ -359,6 +379,8 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Delivery Date</Textbody></Form.Label>
 									<Form.Control
 									type="date"
+									ref={this.dateRef}
+									
 									defaultValue={orderInfo.deliveryDate}
 									onChange={this.handleChange('deliveryDate')}
 									/>
@@ -368,6 +390,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
 									<Form.Control
 									type="number"
+									ref={this.costRef}
 									defaultValue={orderInfo.costPrice}
 									onChange={this.handleChange('costPrice')}
 									/>
@@ -378,7 +401,10 @@ export default class OrderInfo extends Component {
 									<Form.Group as={Col}>
 									<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
 									<Form.Control
-									type="number"
+									type="number"									defaultValue={orderInfo.sellingPrice}
+									ref={this.sellingRe}
+									
+									
 									defaultValue={orderInfo.sellingPrice}
 									onChange={this.handleChange('sellingPrice')}
 									/>
@@ -388,6 +414,8 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>WayBill Number</Textbody></Form.Label>
 									<Form.Control
 									type="text"
+									ref={this.wayRe}
+								
 									defaultValue={orderInfo.wayBillNumber}
 									onChange={this.handleChange('wayBillNumber')}
 									/>
@@ -399,7 +427,8 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Lead Time</Textbody></Form.Label>
 									<Form.Control
 									type="text"
-									
+									ref={this.leadRef}
+
 									defaultValue={orderInfo.leadTime}
 									onChange={this.handleChange('leadTime')}
 								
