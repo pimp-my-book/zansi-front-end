@@ -1,6 +1,6 @@
 import React, {Component} from "react"; 
 import { Query, Mutation} from "react-apollo";
-import { Col, Container, Row,  Badge, Form, Collapse } from "react-bootstrap";
+import { Col, Container, Row,  Badge, Form, Collapse, ListGroup } from "react-bootstrap";
 import {VIEW_ORDER}from "../graphql/Queries";
 import { UPDATE_ORDER_STATUS, UPDATE_ORDER_INFO}from "../graphql/Mutations";
 import * as Icon from "react-feather";
@@ -284,7 +284,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>ETA</Textbody></Form.Label>
 									<Form.Control
 									type="date"
-									value={this.state.eta}
+									defaultValue={orderInfo.ETA}
 									onChange={this.handleChange('eta')}
 									/>
 									</Form.Group>
@@ -293,7 +293,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Vendor</Textbody></Form.Label>
 									<Form.Control
 									as="select"
-									value={this.state.vendor}
+									defaultValue={orderInfo.Vendor}
 									onChange={this.handleChange('vendor')}
 									> 
                                     {Vendors.map(
@@ -315,10 +315,12 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Condition</Textbody></Form.Label>
 									<Form.Control
 									as="select"
-									value={this.state.conditon}
+									defaultValue={orderInfo.bookCondition}
 									onChange={this.handleChange('conditon')}
 									> 
-                                   
+                                              <option>
+											Choose
+											</option>
 											<option>
 											New
 											</option>
@@ -334,7 +336,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Delivery Method</Textbody></Form.Label>
 									<Form.Control
 									as="select"
-									value={this.state.deliveryMethod}
+									defaultValue={orderInfo.deliveryMethod}
 									onChange={this.handleChange('deliveryMethod')}
 									> 
                                     {DeliveryMethod.map(
@@ -357,7 +359,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Delivery Date</Textbody></Form.Label>
 									<Form.Control
 									type="date"
-									value={this.state.deliveryDate}
+									defaultValue={orderInfo.deliveryDate}
 									onChange={this.handleChange('deliveryDate')}
 									/>
 									</Form.Group>
@@ -366,7 +368,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
 									<Form.Control
 									type="number"
-									value={this.state.costPrice}
+									defaultValue={orderInfo.costPrice}
 									onChange={this.handleChange('costPrice')}
 									/>
 									</Form.Group>
@@ -377,7 +379,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
 									<Form.Control
 									type="number"
-									value={this.state.sellingPrice}
+									defaultValue={orderInfo.sellingPrice}
 									onChange={this.handleChange('sellingPrice')}
 									/>
 									</Form.Group>
@@ -386,7 +388,7 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>WayBill Number</Textbody></Form.Label>
 									<Form.Control
 									type="text"
-									value={this.state.wayBillNumber}
+									defaultValue={orderInfo.wayBillNumber}
 									onChange={this.handleChange('wayBillNumber')}
 									/>
 									</Form.Group>
@@ -397,10 +399,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Lead Time</Textbody></Form.Label>
 									<Form.Control
 									type="text"
-									readOnly 
-									plainText
-									value={this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)}
+									
+									defaultValue={orderInfo.leadTime}
 									onChange={this.handleChange('leadTime')}
+								
 									/>
 									</Form.Group>
 				
@@ -503,7 +505,7 @@ export default class OrderInfo extends Component {
 										<Heading>Author: {orderInfo.author}</Heading>
 										<Heading>Edition: {orderInfo.edition}</Heading>
                                 
-								         {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)}
+								         
 										<Heading><Icon.Clock/> ordered {timeDifferenceForDate(parseInt(orderInfo.dateOrdered))}</Heading>
                                
 									</Col>
@@ -531,9 +533,27 @@ export default class OrderInfo extends Component {
 							<Container>
 
 								<Row>
-									<Col>
+									<Col lg={3}>
 									<DisplayMedium>Information About This Order</DisplayMedium>
-                                     
+                                     <ListGroup>
+										 <ListGroup.Item>ETA: {orderInfo.ETA}</ListGroup.Item>
+										 <ListGroup.Item>Vendor: {orderInfo.Vendor}</ListGroup.Item>
+										 <ListGroup.Item>Condition: {orderInfo.bookCondition}</ListGroup.Item>
+										 <ListGroup.Item>Delivery Method: {orderInfo.deliveryMethod}</ListGroup.Item>
+										 <ListGroup.Item>Delivery Date: {orderInfo.deliveryDate}</ListGroup.Item>
+										 <ListGroup.Item>Cost Prie: ZAR {orderInfo.costPrice}</ListGroup.Item>
+										 <ListGroup.Item>Selling Price: {orderInfo.sellingPrice}</ListGroup.Item>
+										 <ListGroup.Item>Way Bill Number: {orderInfo.wayBillNumber}</ListGroup.Item>
+
+										 {orderInfo.orderStatus === "Delivered to Beneficiary" 
+										 ? <ListGroup.Item>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</ListGroup.Item>
+										  
+										 :(orderInfo.orderStatus === "Beneficiary Collected"
+										 ? 	 <ListGroup.Item>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</ListGroup.Item>
+                                        :  	" "
+
+										 )}
+									 </ListGroup>
 									
 									</Col>
 								</Row>
