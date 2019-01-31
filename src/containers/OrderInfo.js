@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Query, Mutation} from "react-apollo";
 import { Col, Container, Row,  Badge, Form } from "react-bootstrap";
 import {VIEW_ORDER}from "../graphql/Queries";
-import { UPDATE_ORDER_STATUS}from "../graphql/Mutations";
+import { UPDATE_ORDER_STATUS, UPDATE_ORDER_INFO}from "../graphql/Mutations";
 import * as Icon from "react-feather";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplayMedium from "../components/typography/DisplayMedium";
@@ -14,7 +14,7 @@ import Info from "../components/Info";
 import PrimaryButton from "../components/PrimaryButton";
 import ModalDialog from "../components/ModalDialog";
 import {timeDifferenceForDate} from "../utils";
-import {Statuses} from "../constants";
+import {Statuses, Vendors, DeliveryMethod} from "../constants";
 
 
 export default class OrderInfo extends Component {
@@ -29,7 +29,16 @@ export default class OrderInfo extends Component {
 
 		this.state = {
 			show: false,
-            showDetails: false,
+			showDetails: false,
+			eta : "",
+			costPrice : "",
+			sellingPrice: "",
+			wayBillNumber: "", 
+			deliveryDate : "",
+			deliveryMethod: "",
+			conditon : "",
+			vendor : "",
+			leadTime: "",
 			
 			orderStatus: "",
 		};
@@ -94,7 +103,7 @@ export default class OrderInfo extends Component {
 				</Container>
 
 
-{/*  UPDATE ORDER STATUS MODAL*/}
+{/*START OF   UPDATE ORDER STATUS MODAL*/}
 				
                 <Query 
 					query={VIEW_ORDER}
@@ -196,89 +205,222 @@ export default class OrderInfo extends Component {
 				
                     }}
                       </Query>
+{/*END OF   UPDATE ORDER STATUS MODAL*/}
 
 
-{/*  UPDATE ORDER INFO MODAL*/}
-                <ModalDialog
-				show={this.state.showDetails}
-				onHide={this.handleDetailsClose}
-				title="Update Order Details"
-				>
-				<Form>
-                <Form.Row>
-					<Form.Group as={Col}>
-					<Form.Label><Textbody>ETA</Textbody></Form.Label>
-					<Form.Control
-					type="date"
-					required
-					/>
-					</Form.Group>
-
-					<Form.Group as={Col}>
-					<Form.Label><Textbody>Vendor</Textbody></Form.Label>
-					<Form.Control
-                    required
-					/>
-					</Form.Group>
-				</Form.Row>
-
-				<Form.Row>
-					<Form.Group as={Col}>
-					<Form.Label><Textbody>Condition</Textbody></Form.Label>
-					<Form.Control
-                      required
-					/>
-					</Form.Group>
-
-					<Form.Group as={Col}>
-					<Form.Label><Textbody> Delivery Method</Textbody></Form.Label>
-					<Form.Control
-					required
-					/>
-					</Form.Group>
-				</Form.Row>
+{/* START OF UPDATE ORDER INFO MODAL*/}
 
 
-				<Form.Row>
-					<Form.Group as={Col}>
-					<Form.Label><Textbody>Delivery Date</Textbody></Form.Label>
-					<Form.Control
-					required
-					/>
-					</Form.Group>
+               <Query
+			   query={VIEW_ORDER}
+			   variables={{
+				orderId: orderId,
+				userId: userId}}
+			   >
+			   {({error, loading, data}) => {
+				   if (loading) return <></>;
+				   if (error) return <Info
+				   text={`${error}`}
+				   variant="danger"/>;
 
-					<Form.Group as={Col}>
-					<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
-					<Form.Control
-					required
-					/>
-					</Form.Group>
-				</Form.Row>
+				 const orderInfo = data.viewOrder;
+				 return(
+					 <Mutation
+					 mutation={UPDATE_ORDER_INFO}
+					variables={{
+                        orderId: orderId,
+						userId: userId,
+						ETA: this.state.eta,
+						Vendor: this.state.vendor,
+						bookCondition: this.state.conditon,
+						deliveryMethod: this.state.deliveryMethod,
+						deliveryDate: this.state.deliveryDate,
+						costPrice: this.state.costPrice,
+						sellingPrice: this.state.sellingPrice,
+						wayBillNumber: this.state.wayBillNumber,
+						leadTime: this.state.leadTime
 
-				<Form.Row>
-					<Form.Group as={Col}>
-					<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
-					<Form.Control
-					required
-					/>
-					</Form.Group>
+					}}
+					 >
+                      {(infoUpdate, {error, loading, called}) => {
 
-					<Form.Group as={Col}>
-					<Form.Label><Textbody>WayBill Number</Textbody></Form.Label>
-					<Form.Control
-					required
-					/>
-					</Form.Group>
-				</Form.Row>
+                        if(called && !error){
+							return (
+								<Info
+								variant="success"
+								text="The order info has been updated!"
+								/>
+							)
+						} else {
+							return (
+								<ModalDialog
+								show={this.state.showDetails}
+								onHide={this.handleDetailsClose}
+								title="Update Order Details"
+								>
+								<Form
+								onSubmit={
+									async e => {
+										e.preventDefault();
+										await infoUpdate();
+									}}>
+								<Form.Row>
+									{error &&
+									<p>{error.message}</p>
+									}
+									<Form.Group as={Col}>
+									<Form.Label><Textbody>ETA</Textbody></Form.Label>
+									<Form.Control
+									type="date"
+									value={this.state.eta}
+									onChange={this.handleChange('eta')}
+									/>
+									</Form.Group>
+				
+									<Form.Group as={Col}>
+									<Form.Label><Textbody>Vendor</Textbody></Form.Label>
+									<Form.Control
+									as="select"
+									value={this.state.vendor}
+									onChange={this.handleChange('vendor')}
+									> 
+                                    {Vendors.map(
+										vendorOp => (
+											<option
+											key={vendorOp}
+											>
+											{vendorOp}
+											</option>
+										)
+									)}
 
-				</Form>
+									</Form.Control>
+									</Form.Group>
+								</Form.Row>
+				
+								<Form.Row>
+									<Form.Group as={Col}>
+									<Form.Label><Textbody>Condition</Textbody></Form.Label>
+									<Form.Control
+									as="select"
+									value={this.state.conditon}
+									onChange={this.handleChange('conditon')}
+									> 
+                                   
+											<option>
+											New
+											</option>
+											<option>
+											Used
+											</option>
+								
+
+									</Form.Control>
+									</Form.Group>
+				
+									<Form.Group as={Col}>
+									<Form.Label><Textbody> Delivery Method</Textbody></Form.Label>
+									<Form.Control
+									as="select"
+									value={this.state.deliveryMethod}
+									onChange={this.handleChange('deliveryMethod')}
+									> 
+                                    {DeliveryMethod.map(
+										methodOp => (
+											<option
+											key={methodOp}
+											>
+											{methodOp}
+											</option>
+										)
+									)}
+
+									</Form.Control>
+									</Form.Group>
+								</Form.Row>
+				
+				
+								<Form.Row>
+									<Form.Group as={Col}>
+									<Form.Label><Textbody>Delivery Date</Textbody></Form.Label>
+									<Form.Control
+									type="date"
+									value={this.state.deliveryDate}
+									onChange={this.handleChange('deliveryDate')}
+									/>
+									</Form.Group>
+				
+									<Form.Group as={Col}>
+									<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
+									<Form.Control
+									type="number"
+									value={this.state.costPrice}
+									onChange={this.handleChange('costPrice')}
+									/>
+									</Form.Group>
+								</Form.Row>
+				
+								<Form.Row>
+									<Form.Group as={Col}>
+									<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
+									<Form.Control
+									type="number"
+									value={this.state.sellingPrice}
+									onChange={this.handleChange('sellingPrice')}
+									/>
+									</Form.Group>
+				
+									<Form.Group as={Col}>
+									<Form.Label><Textbody>WayBill Number</Textbody></Form.Label>
+									<Form.Control
+									type="text"
+									value={this.state.wayBillNumber}
+									onChange={this.handleChange('wayBillNumber')}
+									/>
+									</Form.Group>
+								</Form.Row>
+
+                                   <Form.Row>
+									<Form.Group as={Col}>
+									<Form.Label><Textbody> Lead Time</Textbody></Form.Label>
+									<Form.Control
+									type="text"
+									value={this.state.leadTime}
+									onChange={this.handleChange('leadTime')}
+									/>
+									</Form.Group>
+				
+									
+								</Form.Row>
+
+								
+								<PrimaryButton
+											text="Update Info"
+											type="submit"
+											/>
+								</Form>
+				
+				
+								</ModalDialog>
+				
+				
+							)
+						}
+              
+					  }}
+
+					 </Mutation>
+				 )
+
+			   }}
 
 
-				</ModalDialog>
+				</Query>
 
+{/* END OF  UPDATE ORDER INFO MODAL*/}
+               
 
-
-{/*  Order Infomation*/}
+{/* START OF  Order Infomation*/}
 
                 
 				<Query 
@@ -383,7 +525,7 @@ export default class OrderInfo extends Component {
 					</Row>
 				</Container>
 
-				
+				{/*  Order Infomation*/}
 			</div>
 		);
 	}

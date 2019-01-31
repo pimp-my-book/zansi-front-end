@@ -25,9 +25,9 @@ export const UPDATE_ORDER_STATUS = gql`
 
 
 export const UPDATE_ORDER_INFO = gql`
-  mutation UPDATE_ORDER_INFO($orderId: String!, $userId:String!, $ETA: String, $Vendor: String, $bookCondition:String, $deliveryMethod: String,$deliveryDate: String, $costPrice: Float,$sellingprice: Float,$wayBillNumber: String,$leadTime:String ){
-    updateOrderInfo(orderId: $orderId, userId: $userId, ETA: $ETA, Vendor: $Vendor, bookCondition:$bookCondition, deliveryMethod: $deliveryMethod,deliveryDate: $deliveryDate, costPrice: $costPrice,sellingprice: $sellingprice,wayBillNumber: $wayBillNumber,leadTime:$leadTime ){
-    statusDate
+  mutation UPDATE_ORDER_INFO($orderId: String!, $userId:String!, $ETA: String, $Vendor: String, $bookCondition:String, $deliveryMethod: String,$deliveryDate: String, $costPrice: String,$sellingPrice: String,$wayBillNumber: String,$leadTime:String ){
+    updateOrderInfo(orderId: $orderId, userId: $userId, ETA: $ETA, Vendor: $Vendor, bookCondition:$bookCondition, deliveryMethod: $deliveryMethod,deliveryDate: $deliveryDate, costPrice: $costPrice,sellingPrice: $sellingPrice,wayBillNumber: $wayBillNumber,leadTime:$leadTime ){
+    
     ETA
     Vendor
     bookCondition

@@ -13,6 +13,12 @@ export const Univeristies = [
 export const Bursaries = [
 	"Choose",
 	"MSP",
+	"AGOF",	
+    "OA",	
+    "ACC",	
+    "JGF",	
+    "MAD",	
+    "ST"
 ];
 
 export const Statuses = [ 
@@ -39,3 +45,40 @@ export const Statuses = [
 	"Return Cancelled", 
 
 ];
+
+
+export const Vendors = [
+    "Choose", 
+	"PMB Parow",
+	"PMB UCT",
+	"PMB Stellies",
+	"PMB HO",
+	"PMB UFS",
+	"PMB PTA",
+	"Adams",
+	"Rehab",
+	"Van Schaik",
+	"Protea",
+	"Takealot",
+	"Loot",
+	"Vital Source",
+	"Other",
+	
+
+]
+
+export const DeliveryMethod = [
+	"Choose", 	
+     "Courier",
+     "Collect PMB Parow",
+     "Collect PMB UCT",
+     "Collect PMB Stellies",
+     "Collect PMB HO",
+     "Collect PMB UFS",
+     "Collect PMB PTA",
+     "Email (e-books)",
+     "Delivered by PMB", 
+
+
+
+]
