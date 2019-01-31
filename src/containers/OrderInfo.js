@@ -1,6 +1,6 @@
 import React, {Component} from "react"; 
 import { Query, Mutation} from "react-apollo";
-import { Col, Container, Row,  Badge, Form } from "react-bootstrap";
+import { Col, Container, Row,  Badge, Form, Collapse } from "react-bootstrap";
 import {VIEW_ORDER}from "../graphql/Queries";
 import { UPDATE_ORDER_STATUS, UPDATE_ORDER_INFO}from "../graphql/Mutations";
 import * as Icon from "react-feather";
@@ -30,6 +30,7 @@ export default class OrderInfo extends Component {
 		this.state = {
 			show: false,
 			showDetails: false,
+			openInfo: false,
 			eta : "",
 			costPrice : "",
 			sellingPrice: "",
@@ -67,6 +68,17 @@ export default class OrderInfo extends Component {
     } 
 
 
+
+	getLeadTime = (date1, date2) => {
+		const orderDate = new Date(date1);
+		const deliverDate = new Date(date2);
+
+		const timeDiff = Math.abs(deliverDate.getTime() - orderDate.getTime());
+		const leadTimeCal =  Math.ceil(timeDiff / (1000 * 3600 * 24));
+		//this.setState({leadTime: leadTimeCal});
+		return leadTimeCal;
+	}
+
 	update = (cache,payload) => {
 		const {orderId, userId} = this.props.match.params;
 
@@ -88,7 +100,7 @@ export default class OrderInfo extends Component {
 
 	render(){
 		const {orderId, userId} = this.props.match.params;
-       const {orderStatus} = this.state;
+       const {orderStatus, openInfo} = this.state;
 
 		return(
 			<div>
@@ -385,7 +397,9 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Lead Time</Textbody></Form.Label>
 									<Form.Control
 									type="text"
-									value={this.state.leadTime}
+									readOnly 
+									plainText
+									value={this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)}
 									onChange={this.handleChange('leadTime')}
 									/>
 									</Form.Group>
@@ -437,7 +451,10 @@ export default class OrderInfo extends Component {
                             text={`${error}`}
                             variant="danger"/>;;
 						const orderInfo = data.viewOrder;
+						console.log(orderInfo);
+						
 						return(
+							<>
 							<Container>
 								<Row className="mb-5">
 									<Col>
@@ -486,6 +503,7 @@ export default class OrderInfo extends Component {
 										<Heading>Author: {orderInfo.author}</Heading>
 										<Heading>Edition: {orderInfo.edition}</Heading>
                                 
+								         {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)}
 										<Heading><Icon.Clock/> ordered {timeDifferenceForDate(parseInt(orderInfo.dateOrdered))}</Heading>
                                
 									</Col>
@@ -510,8 +528,20 @@ export default class OrderInfo extends Component {
 
 							</Container>
 
-							
-                        
+							<Container>
+
+								<Row>
+									<Col>
+									<DisplayMedium>Information About This Order</DisplayMedium>
+                                     
+									
+									</Col>
+								</Row>
+
+								
+							</Container>
+
+                        </>
                         
 						);
 					}}

@@ -68,7 +68,7 @@ export const Vendors = [
 ]
 
 export const DeliveryMethod = [
-	"Choose", 	
+	 "Choose", 	
      "Courier",
      "Collect PMB Parow",
      "Collect PMB UCT",

@@ -73,6 +73,16 @@ export const VIEW_ORDER = gql`
      orderStatus
      dateOrdered
      statusDate
+     excelDate
+     ETA
+  Vendor
+  bookCondition
+  deliveryMethod
+  deliveryDate
+  costPrice
+  sellingPrice
+  wayBillNumber
+  leadTime
       }
   }
 `;
