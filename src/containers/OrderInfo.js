@@ -26,6 +26,7 @@ export default class OrderInfo extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleDetailsClose = this.handleDetailsClose.bind(this);
 		this.handleDetailsShow = this.handleDetailsShow.bind(this);
+		this.handleControlled = this.handleControlled.bind(this);
 
 		this.input = React.createRef();
 		this.costRef = React.createRef();
@@ -79,6 +80,11 @@ export default class OrderInfo extends Component {
         });
     } 
 
+	handleControlled = name => current=> {
+		this.setState({
+			[name]: this.name.current.value
+		})
+	}
 
 
 	getLeadTime = (date1, date2) => {
@@ -248,24 +254,11 @@ export default class OrderInfo extends Component {
 				   variant="danger"/>;
 
 				 const orderInfo = data.viewOrder;
+				 let input,costRef,sellingRef, wayRef,dateRef,methRef,conditonRef,vendorRef,leadRef
 				 return(
 					 <Mutation
 					 mutation={UPDATE_ORDER_INFO}
-					variables={{
-                        orderId: orderId,
-						userId: userId,
-						ETA: this.state.eta,
-						Vendor: this.state.vendor,
-						bookCondition: this.state.conditon,
-						deliveryMethod: this.state.deliveryMethod,
-						deliveryDate: this.state.deliveryDate,
-						costPrice: this.state.costPrice,
-						sellingPrice: this.state.sellingPrice,
-						wayBillNumber: this.state.wayBillNumber,
-						leadTime: this.state.leadTime
-
-					}}
-					 >
+					>
                       {(infoUpdate, {error, loading, called}) => {
 
                         if(called && !error){
@@ -286,7 +279,25 @@ export default class OrderInfo extends Component {
 								onSubmit={
 									async e => {
 										e.preventDefault();
-										await infoUpdate();
+										await infoUpdate(
+											{
+												variables: {
+													orderId: orderId,
+													userId: userId,
+													ETA: input.value,
+													Vendor: vendorRef.value,
+													bookCondition: conditonRef.value,
+													deliveryMethod: methRef.value ,
+													deliveryDate: dateRef.value,
+													costPrice: costRef.value,
+													sellingPrice: sellingRef.value,
+													wayBillNumber: wayRef.value,
+													leadTime: leadRef.value
+							
+												}
+											}
+
+										);
 									}}
 									
 									>
@@ -299,8 +310,8 @@ export default class OrderInfo extends Component {
 									<Form.Control
 									type="date"
 									defaultValue={orderInfo.ETA}
-                                    ref={this.input}
-									//onChange={this.handleChange('eta')}
+                                    ref={node => {input = node} }
+									//onChange={this.handleControlled('input')}
 									/>
 									</Form.Group>
 				
@@ -309,9 +320,9 @@ export default class OrderInfo extends Component {
 									<Form.Control
 									as="select"
 									defaultValue={orderInfo.Vendor}
-									ref={this.vendorRef}
+									ref={node => {vendorRef = node}}
 								
-									//onChange={this.handleChange('vendor')}
+									//onChange={this.handleControlled('vendorRef')}
 									> 
                                     {Vendors.map(
 										vendorOp => (
@@ -332,10 +343,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Condition</Textbody></Form.Label>
 									<Form.Control
 									as="select"
-									ref={this.conditonRef}
-									
+									ref={node => {conditonRef = node}}
+
 									defaultValue={orderInfo.bookCondition}
-									//onChange={this.handleChange('conditon')}
+									//onChange={this.handleControlled('conditonRef')}
 									> 
                                               <option>
 											Choose
@@ -355,10 +366,11 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Delivery Method</Textbody></Form.Label>
 									<Form.Control
 									as="select"
-									ref={this.methRef}
 									
+									ref={node => {methRef = node}}
+
 									defaultValue={orderInfo.deliveryMethod}
-									//onChange={this.handleChange('deliveryMethod')}
+									//onChange={this.handleControlled('methRef')}
 									> 
                                     {DeliveryMethod.map(
 										methodOp => (
@@ -380,10 +392,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Delivery Date</Textbody></Form.Label>
 									<Form.Control
 									type="date"
-									ref={this.dateRef}
-									
+									ref={node => {dateRef = node}}
+
 									defaultValue={orderInfo.deliveryDate}
-									//onChange={this.handleChange('deliveryDate')}
+									//onChange={this.handleControlled('dateRef')}
 									/>
 									</Form.Group>
 				
@@ -391,9 +403,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
 									<Form.Control
 									type="number"
-									ref={this.costRef}
+									ref={node => {costRef = node}}
+
 									defaultValue={orderInfo.costPrice}
-									//onChange={this.handleChange('costPrice')}
+									//onChange={this.handleControlled('costRef')}
 									/>
 									</Form.Group>
 								</Form.Row>
@@ -403,9 +416,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
 									<Form.Control
 									type="number"									
-									ref={this.sellingRe}
+									ref={node => {sellingRef = node}}
+
 									defaultValue={orderInfo.sellingPrice}
-									//onChange={this.handleChange('sellingPrice')}
+									//onChange={this.handleControlled('sellingRef')}
 									/>
 									</Form.Group>
 				
@@ -413,10 +427,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody>WayBill Number</Textbody></Form.Label>
 									<Form.Control
 									type="text"
-									ref={this.wayRe}
-								
+									ref={node => {wayRef = node}}
+
 									defaultValue={orderInfo.wayBillNumber}
-									//onChange={this.handleChange('wayBillNumber')}
+									//onChange={this.handleControlled('wayRef')}
 									/>
 									</Form.Group>
 								</Form.Row>
@@ -426,10 +440,10 @@ export default class OrderInfo extends Component {
 									<Form.Label><Textbody> Lead Time</Textbody></Form.Label>
 									<Form.Control
 									type="text"
-									ref={this.leadRef}
+									ref={node => {leadRef = node}}
 
 									defaultValue={orderInfo.leadTime}
-									//onChange={this.handleChange('leadTime')}
+									//onChange={this.handleControlled('leadRef')}
 								
 									/>
 									</Form.Group>
