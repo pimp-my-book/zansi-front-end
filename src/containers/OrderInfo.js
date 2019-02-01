@@ -26,6 +26,7 @@ export default class OrderInfo extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleDetailsClose = this.handleDetailsClose.bind(this);
 		this.handleDetailsShow = this.handleDetailsShow.bind(this);
+
 		this.input = React.createRef();
 		this.costRef = React.createRef();
 		this.sellingRef = React.createRef();
@@ -299,7 +300,7 @@ export default class OrderInfo extends Component {
 									type="date"
 									defaultValue={orderInfo.ETA}
                                     ref={this.input}
-									onChange={this.handleChange('eta')}
+									//onChange={this.handleChange('eta')}
 									/>
 									</Form.Group>
 				
@@ -310,7 +311,7 @@ export default class OrderInfo extends Component {
 									defaultValue={orderInfo.Vendor}
 									ref={this.vendorRef}
 								
-									onChange={this.handleChange('vendor')}
+									//onChange={this.handleChange('vendor')}
 									> 
                                     {Vendors.map(
 										vendorOp => (
@@ -334,7 +335,7 @@ export default class OrderInfo extends Component {
 									ref={this.conditonRef}
 									
 									defaultValue={orderInfo.bookCondition}
-									onChange={this.handleChange('conditon')}
+									//onChange={this.handleChange('conditon')}
 									> 
                                               <option>
 											Choose
@@ -357,7 +358,7 @@ export default class OrderInfo extends Component {
 									ref={this.methRef}
 									
 									defaultValue={orderInfo.deliveryMethod}
-									onChange={this.handleChange('deliveryMethod')}
+									//onChange={this.handleChange('deliveryMethod')}
 									> 
                                     {DeliveryMethod.map(
 										methodOp => (
@@ -382,7 +383,7 @@ export default class OrderInfo extends Component {
 									ref={this.dateRef}
 									
 									defaultValue={orderInfo.deliveryDate}
-									onChange={this.handleChange('deliveryDate')}
+									//onChange={this.handleChange('deliveryDate')}
 									/>
 									</Form.Group>
 				
@@ -392,7 +393,7 @@ export default class OrderInfo extends Component {
 									type="number"
 									ref={this.costRef}
 									defaultValue={orderInfo.costPrice}
-									onChange={this.handleChange('costPrice')}
+									//onChange={this.handleChange('costPrice')}
 									/>
 									</Form.Group>
 								</Form.Row>
@@ -401,12 +402,10 @@ export default class OrderInfo extends Component {
 									<Form.Group as={Col}>
 									<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
 									<Form.Control
-									type="number"									defaultValue={orderInfo.sellingPrice}
+									type="number"									
 									ref={this.sellingRe}
-									
-									
 									defaultValue={orderInfo.sellingPrice}
-									onChange={this.handleChange('sellingPrice')}
+									//onChange={this.handleChange('sellingPrice')}
 									/>
 									</Form.Group>
 				
@@ -417,7 +416,7 @@ export default class OrderInfo extends Component {
 									ref={this.wayRe}
 								
 									defaultValue={orderInfo.wayBillNumber}
-									onChange={this.handleChange('wayBillNumber')}
+									//onChange={this.handleChange('wayBillNumber')}
 									/>
 									</Form.Group>
 								</Form.Row>
@@ -430,7 +429,7 @@ export default class OrderInfo extends Component {
 									ref={this.leadRef}
 
 									defaultValue={orderInfo.leadTime}
-									onChange={this.handleChange('leadTime')}
+									//onChange={this.handleChange('leadTime')}
 								
 									/>
 									</Form.Group>
