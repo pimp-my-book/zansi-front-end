@@ -577,20 +577,20 @@ export default class OrderInfo extends Component {
 									<Textbody>Edit Order Info</Textbody>
 									</Col>
                                      <ListGroup>
-										 <ListGroup.Item>ETA: {orderInfo.ETA}</ListGroup.Item>
-										 <ListGroup.Item>Vendor: {orderInfo.Vendor}</ListGroup.Item>
-										 <ListGroup.Item>Condition: {orderInfo.bookCondition}</ListGroup.Item>
-										 <ListGroup.Item>Delivery Method: {orderInfo.deliveryMethod}</ListGroup.Item>
-										 <ListGroup.Item>Delivery Date: {orderInfo.deliveryDate}</ListGroup.Item>
-										 <ListGroup.Item>Cost Prie: ZAR {orderInfo.costPrice}</ListGroup.Item>
-										 <ListGroup.Item>Selling Price: ZAR {orderInfo.sellingPrice}</ListGroup.Item>
-										 <ListGroup.Item>Way Bill Number: {orderInfo.wayBillNumber}</ListGroup.Item>
-										 <ListGroup.Item>Courier Cost: ZAR {orderInfo.courierCost}</ListGroup.Item>
+										 <ListGroup.Item><Textbody>ETA: {orderInfo.ETA}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Vendor: {orderInfo.Vendor}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Condition: {orderInfo.bookCondition}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Delivery Method: {orderInfo.deliveryMethod}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Delivery Date: {orderInfo.deliveryDate}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Cost Prie: ZAR {orderInfo.costPrice}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Selling Price: ZAR {orderInfo.sellingPrice}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Way Bill Number: {orderInfo.wayBillNumber}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Courier Cost: ZAR {orderInfo.courierCost}</Textbody></ListGroup.Item>
 										 {orderInfo.orderStatus === "Delivered to Beneficiary" 
-										 ? <ListGroup.Item>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</ListGroup.Item>
+										 ? <ListGroup.Item><Textbody>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</Textbody></ListGroup.Item>
 										  
 										 :(orderInfo.orderStatus === "Beneficiary Collected"
-										 ? 	 <ListGroup.Item>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</ListGroup.Item>
+										 ? 	 <ListGroup.Item><Textbody>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</Textbody></ListGroup.Item>
                                         :  	" "
 
 										 )}
