@@ -332,7 +332,6 @@ export default class OrderInfo extends Component {
 									<Form.Control
 									as="select"
 									ref={node => {conditonRef = node}}
-
 									defaultValue={orderInfo.bookCondition}
 									> 
                                               <option>
