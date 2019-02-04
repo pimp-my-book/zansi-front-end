@@ -1,5 +1,6 @@
 import React, {Component} from "react"; 
 import { Query, Mutation} from "react-apollo";
+import styled from "styled-components";
 import { Col, Container, Row,  Badge, Form, Collapse, ListGroup } from "react-bootstrap";
 import {VIEW_ORDER}from "../graphql/Queries";
 import { UPDATE_ORDER_STATUS, UPDATE_ORDER_INFO}from "../graphql/Mutations";
@@ -104,7 +105,7 @@ export default class OrderInfo extends Component {
 	render(){
 		const {orderId, userId} = this.props.match.params;
        const {orderStatus, openInfo} = this.state;
-
+		
 		return(
 			<div>
 				<Container>
@@ -296,7 +297,6 @@ export default class OrderInfo extends Component {
 									type="date"
 									defaultValue={orderInfo.ETA}
                                     ref={node => {input = node} }
-									//onChange={this.handleControlled('input')}
 									/>
 									</Form.Group>
 				
@@ -307,7 +307,6 @@ export default class OrderInfo extends Component {
 									defaultValue={orderInfo.Vendor}
 									ref={node => {vendorRef = node}}
 								
-									//onChange={this.handleControlled('vendorRef')}
 									> 
                                     {Vendors.map(
 										vendorOp => (
@@ -331,10 +330,12 @@ export default class OrderInfo extends Component {
 									ref={node => {conditonRef = node}}
 
 									defaultValue={orderInfo.bookCondition}
-									//onChange={this.handleControlled('conditonRef')}
 									> 
                                               <option>
 											Choose
+											</option>
+											 <option>
+											TBA
 											</option>
 											<option>
 											New
@@ -355,7 +356,6 @@ export default class OrderInfo extends Component {
 									ref={node => {methRef = node}}
 
 									defaultValue={orderInfo.deliveryMethod}
-									//onChange={this.handleControlled('methRef')}
 									> 
                                     {DeliveryMethod.map(
 										methodOp => (
@@ -380,18 +380,16 @@ export default class OrderInfo extends Component {
 									ref={node => {dateRef = node}}
 
 									defaultValue={orderInfo.deliveryDate}
-									//onChange={this.handleControlled('dateRef')}
 									/>
 									</Form.Group>
 				
 									<Form.Group as={Col}>
 									<Form.Label><Textbody>Cost Price</Textbody></Form.Label>
 									<Form.Control
-									type="number"
+									type="text"
 									ref={node => {costRef = node}}
 
 									defaultValue={orderInfo.costPrice}
-									//onChange={this.handleControlled('costRef')}
 									/>
 									</Form.Group>
 								</Form.Row>
@@ -400,11 +398,10 @@ export default class OrderInfo extends Component {
 									<Form.Group as={Col}>
 									<Form.Label><Textbody> Selling Price</Textbody></Form.Label>
 									<Form.Control
-									type="number"									
+									type="text"									
 									ref={node => {sellingRef = node}}
 
 									defaultValue={orderInfo.sellingPrice}
-									//onChange={this.handleControlled('sellingRef')}
 									/>
 									</Form.Group>
 				
@@ -415,7 +412,6 @@ export default class OrderInfo extends Component {
 									ref={node => {wayRef = node}}
 
 									defaultValue={orderInfo.wayBillNumber}
-									//onChange={this.handleControlled('wayRef')}
 									/>
 									</Form.Group>
 								</Form.Row>
@@ -428,7 +424,6 @@ export default class OrderInfo extends Component {
 									ref={node => {leadRef = node}}
 
 									defaultValue={orderInfo.leadTime}
-									//onChange={this.handleControlled('leadRef')}
 								
 									/>
 									</Form.Group>
@@ -517,10 +512,17 @@ export default class OrderInfo extends Component {
 								}
 
 										</Heading>
-                                        <Icon.Package onClick={this.handleShow}/> <Textbody>Update Order Status</Textbody>
+										<Heading> This was last updated  {timeDifferenceForDate(parseInt(orderInfo.statusDate))}</Heading>
+										 <Icon.Package 
+										style={{cursor: 'pointer'}}
+										onClick={this.handleShow}/> 
+										<Textbody>Update Order Status</Textbody>
 									</Col>
 									<Col>
-                                    <Icon.Edit onClick={this.handleDetailsShow}/> <Textbody>Edit Order Info</Textbody>
+									 <Icon.Edit 
+									style={{cursor: 'pointer'}}
+									onClick={this.handleDetailsShow}/> 
+									<Textbody>Edit Order Info</Textbody>
 									</Col>
 								</Row>
 								<Row>

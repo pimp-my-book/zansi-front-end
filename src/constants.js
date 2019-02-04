@@ -35,8 +35,7 @@ export const Statuses = [
 	"Beneficiary Collected", 
 	"Delivered to Beneficiary",
 	"Cancelled",
-	"Return", 
-	"Requested",
+	"Return Requested",
 	"Return Approved",
 	"Return Rejected",
 	"Book Collected",
@@ -48,7 +47,8 @@ export const Statuses = [
 
 
 export const Vendors = [
-    "Choose", 
+	"Choose", 
+	"TBA",
 	"PMB Parow",
 	"PMB UCT",
 	"PMB Stellies",
@@ -68,7 +68,8 @@ export const Vendors = [
 ]
 
 export const DeliveryMethod = [
-	 "Choose", 	
+	 "Choose",
+	 "TBA", 	
      "Courier",
      "Collect PMB Parow",
      "Collect PMB UCT",
