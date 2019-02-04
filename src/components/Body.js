@@ -5,8 +5,6 @@ import DisplaySmall from "./typography/DisplaySmall";
 import styled from "styled-components";
 import Textbody from "./typography/Textbody";
 import LinkButton from "./LinkButton";
-import Card from "./Card";
-import {Container, Col, Row} from "react-bootstrap";
 
 
 

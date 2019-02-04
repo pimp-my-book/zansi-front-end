@@ -46,6 +46,7 @@ export const ORDER_LIST = gql`
      title
      edition
      author
+     orderStatus
      dateOrdered
      status
        }
@@ -69,9 +70,21 @@ export const VIEW_ORDER = gql`
      title
      edition
      author
-     
+     orderStatus
      dateOrdered
-     status
+     statusDate
+     excelDate
+     ETA
+  Vendor
+  bookCondition
+  deliveryMethod
+  deliveryDate
+  costPrice
+  sellingPrice
+  wayBillNumber
+  courierCost
+  leadTime
+  
       }
   }
 `;

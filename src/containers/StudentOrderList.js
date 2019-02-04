@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
-import { Col, Container, Row, Table, Badge,Image } from "react-bootstrap";
+import { Col, Container, Row,Image } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import LoadingSpinner from "../components/LoadingSpinner";
 import OrderCard from "../components/OrderCard";
@@ -11,11 +11,7 @@ import LinkButton from "../components/LinkButton";
 import Textbody from "../components/typography/Textbody";
 
 export default class StudentOrderList extends Component{
-	constructor(props){
-		super(props);
-
-	}
-
+	
   
 
 

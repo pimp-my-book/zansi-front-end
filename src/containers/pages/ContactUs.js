@@ -48,14 +48,12 @@ const ContactUs = () => {
 			</Header>
 
 			<TextDiv>
-				<Subheading> Email:moshal@pimpmybook.co.za
-
-
-
-</Subheading>
+	
 
 <Subheading>Whatsapp:  065 850 5225</Subheading>
 <Subheading>Call Us:     065 850 5225</Subheading>
+<Textbody> If you need help please use the widget in the bottom right-hand corner of your screen and tell us your name and which bursary you belong to so we can help.
+</Textbody>
 				<Textbody>In case of any serious issue, delays with orders, bad service and complaints please contact Thandi via her personal watsapp number: 084 336 2139.
 </Textbody>
 			</TextDiv>

@@ -5,14 +5,13 @@ import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
 import * as Icon from 'react-feather';
 import { Col, Container, Row, Table, Badge } from "react-bootstrap";
-import DisplayMedium from "../components/typography/DisplayMedium";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import Subheading from "../components/typography/Subheading";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Info from "../components/Info";
-import {timeDifferenceForDate} from '../utils'
+import {timeDifferenceForDate} from "../utils";
 const Json2csvParser = require("json2csv").Parser;
 
 
@@ -22,16 +21,9 @@ export default class Dashboard extends Component {
 
 
         this.state = {
-            orders: [],
             loading: false
         }
 		
-    }
-    _formatDate = data => {
-        //const orders = data.orderList;
-        //return orders;
-        const rawOrders = data.orderList
-        return rawOrders;
     }
     
 
@@ -71,7 +63,18 @@ export default class Dashboard extends Component {
                             "author",
                             "dateOrdered",
                             "excelDate",
+                            "deliveryDate",
                             "status",
+                            "statusDate",
+                            "ETA",
+                            "Vendor",
+                            "bookCondition",
+                            "costPrice",
+                            "sellingPrice",
+                            "deliveryMethod",
+                            "wayBillNumber",
+                            "leadTime",
+                            "courierCost",
                             "userId",
 							"orderId",
 						];
@@ -89,10 +92,8 @@ export default class Dashboard extends Component {
                         variant="danger"/>;
                         if (data){
                          
-                            //const formatedOrders = this._formatDate(data);
-                            //console.log(formatedOrders);
+                            
                             const csv = json2csvParser.parse(data.orderList);
-                            console.log(data);
                             
                             return (
                                 <Row>
@@ -177,9 +178,30 @@ export default class Dashboard extends Component {
                                 <Textbody>{orders.excelDate}</Textbody>
                                 </td>
                                 <td>
-                                <Badge pill variant="danger">
-                                {orders.status}
+                                    {orders.orderStatus === null &&
+                                    
+                                    <Badge pill variant="danger">
+                                {orders.orderStatus === null ? 'received' : orders.orderStatus}
                                 </Badge>
+                                    }
+
+                                 {orders.orderStatus === "Delivered to Beneficiary" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orders.orderStatus}
+                                </Badge>
+                                    }
+
+                                    {orders.orderStatus !== "Delivered to Beneficiary" && orders.orderStatus !== null && orders.orderStatus !== "received" &&
+                                    
+                                    <Badge pill variant="warning">
+                                {orders.orderStatus}
+                                </Badge>
+                                    }
+                                    {orders.orderStatus === "received" &&
+                                    <Badge pill variant="danger">
+                                { orders.orderStatus}
+                                </Badge>}
                                 </td>
                                 <td> 
                                 <Link

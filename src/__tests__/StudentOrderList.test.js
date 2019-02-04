@@ -68,7 +68,7 @@ describe('<StudentOrderList/>', ()=> {
       renderer.create(
         <MockedProvider mocks={[]}>
           <StudentOrderList/>
-          </MockedProvider>
+          </MockedProvider>;
       )
     });
 
@@ -78,7 +78,7 @@ it('should render loading state initially', () => {
     const component = renderer.create(
         <MockedProvider mocks={[]}>
         <StudentOrderList />
-        </MockedProvider>
+        </MockedProvider>;
     );
 
     const tree = component.toJSON();
@@ -88,7 +88,7 @@ it('should render loading state initially', () => {
 it('renders all the students orders', ()=>{
     <MockedProvider mocks={[mocks]}>
     <StudentOrderList />
-    </MockedProvider>
+    </MockedProvider>;
 
 })
 
