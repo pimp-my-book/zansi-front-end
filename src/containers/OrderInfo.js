@@ -518,12 +518,7 @@ export default class OrderInfo extends Component {
 										onClick={this.handleShow}/> 
 										<Textbody>Update Order Status</Textbody>
 									</Col>
-									<Col>
-									 <Icon.Edit 
-									style={{cursor: 'pointer'}}
-									onClick={this.handleDetailsShow}/> 
-									<Textbody>Edit Order Info</Textbody>
-									</Col>
+									
 								</Row>
 								<Row>
 									<Col>
@@ -564,6 +559,12 @@ export default class OrderInfo extends Component {
 								<Row>
 									<Col lg={3}>
 									<DisplayMedium>Information About This Order</DisplayMedium>
+									<Col>
+									 <Icon.Edit 
+									style={{cursor: 'pointer'}}
+									onClick={this.handleDetailsShow}/> 
+									<Textbody>Edit Order Info</Textbody>
+									</Col>
                                      <ListGroup>
 										 <ListGroup.Item>ETA: {orderInfo.ETA}</ListGroup.Item>
 										 <ListGroup.Item>Vendor: {orderInfo.Vendor}</ListGroup.Item>
