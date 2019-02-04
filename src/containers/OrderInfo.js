@@ -26,18 +26,8 @@ export default class OrderInfo extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleDetailsClose = this.handleDetailsClose.bind(this);
 		this.handleDetailsShow = this.handleDetailsShow.bind(this);
-		this.handleControlled = this.handleControlled.bind(this);
 
-		this.input = React.createRef();
-		this.costRef = React.createRef();
-		this.sellingRef = React.createRef();
-		this.wayRef = React.createRef();
-		this.dateRef = React.createRef();
-		this.methRef = React.createRef();
-		this.conditonRef = React.createRef();
-		this.vendorRef = React.createRef();
-		this.leadRef = React.createRef();
-
+	
 
 
 		this.state = {
@@ -80,11 +70,6 @@ export default class OrderInfo extends Component {
         });
     } 
 
-	handleControlled = name => current=> {
-		this.setState({
-			[name]: this.name.current.value
-		})
-	}
 
 
 	getLeadTime = (date1, date2) => {
