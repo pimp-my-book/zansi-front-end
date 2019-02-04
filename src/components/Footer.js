@@ -19,7 +19,7 @@ const Link = styled.a`
 
 
 const Footer = () => 
-  <FooterStyles >
+  <FooterStyles className="fixed-bottom">
       <Container>
           <Row>
               <Col className=" mt-4">
