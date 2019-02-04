@@ -205,11 +205,14 @@ src={SuccessImage}
                                              required
                                              placeholder="eg: 0199535566"
                                              as="input"
-                                             type="number"
+                                             type="text"
                                              value={this.state.ISBN}
                                              onChange={e => this.setState({ISBN: e.target.value})}
              
                                              />
+                                             <Form.Text className="text-muted">
+                                    If you do not know the ISBN of a book just enter "N/A".
+                                     </Form.Text>
                                           </Form.Group>
                                           <Form.Group controlId="Edition">
                                           <Form.Label>
