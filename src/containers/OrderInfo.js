@@ -290,7 +290,10 @@ export default class OrderInfo extends Component {
 									>
 								<Form.Row>
 									{error &&
-									<p>{error.message}</p>
+									<Info
+									variant="danger"
+									text={error.message}
+									/>
 									}
 									<Form.Group as={Col}>
 									<Form.Label><Textbody>ETA</Textbody></Form.Label>
@@ -424,7 +427,7 @@ export default class OrderInfo extends Component {
 									type="text"
 									ref={node => {courierRef = node}}
 
-									defaultValue={orderInfo.courierRef}
+									defaultValue={orderInfo.courierCost}
 								
 									/>
 									</Form.Group>
@@ -582,7 +585,7 @@ export default class OrderInfo extends Component {
 										 <ListGroup.Item><Textbody>Condition: {orderInfo.bookCondition}</Textbody></ListGroup.Item>
 										 <ListGroup.Item><Textbody>Delivery Method: {orderInfo.deliveryMethod}</Textbody></ListGroup.Item>
 										 <ListGroup.Item><Textbody>Delivery Date: {orderInfo.deliveryDate}</Textbody></ListGroup.Item>
-										 <ListGroup.Item><Textbody>Cost Prie: ZAR {orderInfo.costPrice}</Textbody></ListGroup.Item>
+										 <ListGroup.Item><Textbody>Cost Price: ZAR {orderInfo.costPrice}</Textbody></ListGroup.Item>
 										 <ListGroup.Item><Textbody>Selling Price: ZAR {orderInfo.sellingPrice}</Textbody></ListGroup.Item>
 										 <ListGroup.Item><Textbody>Way Bill Number: {orderInfo.wayBillNumber}</Textbody></ListGroup.Item>
 										 <ListGroup.Item><Textbody>Courier Cost: ZAR {orderInfo.courierCost}</Textbody></ListGroup.Item>
