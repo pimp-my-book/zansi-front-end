@@ -240,7 +240,7 @@ export default class OrderInfo extends Component {
 				   variant="danger"/>;
 
 				 const orderInfo = data.viewOrder;
-				 let input,costRef,sellingRef, wayRef,dateRef,methRef,conditonRef,vendorRef,leadRef
+				 let input,costRef,sellingRef, wayRef,dateRef,methRef,conditonRef,vendorRef,leadRef,courierRef
 				 return(
 					 <Mutation
 					 mutation={UPDATE_ORDER_INFO}
@@ -278,6 +278,7 @@ export default class OrderInfo extends Component {
 													costPrice: costRef.value,
 													sellingPrice: sellingRef.value,
 													wayBillNumber: wayRef.value,
+													courierCost: courierRef.value,
 													leadTime: leadRef.value
 							
 												}
@@ -417,6 +418,16 @@ export default class OrderInfo extends Component {
 								</Form.Row>
 
                                    <Form.Row>
+								   <Form.Group as={Col}>
+									<Form.Label><Textbody> Courier Cost</Textbody></Form.Label>
+									<Form.Control
+									type="text"
+									ref={node => {courierRef = node}}
+
+									defaultValue={orderInfo.courierRef}
+								
+									/>
+									</Form.Group>
 									<Form.Group as={Col}>
 									<Form.Label><Textbody> Lead Time</Textbody></Form.Label>
 									<Form.Control
@@ -572,9 +583,9 @@ export default class OrderInfo extends Component {
 										 <ListGroup.Item>Delivery Method: {orderInfo.deliveryMethod}</ListGroup.Item>
 										 <ListGroup.Item>Delivery Date: {orderInfo.deliveryDate}</ListGroup.Item>
 										 <ListGroup.Item>Cost Prie: ZAR {orderInfo.costPrice}</ListGroup.Item>
-										 <ListGroup.Item>Selling Price: {orderInfo.sellingPrice}</ListGroup.Item>
+										 <ListGroup.Item>Selling Price: ZAR {orderInfo.sellingPrice}</ListGroup.Item>
 										 <ListGroup.Item>Way Bill Number: {orderInfo.wayBillNumber}</ListGroup.Item>
-
+										 <ListGroup.Item>Courier Cost: ZAR {orderInfo.courierCost}</ListGroup.Item>
 										 {orderInfo.orderStatus === "Delivered to Beneficiary" 
 										 ? <ListGroup.Item>Lead Time:  {this.getLeadTime(orderInfo.deliveryDate, orderInfo.excelDate)} Days</ListGroup.Item>
 										  

@@ -82,7 +82,9 @@ export const VIEW_ORDER = gql`
   costPrice
   sellingPrice
   wayBillNumber
+  courierCost
   leadTime
+  
       }
   }
 `;
