@@ -17,12 +17,12 @@ export const GET_ORDERS = gql`
 `;
 
 export const STUDENT_ORDER_LIST = gql`
-  query STUDENT_ORDER_LIST{
-    studentOrderList{
+  query STUDENT_ORDER_LIST($userId: String!){
+    studentOrderList(userId:$userId){
         orderId
         title
         dateOrdered
-        status 
+        orderStatus 
     }
   }
 `;

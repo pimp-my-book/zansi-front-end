@@ -1,5 +1,5 @@
 import React, {Component} from "react"; 
-import {Mutation, Query} from "react-apollo";
+import { Query} from "react-apollo";
 import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
@@ -19,15 +19,23 @@ export default class Dashboard extends Component {
 	constructor(props){
 		super(props);
 
-
+        
         this.state = {
-            loading: false
+            loading: false,
+
         }
 		
     }
     
 
-   
+    numOfStudentOrders = (Orders) => {
+
+       return Object.values(Orders.reduce((acc, it) =>
+           ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} )).length
+    }
+    
+    
+
     
 	render(){
 
@@ -44,6 +52,7 @@ export default class Dashboard extends Component {
                     </Row>
                 </Container>
 
+               
 				<Container>
                 <Query query={ORDER_LIST}>
 					{({data}, loading, error) => {
@@ -126,14 +135,24 @@ export default class Dashboard extends Component {
                             variant="danger"/>;
             const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered);
            
+
+           
               if (!data){
                   return <p>An issue has arisen</p>; 
               } else {
                 return (
                     <Container>
+                     
+
+
                     <Row>
                         <Col>
-                        <Subheading>There are a total of {Orders.length} orders.</Subheading>
+                        <Subheading><Icon.PieChart/> There are a total of {Orders.length} orders.</Subheading>
+                    
+                       <Subheading> <Icon.Activity/> {this.numOfStudentOrders(Orders)} Students have placed Orders</Subheading>
+                       
+                      
+                     
                      <Table striped  hover>
                           <thead>
                               <tr>
@@ -185,19 +204,27 @@ export default class Dashboard extends Component {
                                 </Badge>
                                     }
 
-                                 {orders.orderStatus === "Delivered to Beneficiary" &&
+                                
+                                {orders.orderStatus === "Delivered to Beneficiary" &&
                                     
                                     <Badge pill variant="success">
                                 {orders.orderStatus}
                                 </Badge>
-                                    }
+									}
 
-                                    {orders.orderStatus !== "Delivered to Beneficiary" && orders.orderStatus !== null && orders.orderStatus !== "received" &&
+
+{ orders.orderStatus === "Beneficiary Collected" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orders.orderStatus}
+                                </Badge>
+									}
+                                     {orders.orderStatus !== "Delivered to Beneficiary" && orders.orderStatus !== null && orders.orderStatus !== "received" && orders.orderStatus !== "Beneficiary Collected" &&
                                     
                                     <Badge pill variant="warning">
                                 {orders.orderStatus}
                                 </Badge>
-                                    }
+									}
                                     {orders.orderStatus === "received" &&
                                     <Badge pill variant="danger">
                                 { orders.orderStatus}

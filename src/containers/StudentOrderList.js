@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import {Auth} from "aws-amplify";
 import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
 import { Col, Container, Row,Image } from "react-bootstrap";
@@ -12,8 +13,28 @@ import Textbody from "../components/typography/Textbody";
 
 export default class StudentOrderList extends Component{
 	
-  
+	constructor(props) {
+		super(props);
+	
+		this.state = {
+		  userId: ""
+		};
+	  }
 
+
+	  async componentDidMount(){
+		try {
+			 const userData = await Auth.currentSession()
+			  this.setState({userId: userData.userData.UserAttributes.Username});
+
+			}catch (e){
+			if (e !== 'No Current User!') {
+				console.log(e);
+			}
+		}
+
+		
+	}
 
 
 	render(){
@@ -39,7 +60,9 @@ export default class StudentOrderList extends Component{
 				<Container>
 					<Row>
 						<Col sm={8} >
-							<Query query={STUDENT_ORDER_LIST}>
+							<Query 
+							variables={{userId: this.state.userId}}
+							query={STUDENT_ORDER_LIST}>
 								{({data,loading, error} ) =>{
 									if (loading) return (
 									<Container>
@@ -56,6 +79,7 @@ export default class StudentOrderList extends Component{
 								
 
 									const myOrders = data.studentOrderList;
+									console.log(myOrders);
 									if (!myOrders.length){
 										return(
 											<Fragment>
@@ -92,7 +116,7 @@ export default class StudentOrderList extends Component{
 												 <OrderCard
 													   orderTitle={orders.title}
 													   orderID={orders.orderId}
-													   orderStatus={orders.status}
+													   orderStatus={orders.orderStatus}
 													   orderDate={orders.dateOrdered}
 													   /> 
 												   </Fragment>

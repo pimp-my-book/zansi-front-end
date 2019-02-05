@@ -505,14 +505,20 @@ export default class OrderInfo extends Component {
                                 </Badge>
                                     }
 
-                                 {orderInfo.orderStatus === "Delivered to Beneficiary" &&
+                                 {orderInfo.orderStatus === "Delivered to Beneficiary" && 
+                                    
+                                    <Badge pill variant="success">
+                                {orderInfo.orderStatus}
+                                </Badge>
+									}
+									 { orderInfo.orderStatus === "Beneficiary Collected" &&
                                     
                                     <Badge pill variant="success">
                                 {orderInfo.orderStatus}
                                 </Badge>
                                     }
 
-                                    {orderInfo.orderStatus !== "Delivered to Beneficiary" && orderInfo.orderStatus !== null && orderInfo.orderStatus !== "received" &&
+                                    {orderInfo.orderStatus !== "Delivered to Beneficiary" && orderInfo.orderStatus !== null && orderInfo.orderStatus !== "received" && orderInfo.orderStatus !== "Beneficiary Collected" &&
                                     
                                     <Badge pill variant="warning">
                                 {orderInfo.orderStatus}
