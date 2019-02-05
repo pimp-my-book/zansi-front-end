@@ -42,7 +42,44 @@ const OrderCard = ({
           
                      </Col>
                      <Col className="ml-5  order-1">
-                     <Card.Text><Badge variant="danger">{orderStatus}</Badge></Card.Text>
+                     <Card.Text>
+                     {orderStatus === null &&
+                                    
+                                    <Badge pill variant="danger">
+                                {orderStatus === null ? 'received' : orderStatus}
+                                </Badge>
+                                    }
+
+                                    {orderStatus === "Delivered to Beneficiary" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orderStatus}
+                                </Badge>
+                                    }
+
+
+                                     {orderStatus === "Beneficiary Collected" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orderStatus}
+                                </Badge>
+                                    }
+
+                    {orderStatus !== "Delivered to Beneficiary" && orderStatus !== null && orderStatus !== "received" &&
+                                    
+                                    <Badge pill variant="warning">
+                                {orderStatus}
+                                </Badge>
+                                    }
+                                    
+                                    {orderStatus === "received" &&
+                                    <Badge pill variant="danger">
+                                { orderStatus}
+								</Badge>
+								}
+
+                        </Card.Text> 
+                         
                      </Col>
                  </Row>
              </Container>

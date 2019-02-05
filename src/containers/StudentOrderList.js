@@ -79,6 +79,7 @@ export default class StudentOrderList extends Component{
 								
 
 									const myOrders = data.studentOrderList;
+									console.log(myOrders);
 									if (!myOrders.length){
 										return(
 											<Fragment>

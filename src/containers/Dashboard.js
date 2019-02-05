@@ -204,19 +204,27 @@ export default class Dashboard extends Component {
                                 </Badge>
                                     }
 
-                                 {orders.orderStatus === "Delivered to Beneficiary" &&
+                                
+                                {orders.orderStatus === "Delivered to Beneficiary" &&
                                     
                                     <Badge pill variant="success">
                                 {orders.orderStatus}
                                 </Badge>
-                                    }
+									}
 
-                                    {orders.orderStatus !== "Delivered to Beneficiary" && orders.orderStatus !== null && orders.orderStatus !== "received" &&
+
+{ orders.orderStatus === "Beneficiary Collected" &&
+                                    
+                                    <Badge pill variant="success">
+                                {orders.orderStatus}
+                                </Badge>
+									}
+                                     {orders.orderStatus !== "Delivered to Beneficiary" && orders.orderStatus !== null && orders.orderStatus !== "received" && orders.orderStatus !== "Beneficiary Collected" &&
                                     
                                     <Badge pill variant="warning">
                                 {orders.orderStatus}
                                 </Badge>
-                                    }
+									}
                                     {orders.orderStatus === "received" &&
                                     <Badge pill variant="danger">
                                 { orders.orderStatus}
