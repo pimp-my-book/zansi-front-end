@@ -1,5 +1,5 @@
 import React, {Component} from "react"; 
-import {Mutation, Query} from "react-apollo";
+import { Query} from "react-apollo";
 import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
@@ -9,8 +9,6 @@ import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import Subheading from "../components/typography/Subheading";
-import OutlineButton from "../components/OutlineButton";
-import ModalDialog from "../components/ModalDialog";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Info from "../components/Info";
 import {timeDifferenceForDate} from "../utils";
@@ -21,12 +19,9 @@ export default class Dashboard extends Component {
 	constructor(props){
 		super(props);
 
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
         
         this.state = {
             loading: false,
-            show: false,
 
         }
 		
@@ -38,22 +33,9 @@ export default class Dashboard extends Component {
        return Object.values(Orders.reduce((acc, it) =>
            ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} )).length
     }
-    numOfStudentPerOrder = (Orders) => {
-
-        return Object.entries(Orders.reduce((acc, it) =>
-        ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} ));
-
-        
-     }
+    
     
 
-    handleClose(){
-		this.setState({show: false});
-	}
-
-	handleShow(){
-		this.setState({show: true});
-	}
     
 	render(){
 
@@ -160,21 +142,7 @@ export default class Dashboard extends Component {
               } else {
                 return (
                     <Container>
-                          <ModalDialog
-                 show={this.state.show}
-                 onHide={this.handleClose}
-                 title="Number of Orders Per Student"
-                 >
-                 <Container>
-                  <Row>
-                      <Col>
-                      <Textbody>{this.numOfStudentPerOrder(Orders)}</Textbody>
-                      </Col>
-                  </Row>
-                     </Container>
-
-                 
-                 </ModalDialog>
+                     
 
 
                     <Row>
@@ -183,9 +151,7 @@ export default class Dashboard extends Component {
                     
                        <Subheading> <Icon.Activity/> {this.numOfStudentOrders(Orders)} Students have placed Orders</Subheading>
                        
-                       <Icon.FileText
-                       onClick={this.handleShow}
-                       />
+                      
                      
                      <Table striped  hover>
                           <thead>
