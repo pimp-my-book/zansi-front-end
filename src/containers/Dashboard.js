@@ -9,6 +9,8 @@ import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import Subheading from "../components/typography/Subheading";
+import OutlineButton from "../components/OutlineButton";
+import ModalDialog from "../components/ModalDialog";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Info from "../components/Info";
 import {timeDifferenceForDate} from "../utils";
@@ -19,15 +21,39 @@ export default class Dashboard extends Component {
 	constructor(props){
 		super(props);
 
-
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        
         this.state = {
-            loading: false
+            loading: false,
+            show: false,
+
         }
 		
     }
     
 
-   
+    numOfStudentOrders = (Orders) => {
+
+       return Object.values(Orders.reduce((acc, it) =>
+           ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} )).length
+    }
+    numOfStudentPerOrder = (Orders) => {
+
+        return Object.entries(Orders.reduce((acc, it) =>
+        ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} ));
+
+        
+     }
+    
+
+    handleClose(){
+		this.setState({show: false});
+	}
+
+	handleShow(){
+		this.setState({show: true});
+	}
     
 	render(){
 
@@ -44,6 +70,7 @@ export default class Dashboard extends Component {
                     </Row>
                 </Container>
 
+               
 				<Container>
                 <Query query={ORDER_LIST}>
 					{({data}, loading, error) => {
@@ -126,14 +153,40 @@ export default class Dashboard extends Component {
                             variant="danger"/>;
             const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered);
            
+
+           
               if (!data){
                   return <p>An issue has arisen</p>; 
               } else {
                 return (
                     <Container>
+                          <ModalDialog
+                 show={this.state.show}
+                 onHide={this.handleClose}
+                 title="Number of Orders Per Student"
+                 >
+                 <Container>
+                  <Row>
+                      <Col>
+                      <Textbody>{this.numOfStudentPerOrder(Orders)}</Textbody>
+                      </Col>
+                  </Row>
+                     </Container>
+
+                 
+                 </ModalDialog>
+
+
                     <Row>
                         <Col>
-                        <Subheading>There are a total of {Orders.length} orders.</Subheading>
+                        <Subheading><Icon.PieChart/> There are a total of {Orders.length} orders.</Subheading>
+                    
+                       <Subheading> <Icon.Activity/> {this.numOfStudentOrders(Orders)} Students have placed Orders</Subheading>
+                       
+                       <Icon.FileText
+                       onClick={this.handleShow}
+                       />
+                     
                      <Table striped  hover>
                           <thead>
                               <tr>
