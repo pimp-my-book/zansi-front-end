@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {Image, Row, Col, Container} from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import DisplaySmall from "../components/typography/DisplaySmall";
@@ -29,6 +29,28 @@ width: 156px;
 font-size: 20px;
 `;
 
+
+const float = keyframes`
+ from {
+     transform: translate(0, 0px);
+ }
+
+ 65% {
+     transform: translate(0, 15px);
+ }
+
+ to {
+     transform: translate(0, -0px);
+ }
+`;
+
+
+const ImageAnimation = styled(Image)`
+&&& {
+    animation: ${float} 5s infinite ease-in-out;
+    margin-bottom: 50px;
+}
+`;
    const headerURL = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_book_lover_mkck.svg";
  
 	return (
@@ -47,10 +69,11 @@ font-size: 20px;
             </LinkButton>
                     </Col>
                     <Col  className=" d-none d-lg-block">
-                    <Image
+                    <ImageAnimation
                     src={headerURL}
                     fluid
                     />
+                   
                     </Col>
                 </Row>
             </Container>
