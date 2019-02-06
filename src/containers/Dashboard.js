@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
 import * as Icon from 'react-feather';
-import { Col, Container, Row, Table, Badge } from "react-bootstrap";
+import { Col, Container, Row, Table, Badge, Pagination } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
         this.state = {
             loading: false,
             currentPage: 1,
-           ordersPerPage: 20
+           ordersPerPage: 10
 
         }
 		
@@ -187,7 +187,7 @@ export default class Dashboard extends Component {
                                   <th><Subheading></Subheading></th>
                               </tr>
                           </thead>
-                          {currentOrders.map(orders =>(
+                          {Orders.map(orders =>(
                              
                           <tbody
                           key={orders.orderId}
@@ -260,17 +260,25 @@ export default class Dashboard extends Component {
                            )}
                      </Table>
 
-                     {pageNumbers.map(number => {
+                     
+                        </Col>
+                    </Row>
+                    <Row lg={2}>
+                        <Col >
+                        {pageNumbers.map(number => {
                          return (
-                             <ul>
-                             <li
+                             
+                             <Pagination >
+                             <Pagination.Item
                              key={number}
                              id={number}
+                             active={number }
                              onClick={this.handleClick}
                              >
                              {number}
-                             </li>
-                             </ul>
+                             </Pagination.Item>
+                             </Pagination>
+                             
                          );
                      })}
                         </Col>
