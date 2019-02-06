@@ -16,8 +16,9 @@ export const PLACE_ORDER_MUTATION = gql`
 export const UPDATE_ORDER_STATUS = gql`
    mutation UPDATE_ORDER_STATUS($orderId: String!, $userId:String!, $email: String!, $orderStatus: String!){
     updateOrderStatus(orderId:$orderId, userId:$userId, email:$email, orderStatus:$orderStatus){
+        __typename
         orderStatus
-        statusDate
+       
     }
    }
 
