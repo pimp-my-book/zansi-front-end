@@ -18,10 +18,13 @@ const Json2csvParser = require("json2csv").Parser;
 export default class Dashboard extends Component {
 	constructor(props){
 		super(props);
+		this.handleClick = this.handleClick.bind(this);
 
         
         this.state = {
             loading: false,
+            currentPage: 1,
+           ordersPerPage: 20
 
         }
 		
@@ -34,13 +37,18 @@ export default class Dashboard extends Component {
            ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} )).length
     }
     
-    
-
+    handleClick(event){
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
+    }
     
 	render(){
-
+           const {currentPage, ordersPerPage} = this.state;
         
-
+        const indexOfLastOrder = currentPage * ordersPerPage;
+        const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+        
      
 		return(
 			<div>
@@ -135,7 +143,12 @@ export default class Dashboard extends Component {
                             variant="danger"/>;
             const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered);
            
+            const currentOrders = Orders.slice(indexOfFirstOrder,indexOfLastOrder);
 
+            const pageNumbers = [];
+            for (let i = 1; i <= Math.ceil(Orders.length/ ordersPerPage); i++){
+                pageNumbers.push(i);
+            }
            
               if (!data){
                   return <p>An issue has arisen</p>; 
@@ -174,7 +187,7 @@ export default class Dashboard extends Component {
                                   <th><Subheading></Subheading></th>
                               </tr>
                           </thead>
-                          {Orders.map(orders =>(
+                          {currentOrders.map(orders =>(
                              
                           <tbody
                           key={orders.orderId}
@@ -246,6 +259,20 @@ export default class Dashboard extends Component {
                           )
                            )}
                      </Table>
+
+                     {pageNumbers.map(number => {
+                         return (
+                             <ul>
+                             <li
+                             key={number}
+                             id={number}
+                             onClick={this.handleClick}
+                             >
+                             {number}
+                             </li>
+                             </ul>
+                         );
+                     })}
                         </Col>
                     </Row>
                 </Container>
