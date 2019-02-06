@@ -83,19 +83,21 @@ export default class OrderInfo extends Component {
 		return leadTimeCal;
 	}
 
-	update = (cache,payload) => {
+	update = (store,{data:{orderStatus, statusDate}}) => {
 		const {orderId, userId} = this.props.match.params;
+		 
 
-		const data = cache.readQuery({query: VIEW_ORDER, variables:{
+		const data = store.readQuery({query: VIEW_ORDER, 
+			variables:{
 			userId,
 			orderId
-		}});
-		const orderItemID = payload.data.viewOrder.orderId;
+		}
+	});
+		const orderItemID = data.viewOrder.orderId;
 		
-		console.log(data.viewOrder);
-		 delete data.viewOrder;
-		console.log(data.viewOrder);
-		cache.writeQuery({
+		  data.viewOrder.orderStatus = this.state.orderStatus;
+		
+		store.writeQuery({
 			query: VIEW_ORDER,
 			 data,
 			 variables:{userId,orderId}
@@ -144,12 +146,14 @@ export default class OrderInfo extends Component {
 						orderStatus
 
 					}}
+					onCompleted={this.handleClose}
 					update={this.update}
 					optimisticResponse={{
 						__typename: "Mutation",
-						viewOrder: {
+						updateOrderStatus: {
 							__typename: "Order",
 							orderId,
+							orderStatus: this.state.orderStatus
 							
 						}
 					}}
