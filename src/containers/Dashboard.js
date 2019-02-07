@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
 import * as Icon from 'react-feather';
-import { Col, Container, Row, Table, Badge, Pagination } from "react-bootstrap";
+import { Col, Container, Row, Table, Badge, Pagination, Nav } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
@@ -63,7 +63,7 @@ export default class Dashboard extends Component {
                
 				<Container>
                 <Query query={ORDER_LIST}>
-					{({data}, loading, error) => {
+                {({data, loading, error})  => {
 						const fields = [
 							
                             "studentNumber",
@@ -104,13 +104,17 @@ export default class Dashboard extends Component {
                         if (error) return <Info
                             text={`${error}`}
                             variant="danger"/>;
+                            
+                            const orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered)
+
+
 						if(!data) return <Info
                         text="Something went wrong, Please contact support if the issue persists"
                         variant="danger"/>;
                         if (data){
                          
                             
-                            const csv = json2csvParser.parse(data.orderList);
+                            const csv = json2csvParser.parse(orders);
                             
                             return (
                                 <Row>
@@ -187,7 +191,7 @@ export default class Dashboard extends Component {
                                   <th><Subheading></Subheading></th>
                               </tr>
                           </thead>
-                          {Orders.map(orders =>(
+                          {currentOrders.map(orders =>(
                              
                           <tbody
                           key={orders.orderId}
@@ -265,15 +269,19 @@ export default class Dashboard extends Component {
                     </Row>
                     <Row lg={2}>
                         <Col >
+                        <Nav   
+                        style={{listStyleType:"none"}}
+                        className="justify-content-center">
                         {pageNumbers.map(number => {
                          return (
-                             
+                            
                              <Pagination >
                              <Pagination.Item
                              key={number}
                              id={number}
                              active={number }
                              onClick={this.handleClick}
+                             className="p-3"
                              >
                              {number}
                              </Pagination.Item>
@@ -281,6 +289,7 @@ export default class Dashboard extends Component {
                              
                          );
                      })}
+                     </Nav>
                         </Col>
                     </Row>
                 </Container>
