@@ -1,10 +1,11 @@
 import React, {Component} from "react"; 
-import { Query} from "react-apollo";
+import { Query,ApolloConsumer, withApollo} from "react-apollo";
 import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
+import Downshift from "downshift";
 import * as Icon from 'react-feather';
-import { Col, Container, Row, Table, Badge, Pagination, Nav } from "react-bootstrap";
+import { Col, Container, Row, Table, Badge,Form,  Pagination, Nav } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
@@ -15,16 +16,18 @@ import {timeDifferenceForDate} from "../utils";
 const Json2csvParser = require("json2csv").Parser;
 
 
-export default class Dashboard extends Component {
+ class Dashboard extends Component {
 	constructor(props){
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
 
         
         this.state = {
+            filter: "", 
             loading: false,
             currentPage: 1,
-           ordersPerPage: 10
+           ordersPerPage: 10,
+           orders: []
 
         }
 		
@@ -42,6 +45,23 @@ export default class Dashboard extends Component {
             currentPage: Number(event.target.id)
         });
     }
+
+   _search = async (e, client) => {
+       const result = await this.props.client.query({
+           query: ORDER_LIST
+       });
+
+       const {filter} = this.state
+
+       let res = result.data.orderList.filter(it => it.title.includes({filter: e.target.value}));
+        
+       console.log(res);
+
+       this.setState({
+           orders: result.data.orderList
+       });
+   }
+
     
 	render(){
            const {currentPage, ordersPerPage} = this.state;
@@ -59,9 +79,72 @@ export default class Dashboard extends Component {
                         </Col>
                     </Row>
                 </Container>
-
+          
                
 				<Container>
+                    <>
+                    <Downshift
+                    itemToString={item => (item ? item.name : "")}
+                    >
+                    {({
+                        getInputProps,
+                        getItemProps,
+                        isOpen,
+                        inputValue,
+                        highlightedIndex
+                    }) => 
+                    <div>
+                    <ApolloConsumer>
+                        {client => (
+                            
+                         <Form.Control
+                        {...getInputProps({
+                            placeholder:"Search by Student Name",
+                            
+                            type: "search",
+                            onChange: e => {
+                                e.persist();
+                                this._search(e, client);
+                            }
+                        })}
+                        />
+                        )}
+                    </ApolloConsumer>
+                  {isOpen && (
+                      <>
+                      {this.state.orders
+                      .filter(item => !inputValue || new RegExp(inputValue, "i").test(item.name)   )
+                      .map((item, index) =>(
+                          <li
+                          {...getItemProps({
+                              
+                              index, 
+                              item
+                          })}
+                          style={{listStyle: "none"}}
+                          key={item.orderId}
+                          >
+                          <Textbody>
+                          <Link
+                              to={`/orderinfo/${item.orderId}/${item.userId}`}
+                              >
+                          {item.name} - {item.title} - {item.excelDate}
+                          </Link>
+                          </Textbody>
+        
+                          </li>
+                      ))}
+                      </>
+                  )}
+                
+                  </div>
+                }
+
+
+                    </Downshift>
+
+                    
+                    </>
                 <Query query={ORDER_LIST}>
                 {({data, loading, error})  => {
 						const fields = [
@@ -308,3 +391,6 @@ export default class Dashboard extends Component {
         
 	}
 }
+
+
+export default withApollo(Dashboard);
