@@ -273,13 +273,14 @@ export default class Dashboard extends Component {
                         style={{listStyleType:"none"}}
                         className="justify-content-center">
                         {pageNumbers.map(number => {
+                            let active = 1;
                          return (
                             
                              <Pagination >
                              <Pagination.Item
                              key={number}
                              id={number}
-                             active={number }
+                             active={number === active }
                              onClick={this.handleClick}
                              className="p-3"
                              >
