@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {ORDER_LIST}from "../graphql/Queries";
 import { CSVLink } from "react-csv";
 import * as Icon from 'react-feather';
-import { Col, Container, Row, Table, Badge } from "react-bootstrap";
+import { Col, Container, Row, Table, Badge, Pagination, Nav } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
@@ -18,10 +18,13 @@ const Json2csvParser = require("json2csv").Parser;
 export default class Dashboard extends Component {
 	constructor(props){
 		super(props);
+		this.handleClick = this.handleClick.bind(this);
 
         
         this.state = {
             loading: false,
+            currentPage: 1,
+           ordersPerPage: 10
 
         }
 		
@@ -34,13 +37,18 @@ export default class Dashboard extends Component {
            ({...acc, [it.name]: (acc[it.name] || 0) + 1}), {} )).length
     }
     
-    
-
+    handleClick(event){
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
+    }
     
 	render(){
-
+           const {currentPage, ordersPerPage} = this.state;
         
-
+        const indexOfLastOrder = currentPage * ordersPerPage;
+        const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+        
      
 		return(
 			<div>
@@ -55,7 +63,7 @@ export default class Dashboard extends Component {
                
 				<Container>
                 <Query query={ORDER_LIST}>
-					{({data}, loading, error) => {
+                {({data, loading, error})  => {
 						const fields = [
 							
                             "studentNumber",
@@ -96,13 +104,17 @@ export default class Dashboard extends Component {
                         if (error) return <Info
                             text={`${error}`}
                             variant="danger"/>;
+                            
+                            const orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered)
+
+
 						if(!data) return <Info
                         text="Something went wrong, Please contact support if the issue persists"
                         variant="danger"/>;
                         if (data){
                          
                             
-                            const csv = json2csvParser.parse(data.orderList);
+                            const csv = json2csvParser.parse(orders);
                             
                             return (
                                 <Row>
@@ -135,7 +147,12 @@ export default class Dashboard extends Component {
                             variant="danger"/>;
             const Orders = data.orderList.sort((l1,l2) => l2.dateOrdered - l1.dateOrdered);
            
+            const currentOrders = Orders.slice(indexOfFirstOrder,indexOfLastOrder);
 
+            const pageNumbers = [];
+            for (let i = 1; i <= Math.ceil(Orders.length/ ordersPerPage); i++){
+                pageNumbers.push(i);
+            }
            
               if (!data){
                   return <p>An issue has arisen</p>; 
@@ -174,7 +191,7 @@ export default class Dashboard extends Component {
                                   <th><Subheading></Subheading></th>
                               </tr>
                           </thead>
-                          {Orders.map(orders =>(
+                          {currentOrders.map(orders =>(
                              
                           <tbody
                           key={orders.orderId}
@@ -246,6 +263,34 @@ export default class Dashboard extends Component {
                           )
                            )}
                      </Table>
+
+                     
+                        </Col>
+                    </Row>
+                    <Row lg={2}>
+                        <Col >
+                        <Nav   
+                        style={{listStyleType:"none"}}
+                        className="justify-content-center">
+                        {pageNumbers.map(number => {
+                            let active = 1;
+                         return (
+                            
+                             <Pagination >
+                             <Pagination.Item
+                             key={number}
+                             id={number}
+                             active={number === active }
+                             onClick={this.handleClick}
+                             className="p-3"
+                             >
+                             {number}
+                             </Pagination.Item>
+                             </Pagination>
+                             
+                         );
+                     })}
+                     </Nav>
                         </Col>
                     </Row>
                 </Container>
