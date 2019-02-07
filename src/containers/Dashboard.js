@@ -23,6 +23,7 @@ const Json2csvParser = require("json2csv").Parser;
 
         
         this.state = {
+            filter: "", 
             loading: false,
             currentPage: 1,
            ordersPerPage: 10,
@@ -50,7 +51,11 @@ const Json2csvParser = require("json2csv").Parser;
            query: ORDER_LIST
        });
 
-       console.log(result);
+       const {filter} = this.state
+
+       let res = result.data.orderList.filter(it => it.title.includes({filter: e.target.value}));
+        
+       console.log(res);
 
        this.setState({
            orders: result.data.orderList
@@ -107,7 +112,9 @@ const Json2csvParser = require("json2csv").Parser;
                     </ApolloConsumer>
                   {isOpen && (
                       <>
-                      {this.state.orders.map((item, index) =>(
+                      {this.state.orders
+                      .filter(item => !inputValue || new RegExp(inputValue, "i").test(item.title)   )
+                      .map((item, index) =>(
                           <li
                           {...getItemProps({
                               key:item.orderId,
