@@ -84,7 +84,7 @@ const Json2csvParser = require("json2csv").Parser;
 				<Container>
                     <>
                     <Downshift
-                    itemToString={item => (item ? item.title : "")}
+                    itemToString={item => (item ? item.name : "")}
                     >
                     {({
                         getInputProps,
@@ -99,7 +99,7 @@ const Json2csvParser = require("json2csv").Parser;
                             
                          <Form.Control
                         {...getInputProps({
-                            placeholder:"Search",
+                            placeholder:"Search by Student Name",
                             
                             type: "search",
                             onChange: e => {
@@ -113,17 +113,25 @@ const Json2csvParser = require("json2csv").Parser;
                   {isOpen && (
                       <>
                       {this.state.orders
-                      .filter(item => !inputValue || new RegExp(inputValue, "i").test(item.title)   )
+                      .filter(item => !inputValue || new RegExp(inputValue, "i").test(item.name)   )
                       .map((item, index) =>(
                           <li
                           {...getItemProps({
-                              key:item.orderId,
+                              
                               index, 
                               item
                           })}
+                          style={{listStyle: "none"}}
+                          key={item.orderId}
                           >
-                          {item.title}
-                          
+                          <Textbody>
+                          <Link
+                              to={`/orderinfo/${item.orderId}/${item.userId}`}
+                              >
+                          {item.name} - {item.title} - {item.excelDate}
+                          </Link>
+                          </Textbody>
+        
                           </li>
                       ))}
                       </>
