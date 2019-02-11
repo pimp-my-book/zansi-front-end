@@ -43,6 +43,14 @@ Amplify.configure({
 				region: config.apiGateway.REGION
 			},
 		]
+	},
+	Analytics: {
+		autoSessionRecord: true,
+		AWSPinpoint: {
+			appId: "84b77e650e564489973b47226cb17454",
+			// Amazon service region
+			region: "us-east-1",
+		}
 	}
 });
 	

@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import { Form, Col, Container, Row} from "react-bootstrap";
-import { Auth } from "aws-amplify";
+import { Auth, Analytics } from "aws-amplify";
 import PrimaryButton from "../components/PrimaryButton";
 import LinkButton from "../components/LinkButton";
 import DisplayMedium from "../components/typography/DisplayMedium";
 import Info from "../components/Info";
 import Textbody from "../components/typography/Textbody";
+
+
 
 export default class Login extends Component {
     constructor(props){
@@ -27,6 +29,8 @@ export default class Login extends Component {
         this.setState({
             [name]: event.target.value
         });
+
+        
     } 
 
 
@@ -51,7 +55,6 @@ export default class Login extends Component {
 					console.log(false);
 				}
             })
-            
         } catch (e){
             this.setState({error: e.message});
         }
