@@ -14,6 +14,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 --Post Condition for Success
 - A list of orders should appear
+- should be able to cancel an order. 
 
 --Post Condition for failure
 - An info bar should appear with details to the error
@@ -91,6 +92,15 @@ it('renders all the students orders', ()=>{
     </MockedProvider>;
 
 })
+
+
+it("Is able to update the order status to cancelled" , () => {
+
+});
+
+it("Shows an Error UI when trying to change the status" , () => {
+
+});
 
     
     
