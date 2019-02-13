@@ -20,6 +20,7 @@ export const STUDENT_ORDER_LIST = gql`
   query STUDENT_ORDER_LIST($userId: String!){
     studentOrderList(userId:$userId){
         orderId
+        userId
         title
         dateOrdered
         orderStatus 
