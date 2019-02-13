@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from "react";
 import {Auth} from "aws-amplify";
-import { Query} from "react-apollo";
+import { Query, Mutation} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
-import { Col, Container, Row,Image } from "react-bootstrap";
+import { Col, Container, Row,Image, Form } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import LoadingSpinner from "../components/LoadingSpinner";
 import OrderCard from "../components/OrderCard";
@@ -11,6 +11,7 @@ import Info from "../components/Info";
 import LinkButton from "../components/LinkButton";
 import Textbody from "../components/typography/Textbody";
 import ModalDialog from "../components/ModalDialog";
+import PrimaryButton from "../components/PrimaryButton";
 
 export default class StudentOrderList extends Component{
 	
@@ -24,7 +25,8 @@ export default class StudentOrderList extends Component{
 	
 		this.state = {
 		  userId: "",
-		  show: false
+		  show: false,
+		  orderStatus: ""
 		};
 	  }
 
@@ -80,6 +82,48 @@ export default class StudentOrderList extends Component{
 				onHide={this.handleClose}
 				title="Cancel Your Order"
 				>
+				<Form onSubmit={
+									async e => {
+									 e.preventDefault();
+									
+									}
+								 }>
+									
+										<Form.Group controlId="staus">
+											<Form.Label>
+												<Textbody>
+                                              Choose a status
+												</Textbody>
+											</Form.Label>
+											<Form.Control
+												as="select"
+                                                required
+                                                value={this.state.orderStatus}
+                                            onChange={this.handleChange('orderStatus')}
+											>
+												
+														
+														<option
+															
+														>
+															Choose
+														</option>
+														<option
+															
+														>
+															Cancel Request
+														</option>
+														
+													)
+												)}
+											</Form.Control>
+                                            
+										</Form.Group>
+										<PrimaryButton
+											text="Update Status"
+											type="submit"
+											/>
+									</Form>
 
 				</ModalDialog>
 
