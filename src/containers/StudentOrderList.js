@@ -10,16 +10,39 @@ import styled from "styled-components";
 import Info from "../components/Info";
 import LinkButton from "../components/LinkButton";
 import Textbody from "../components/typography/Textbody";
+import ModalDialog from "../components/ModalDialog";
 
 export default class StudentOrderList extends Component{
 	
 	constructor(props) {
 		super(props);
+
+		this.handleShow = this.handleShow.bind(this);
+		this.handleClose = this.handleClose.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+
 	
 		this.state = {
-		  userId: ""
+		  userId: "",
+		  show: false
 		};
 	  }
+
+
+	  handleClose(){
+		this.setState({show: false});
+	}
+
+	handleShow(){
+		this.setState({show: true});
+	}
+
+	  handleChange = name => event =>{
+        this.setState({
+            [name]: event.target.value
+        });
+    } 
+
 
 
 	  async componentDidMount(){
@@ -50,6 +73,21 @@ export default class StudentOrderList extends Component{
 
 		return(
 			<Fragment>
+
+				{/* THE MODAL TO UPDATE THE STATUS TO CANCEL*/}
+				<ModalDialog
+				show={this.state.show}
+				onHide={this.handleClose}
+				title="Cancel Your Order"
+				>
+
+				</ModalDialog>
+
+	{/* THE  END MODAL TO UPDATE THE STATUS TO CANCEL*/}
+
+
+
+	{/* THE CONTAINER THAT RENDERS THE ORDERS*/}
 				<Container>
 					<Row>
 						<Col>
@@ -79,7 +117,6 @@ export default class StudentOrderList extends Component{
 								
 
 									const myOrders = data.studentOrderList;
-									console.log(myOrders);
 									if (!myOrders.length){
 										return(
 											<Fragment>
@@ -118,6 +155,7 @@ export default class StudentOrderList extends Component{
 													   orderID={orders.orderId}
 													   orderStatus={orders.orderStatus}
 													   orderDate={orders.dateOrdered}
+													   onClick={this.handleShow}
 													   /> 
 												   </Fragment>
 												  
@@ -139,6 +177,7 @@ export default class StudentOrderList extends Component{
 						</Col>
 					</Row>
 				</Container>
+				{/* THE  END CONTAINER THAT RENDERS THE ORDERS*/}
                 </Fragment>
 		);
       
