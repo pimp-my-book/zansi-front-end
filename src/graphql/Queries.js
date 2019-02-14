@@ -50,6 +50,7 @@ export const ORDER_LIST = gql`
      orderStatus
      dateOrdered
      status
+     updateDate
        }
    }
 `;
