@@ -5,7 +5,7 @@ const Info =
 ({variant,
 	text}) => {
 	return(
-		<Alert variant={variant}>
+		<Alert dismissible variant={variant}>
 			{text}
 		</Alert>
 

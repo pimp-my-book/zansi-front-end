@@ -58,6 +58,123 @@ export default class CancelOrder extends Component {
 						</Col>
 					</Row>
 				</Container>
+
+                  <Container>
+                    <Query
+                     query={VIEW_ORDER}
+                     variables={{
+                         orderId: orderId,
+                         userId: userId
+                     }}
+                     
+                    >
+                    {({error, loading, data}) => {
+						if (loading) return <LoadingSpinner/>;
+						if (error) return <Info
+						text={`${error}`}
+                        variant="danger"/>;
+
+                        const orderInfo = data.viewOrder;
+
+                        return (
+                            
+                            <Mutation 
+                            mutation={CANCEL_ORDER}
+                              variables={{
+                              orderId: orderId,
+                              userId: userId,
+                             orderStatus: this.state.orderStatus
+
+                            }}>
+                             {/* THE  start of  cancel_order mutation*/}
+                           {(cancelOrder, {error, loading, called}) => {
+
+                               if (called) {
+                                   return (
+                                    <Info
+                                    variant="success"
+                                    text="This order has been requested to be cancelled."
+                                    />
+                                   )
+                               } else {
+                                   return (
+                                       <>
+                                                                                 
+
+                               
+{/* THE MODAL TO UPDATE THE STATUS TO CANCEL*/}
+<ModalDialog
+show={this.state.show}
+onHide={this.handleClose}
+title="Cancel Your Order"
+>
+<Form onSubmit={
+async e => {
+e.preventDefault();
+await cancelOrder()
+}
+}>
+{error &&
+    <Info
+    variant="danger"
+    text={error.message}
+    />
+    }
+<Form.Group controlId="staus">
+<Form.Label>
+<Textbody>
+Choose a status
+</Textbody>
+</Form.Label>
+<Form.Control
+as="select"
+required
+value={this.state.orderStatus}
+onChange={this.handleChange('orderStatus')}
+>
+
+
+<option>
+Choose
+</option>
+<option>
+Cancel Request
+</option>
+
+)
+)}
+</Form.Control>
+
+</Form.Group>
+<PrimaryButton
+text="Update Status"
+type="submit"
+/>
+</Form>
+
+</ModalDialog>
+
+{/* THE  END MODAL TO UPDATE THE STATUS TO CANCEL*/}
+
+                                       </>
+                                   )
+                               }
+                                
+                                
+                           }}
+                           {/* THE  END cancel_order mutation*/}
+                            </Mutation>
+
+
+                        )
+                        
+                     }}
+                       
+                    </Query>
+                   
+												
+
+                </Container>
                 <Container>
                     
                         <Query
@@ -103,107 +220,7 @@ export default class CancelOrder extends Component {
                 </Container>
               
 
-                <Container>
-                    <Query
-                     query={VIEW_ORDER}
-                     variables={{
-                         orderId: orderId,
-                         userId: userId
-                     }}
-                     
-                    >
-                    {({error, loading, data}) => {
-						if (loading) return <LoadingSpinner/>;
-						if (error) return <Info
-						text={`${error}`}
-                        variant="danger"/>;
-
-                        const orderInfo = data.viewOrder;
-
-                        return (
-                            
-                            <Mutation 
-                            mutation={CANCEL_ORDER}
-                              variables={{
-                              orderId: orderId,
-                              userId: userId,
-                             orderStatus: this.state.orderStatus
-
-                            }}>
-                             {/* THE  start of  cancel_order mutation
-                   
-                    */}
-                           {cancelOrder => (
-                                <>
-
-
-
-
-                               
-                                {/* THE MODAL TO UPDATE THE STATUS TO CANCEL*/}
-<ModalDialog
-show={this.state.show}
-onHide={this.handleClose}
-title="Cancel Your Order"
->
-<Form onSubmit={
-  async e => {
-   e.preventDefault();
-  await cancelOrder()
-  }
-}>
-  
-      <Form.Group controlId="staus">
-          <Form.Label>
-              <Textbody>
-            Choose a status
-              </Textbody>
-          </Form.Label>
-          <Form.Control
-              as="select"
-              required
-              value={this.state.orderStatus}
-          onChange={this.handleChange('orderStatus')}
-          >
               
-                      
-                      <option>
-                          Choose
-                      </option>
-                      <option>
-                          Cancel Request
-                      </option>
-                      
-                  )
-              )}
-          </Form.Control>
-          
-      </Form.Group>
-      <PrimaryButton
-          text="Update Status"
-          type="submit"
-          />
-  </Form>
-
-</ModalDialog>
-
-{/* THE  END MODAL TO UPDATE THE STATUS TO CANCEL*/}
-
-                               </>
-                           )}
-                           {/* THE  END cancel_order mutation*/}
-                            </Mutation>
-
-
-                        )
-                        
-                     }}
-                       
-                    </Query>
-                   
-												
-
-                </Container>
             </>
         )
     }
