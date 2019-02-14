@@ -44,6 +44,27 @@ export default class CancelOrder extends Component {
     } 
 
 
+    update = (store,{data:{orderStatus, statusDate}}) => {
+		const {orderId, userId} = this.props.match.params;
+		 
+
+		const data = store.readQuery({query: VIEW_ORDER, 
+			variables:{
+			userId,
+			orderId
+		}
+	});
+		const orderItemID = data.viewOrder.orderId;
+		
+		  data.viewOrder.orderStatus = this.state.orderStatus;
+		
+		store.writeQuery({
+			query: VIEW_ORDER,
+			 data,
+			 variables:{userId,orderId}
+			});
+	}
+
     render(){
         const {orderId, userId} = this.props.match.params;
 
@@ -85,7 +106,19 @@ export default class CancelOrder extends Component {
                               userId: userId,
                              orderStatus: this.state.orderStatus
 
-                            }}>
+                            }}
+                            update={this.update}
+                            optimisticResponse={{
+                                __typename: "Mutation",
+                                cancelOrder: {
+                                    __typename: "Order",
+                                    orderId,
+                                    orderStatus: this.state.orderStatus
+                                    
+                                }
+                            }}
+                            refetchQueries={[{query:VIEW_ORDER} ]}
+                            >
                              {/* THE  start of  cancel_order mutation*/}
                            {(cancelOrder, {error, loading, called}) => {
 
@@ -203,7 +236,17 @@ type="submit"
                         </Col>
 
                         <Col lg={2}>
-                            <Textbody>
+
+                                 <Badge pill variant="warning">
+                                {orderInfo.orderStatus}
+                                </Badge>
+                                {orderInfo.orderStatus === null &&
+                                    
+                                    <Badge pill variant="danger">
+                                {orderInfo.orderStatus === null ? 'received' : orderInfo.orderStatus}
+                                </Badge>
+                                    }
+                            <Textbody className="mt-4">
                             <Icon.Trash2 
 							style={{cursor: 'pointer'}}
 							onClick={this.handleShow}/> 
