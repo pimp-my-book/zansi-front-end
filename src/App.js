@@ -107,6 +107,19 @@ class App extends Component {
 							   </Nav.Item>
 						}
 						
+						{this.state.isStaff &&
+							<Nav.Item className="mt-4 mr-3">
+							<DisplaySmall normal>
+							<LinkA
+							href="/activity"
+							>
+							Activity Feed
+							</LinkA>
+							   
+							   </DisplaySmall>
+							   </Nav.Item>
+						}
+						
 
 						  {!this.state.isStaff &&
 						  <Fragment>
