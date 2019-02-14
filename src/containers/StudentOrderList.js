@@ -51,7 +51,12 @@ export default class StudentOrderList extends Component{
         const OrdersGrid = styled.div`
         display: grid;
         grid-gap: 20px;
-        grid-template-columns: repeat(2, 3fr);
+		grid-template-columns: repeat(2, 3fr);
+		
+		@media (max-width: 600px){
+			grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+			
+		 }
         `;
 
 		const Email = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_empty_xct9.svg";

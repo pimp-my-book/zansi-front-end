@@ -14,6 +14,11 @@ const CardStyles = styled(Card)`
     border: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
     background-color: white;
+
+    @media (max-width: 600px){
+        width:350px;
+        
+     }
   }
  `;
   
