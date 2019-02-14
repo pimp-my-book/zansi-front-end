@@ -1,6 +1,6 @@
 import React, {Component} from "react"; 
 import { Query, Mutation} from "react-apollo";
-import {STUDENT_ORDER_LIST}from "../graphql/Queries";
+import {VIEW_ORDER}from "../graphql/Queries";
 import { CANCEL_ORDER}from "../graphql/Mutations";
 import { Col, Container, Row,  Badge, Form, Collapse, ListGroup } from "react-bootstrap";
 import * as Icon from "react-feather";
@@ -17,12 +17,32 @@ import {timeDifferenceForDate} from "../utils";
 export default class CancelOrder extends Component {
     constructor(props){
         super(props);
+        this.handleShow = this.handleShow.bind(this);
+		this.handleClose = this.handleClose.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 
 
         this.state ={
-
+            show: false,
+            orderStatus: ""
         }
     }
+
+
+    handleClose(){
+		this.setState({show: false});
+	}
+
+	handleShow(){
+		this.setState({show: true});
+	}
+
+	  handleChange = name => event =>{
+        this.setState({
+            [name]: event.target.value
+        });
+    } 
+
 
     render(){
         return (

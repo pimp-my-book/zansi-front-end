@@ -19,33 +19,16 @@ export default class StudentOrderList extends Component{
 	constructor(props) {
 		super(props);
 
-		this.handleShow = this.handleShow.bind(this);
-		this.handleClose = this.handleClose.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-
+		
 	
 		this.state = {
 		  userId: "",
-		  show: false,
-		  orderStatus: ""
+		 
 		};
 	  }
 
 
-	  handleClose(){
-		this.setState({show: false});
-	}
-
-	handleShow(){
-		this.setState({show: true});
-	}
-
-	  handleChange = name => event =>{
-        this.setState({
-            [name]: event.target.value
-        });
-    } 
-
+	
 
 
 	  async componentDidMount(){
@@ -152,6 +135,8 @@ export default class StudentOrderList extends Component{
 													   orderStatus={orders.orderStatus}
 													   orderDate={orders.dateOrdered}
 													   onClick={this.handleShow}
+													   linkOrderID={orders.orderId}
+                                                       linkUserID={orders.userId}
 													   /> 
 												
                                        

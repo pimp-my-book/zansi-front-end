@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import * as Icon from "react-feather";
+import {Link} from "react-router-dom";
 import {Card,Container, Row,Col, Badge} from "react-bootstrap";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
@@ -27,6 +27,8 @@ const OrderCard = ({
     orderStatus,
     orderDate,
     onClick,
+    linkOrderID,
+    linkUserID,
     
     ...props
 }) => {
@@ -93,10 +95,11 @@ const OrderCard = ({
 
                    <Col lg={8}>
                    <Textbody className="mr-2">
-                   <Icon.Trash2 
-                   onClick={onClick}
-                   /> 
+                   <Link
+                   to={`/cancelorder/${linkOrderID}/${linkUserID}`}
+                   >
                   Cancel Order
+                  </Link>
                        </Textbody>
                    </Col>
 
