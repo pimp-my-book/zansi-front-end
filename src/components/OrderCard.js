@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {Card,Container, Row,Col, Badge} from "react-bootstrap";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
-import {timeDifferenceForDate} from '../utils'
+import {timeDifferenceForDate} from "../utils";
 
 const CardStyles = styled(Card)`
   &&& {

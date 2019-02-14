@@ -22,27 +22,30 @@ export default class ActivityFeed extends Component {
 		return(
             <>
             <Container>
-            	<Row>
-            		<Col>
-            			<DisplayLarge>
+            <Row className="justify-content-center">            		<Col lg={5}>
+            			<DisplayLarge >
                           Activity Feed
  							</DisplayLarge>
             		</Col>
-            	</Row>
-            </Container>
-
-            <Container>
+            	
+                
             	<Query query={ORDER_LIST}>
             		{({data, loading, error}) => {
 
-            			if (loading) return <LoadingSpinner/>;
+            			if (loading) return <Container>
+                            <Row className="justify-content-center">
+                                <Col >
+                                <LoadingSpinner/>
+                                </Col>
+                            </Row>
+                        </Container>;
             			if (error) return <Info
             				text={`${error}`}
             				variant="danger"/>;
                             const activties = data.orderList;
             			return (
-            				<Row className="justify-content-center">
-            		     <Col lg={8}>
+            				
+            		     <Col  lg={8}>
                      {activties.map(orders => (
                        
 
@@ -63,13 +66,17 @@ export default class ActivityFeed extends Component {
 
                      ))}
             		      </Col>
-            	     </Row>
+            	    
 
             			);
             		}}
             	</Query>
-            	
+                </Row>
             </Container>
+
+           
+            	
+           
               
             </>
 		);

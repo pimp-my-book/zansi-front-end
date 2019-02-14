@@ -11,7 +11,7 @@ import {timeDifferenceForDate} from "../utils";
 const CardStyles = styled(Card)`
   &&& {
     width:500px;
-    height: 200px;
+    height: 100px;
     border-radius: 5px;
     border: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
@@ -36,10 +36,10 @@ const CardStyles = styled(Card)`
          <Card.Body>
              <Container>
                  <Row>
-                     <Col>
+                     <Col lg={1}>
                      <Icon.AlertOctagon />
                      </Col>
-                     <Col>
+                     <Col lg={8}>
                     <Card.Text>
                        <Textbody>{orderOwner} has just request to cancel their order about {timeDifferenceForDate(parseInt(statusDate))}.</Textbody> 
                 
@@ -49,7 +49,7 @@ const CardStyles = styled(Card)`
                      <Link
                    to={`/orderinfo/${orderID}/${userID}`}
                    >
-                  See More
+                  <Icon.Eye/>
                   </Link>
                      </Col>
                  </Row>
