@@ -52,7 +52,7 @@ export default class StudentOrderList extends Component{
 	  async componentDidMount(){
 		try {
 			 const userData = await Auth.currentSession()
-			  this.setState({userId: userData.userData.UserAttributes.Username});
+			  this.setState({userId: userData.UserAttributes.Username});
 
 			}catch (e){
 			if (e !== 'No Current User!') {
@@ -112,6 +112,8 @@ export default class StudentOrderList extends Component{
 								
 
 									const myOrders = data.studentOrderList;
+									console.log(myOrders);
+									
 									if (!myOrders.length){
 										return(
 											<Fragment>
@@ -144,19 +146,14 @@ export default class StudentOrderList extends Component{
 											   
 												  
 												   
-												   <Fragment >
+												   <Fragment key={orders.orderId}>
 
 												
                                        {/* THE  start of  cancel_order mutation*/}
 													 <Mutation 
 													 mutation={CANCEL_ORDER}
 													 key={orders.orderId}
-													 variables={{
-														orderId: orders.orderId,
-														userId: orders.userId,
-														orderStatus: this.state.orderStatus
-								
-													 }}
+													
 													 >
 													{cancelOrder => (
 														 <>
@@ -180,7 +177,14 @@ export default class StudentOrderList extends Component{
 	   <Form onSubmit={
 						   async e => {
 							e.preventDefault();
-						   await cancelOrder()
+						   await cancelOrder({
+							variables:{
+								orderId: orders.orderId,
+								userId: orders.userId,
+								orderStatus: this.state.orderStatus
+		
+							 }
+						   })
 						   }
 						}>
 						   
@@ -198,14 +202,10 @@ export default class StudentOrderList extends Component{
 								   >
 									   
 											   
-											   <option
-												   
-											   >
+											   <option>
 												   Choose
 											   </option>
-											   <option
-												   
-											   >
+											   <option>
 												   Cancel Request
 											   </option>
 											   
