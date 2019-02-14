@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from "react";
 import {Auth} from "aws-amplify";
-import { Query, Mutation} from "react-apollo";
+import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
-import { CANCEL_ORDER}from "../graphql/Mutations";
 
 import { Col, Container, Row,Image, Form } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
@@ -147,88 +146,15 @@ export default class StudentOrderList extends Component{
 												  
 												   
 												   <Fragment key={orders.orderId}>
-
-												
-                                       {/* THE  start of  cancel_order mutation*/}
-													 <Mutation 
-													 mutation={CANCEL_ORDER}
-													 key={orders.orderId}
-													
-													 >
-													{cancelOrder => (
-														 <>
-
-
-
-
-														  <OrderCard
+                                                     <OrderCard
 													   orderTitle={orders.title}
 													   orderID={orders.orderId}
 													   orderStatus={orders.orderStatus}
 													   orderDate={orders.dateOrdered}
 													   onClick={this.handleShow}
 													   /> 
-														 {/* THE MODAL TO UPDATE THE STATUS TO CANCEL*/}
-	   <ModalDialog
-	   show={this.state.show}
-	   onHide={this.handleClose}
-	   title="Cancel Your Order"
-	   >
-	   <Form onSubmit={
-						   async e => {
-							e.preventDefault();
-						   await cancelOrder({
-							variables:{
-								orderId: orders.orderId,
-								userId: orders.userId,
-								orderStatus: this.state.orderStatus
-		
-							 }
-						   })
-						   }
-						}>
-						   
-							   <Form.Group controlId="staus">
-								   <Form.Label>
-									   <Textbody>
-									 Choose a status
-									   </Textbody>
-								   </Form.Label>
-								   <Form.Control
-									   as="select"
-									   required
-									   value={this.state.orderStatus}
-								   onChange={this.handleChange('orderStatus')}
-								   >
-									   
-											   
-											   <option>
-												   Choose
-											   </option>
-											   <option>
-												   Cancel Request
-											   </option>
-											   
-										   )
-									   )}
-								   </Form.Control>
-								   
-							   </Form.Group>
-							   <PrimaryButton
-								   text="Update Status"
-								   type="submit"
-								   />
-						   </Form>
-
-	   </ModalDialog>
-
-{/* THE  END MODAL TO UPDATE THE STATUS TO CANCEL*/}
-					   
-														</>
-													)}
-													 </Mutation>
-{/* THE  END cancel_order mutation*/}
-
+												
+                                       
 												   </Fragment>
 												  
 												  

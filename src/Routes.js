@@ -18,6 +18,7 @@ import Order from "./containers/Order";
 import StaffSignup from "./containers/StaffSignup";
 import Dashboard from "./containers/Dashboard";
 import OrderInfo from "./containers/OrderInfo";
+import CancelOrder from "./containers/CancelOrder";
 
 export default ({childProps}) => 
 <div>
@@ -39,6 +40,12 @@ export default ({childProps}) =>
 	<NonStaffRoute path="/myorders" component={StudentOrderList} props={childProps}>
 		<AuthenticatedRoute  path="/myorders" component={StudentOrderList} props={childProps}/>
 		</NonStaffRoute>
+
+
+<NonStaffRoute path="/cancelorder/:orderId/:userId" component={CancelOrder}  props={childProps}>
+		<AuthenticatedRoute  path="/cancelorder/:orderId/:userId" component={CancelOrder} props={childProps}/>
+		</NonStaffRoute >
+
 
 		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
 		<AuthenticatedRoute  path="/dashboard" component={Dashboard} props={childProps}/>
