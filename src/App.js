@@ -192,6 +192,16 @@ class App extends Component {
 							</DisplaySmall>
 							
 						 </Nav.Item>
+
+						 <Nav.Item className="mt-4 mr-4">
+				             <DisplaySmall normal>
+							<LinkA
+							href="/signup"
+							>
+							Sign up
+							</LinkA>
+							</DisplaySmall>
+						   </Nav.Item>
 						 
 						 
 						  <Nav.Item className="mt-3 mr-4">
@@ -201,11 +211,10 @@ class App extends Component {
 						  small="true"
 						  border="true"
 						   />
-						  
-            
-			
-            
 						 </Nav.Item>
+                            
+                   
+						  
 						</Fragment>
 						
 						

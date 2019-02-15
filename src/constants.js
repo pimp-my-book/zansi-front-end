@@ -83,7 +83,7 @@ export const DeliveryMethod = [
 
 
 
-]
+];
 
 
 export const cancelationPolicy = "If you want to change the Author, Title, ISBN or Edition for a particular order you need to cancel it by changing the status of your order to “Cancel Requested”. Then place a new order for the book that you wanted to update. \n \n \n \n This is because if you change any of the other fields essentially we are sourcing a new book which affects the lead time. ";
