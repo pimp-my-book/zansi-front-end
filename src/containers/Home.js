@@ -82,7 +82,7 @@ font-size: 20px;
 						</Col>
 					</Row>
                     <Row className="mt-5">
-                    <Col className="d-lg-none d-xl-block ">
+                    <Col className="d-lg-none  d-xl-none">
 							<ImageAnimation
 								src={headerURL}
 								fluid
