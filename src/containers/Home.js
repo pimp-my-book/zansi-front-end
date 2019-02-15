@@ -58,7 +58,8 @@ font-size: 20px;
 		<Container>
 			<Header>
 				<Container>
-					<Row>
+                    
+					<Row className="mb-5">
 						<Col >
 							<DisplayLarge normal>We make getting your textbooks a breeze.</DisplayLarge>
                      
@@ -80,6 +81,15 @@ font-size: 20px;
                    
 						</Col>
 					</Row>
+                    <Row className="mt-5">
+                    <Col className="d-lg-none d-xl-block ">
+							<ImageAnimation
+								src={headerURL}
+								fluid
+							/>
+                   
+						</Col>
+                    </Row>
 				</Container>
 			
            
