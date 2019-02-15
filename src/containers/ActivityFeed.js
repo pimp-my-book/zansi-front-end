@@ -50,7 +50,7 @@ export default class ActivityFeed extends Component {
                        
 
                       <>
-                       {orders.orderStatus === "Cancel Request" && 
+                       {orders.orderStatus === "Cancel Request" &&  orders.orderStatus === "Cancel Requested" &&
                      
                     <ActivityCard
                     orderOwner={orders.name}

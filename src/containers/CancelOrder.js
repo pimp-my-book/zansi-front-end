@@ -13,6 +13,7 @@ import Info from "../components/Info";
 import PrimaryButton from "../components/PrimaryButton";
 import ModalDialog from "../components/ModalDialog";
 import {timeDifferenceForDate} from "../utils";
+import {cancelationPolicy} from "../constants";
 
 export default class CancelOrder extends Component {
     constructor(props){
@@ -78,6 +79,15 @@ export default class CancelOrder extends Component {
 							</DisplayLarge>
 						</Col>
 					</Row>
+                    <Row>
+                        <Col>
+                        <Info
+                        variant="warning"
+                        title="Cancelation Process"
+                        text={cancelationPolicy}
+                         />
+                        </Col>
+                    </Row>
 				</Container>
 
                   <Container>
@@ -171,7 +181,7 @@ onChange={this.handleChange('orderStatus')}
 Choose
 </option>
 <option>
-Cancel Request
+Cancel Requested
 </option>
 
 )
