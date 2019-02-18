@@ -359,7 +359,9 @@ const Json2csvParser = require("json2csv").Parser;
                             let active = 1;
                          return (
                             
-                             <Pagination >
+                             <Pagination 
+                             key={number}
+                             >
                              <Pagination.Item
                              key={number}
                              id={number}

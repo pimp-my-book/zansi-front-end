@@ -3,6 +3,7 @@ import {MockedProvider} from "react-apollo/test-utils";
 import renderer from "react-test-renderer";
 import ActivityFeed from "../containers/ActivityFeed";
 import {mount,configure} from 'enzyme';
+import {ORDER_LIST}from "../graphql/Queries";
 import Adapter from 'enzyme-adapter-react-16';
 import {wrap} from 'module';
 //import {CANCEL_ORDER} from "../graphql/Mutations";
@@ -32,12 +33,28 @@ Component Contracts
 const mocks = [
     {
         request: {
-            mutation: CANCEL_ORDER
+            mutation: ORDER_LIST
         },
         result: {
             data: {
-                cancelOrder: {
-
+                order1: {
+                    orderId: "34444444343",
+                    name: "SBTRK",
+                    status: "Cancel Requested",
+                    updateDate: "2 days ago"
+                }, 
+        
+                order2:  {
+                    orderId: "56454534343",
+                    name: "Bon Iver",
+                    status: "Cancel Requested",
+                    date: "5 days ago"
+                },
+                order3: {
+                    orderId: "56454534343",
+                    name: "jessie Ware",
+                    status: "Cancel Requested",
+                    date: "9 days ago"
                 }
             }
         }
@@ -45,10 +62,10 @@ const mocks = [
 ];
 
 
-describe("<CancelOrder/>", () => {
+describe("<ActivityFeed/>", () => {
 
     it("renders without crashing", () => {
-
+       
     });
 
 
