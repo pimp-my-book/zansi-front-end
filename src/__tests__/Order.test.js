@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from "react-test-renderer";
-import Signup from '../containers/Order';
+import Order from '../containers/Order';
+import {mount,configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import {wrap} from 'module';
+configure({adapter: new Adapter()});
 
 ////////////////////////////////////////////////////
 /* Component behaviours

@@ -4,6 +4,10 @@ import renderer from "react-test-renderer";
 import StudentOrderList from '../containers/StudentOrderList';
 import {STUDENT_ORDER_LIST} from "../graphql/Queries";
 import LoadingSpinner from "../components/LoadingSpinner";
+import {mount,configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import {wrap} from 'module';
+configure({adapter: new Adapter()});
 
 /////////////////////////////////////////////////
 /* Comoponent Behaviours
