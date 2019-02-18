@@ -11,16 +11,18 @@ configure({adapter: new Adapter()});
 
 /////////////////////////////////////////////////
 /* Comoponent Behaviours
-
+The staff member just views all orders that have
+been requested to cancel
 
 --Post Condition for Success
+The orders should render, only those that have status of cancel requested
 
 
 --Post Condition for failure
-
+No orders are able to be displayed for some reason.
 
 Component Contracts
-*r
+* no state
 * 
 */
 
