@@ -11,17 +11,32 @@ configure({adapter: new Adapter()});
 
 /////////////////////////////////////////////////
 /* Comoponent Behaviours
+-- A student should be able to update the status of their order to
+cancel requested. 
+
+:Click trash icon =>
+:modal opens =>
+:Select dropdown option =>
+:Fire submit button =>
 
 
 --Post Condition for Success
+: An info alert should pop up indicating the op was
+succesfull
+: the status badge should change to cancel requested
 
 
 --Post Condition for failure
+: An info alert should pop up indicating the op was
+unsuccesfull
+: the status badge should have the current status of 
+the order.
 
 
 Component Contracts
-*r
-* 
+* state: {show, orderStatus}
+* opens a modal when "show:true"
+* recieves params for the orderId and UserID from the URL
 */
 
 //////////////////////////////////////////////////
