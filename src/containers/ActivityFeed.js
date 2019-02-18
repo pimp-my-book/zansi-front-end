@@ -1,4 +1,4 @@
-import React, {Component} from "react"; 
+import React, {Component, Fragment} from "react"; 
 import { Query} from "react-apollo";
 import { Col, Container, Row } from "react-bootstrap";
 import {ORDER_LIST}from "../graphql/Queries";
@@ -14,7 +14,8 @@ export default class ActivityFeed extends Component {
 		return(
             
             <Container>
-            <Row className="justify-content-center">            		<Col lg={5}>
+            <Row className="justify-content-center">            		
+            <Col lg={5}>
             			<DisplayLarge >
                           Activity Feed
  							</DisplayLarge>
@@ -33,18 +34,22 @@ export default class ActivityFeed extends Component {
                         </Container>;
             			if (error) return <Info
             				text={`${error}`}
-            				variant="danger"/>;
-                            const activties = data.orderList;
+                            variant="danger"/>;
+                            
+                            const activties = data.orderList.sort((l1,l2) => l1.statusDate - l2.statusDate);
             			return (
             				
             		     <Col  lg={8}>
                      {activties.map(orders => (
                        
 
-                      <>
-                       {orders.orderStatus === "Cancel Request" &&  orders.orderStatus === "Cancel Requested" &&
+                      <Fragment
+                      key={orders.orderId}
+                      >
+                       {orders.orderStatus === "Cancel Request" &&  
                      
                     <ActivityCard
+                    
                     orderOwner={orders.name}
                    orderID={orders.orderId}
                      userID={orders.userId}
@@ -53,7 +58,18 @@ export default class ActivityFeed extends Component {
                     
                 }
 
-                      </>
+
+   { orders.orderStatus === "Cancel Requested" &&
+                     
+                     <ActivityCard
+                     orderOwner={orders.name}
+                    orderID={orders.orderId}
+                      userID={orders.userId}
+                   statusDate={orders.updateDate}
+                   />
+                     
+                 }
+                      </Fragment>
 
 
                      ))}

@@ -40,7 +40,7 @@ const CardStyles = styled(Card)`
                      </Col>
                      <Col lg={8}>
                     <Card.Text>
-                       <Textbody>{orderOwner} has just request to cancel their order about {timeDifferenceForDate(parseInt(statusDate))}.</Textbody> 
+                       <Textbody>{orderOwner} has just requested to cancel their order about {timeDifferenceForDate(parseInt(statusDate))}.</Textbody> 
                 
                     </Card.Text>
                      </Col>
