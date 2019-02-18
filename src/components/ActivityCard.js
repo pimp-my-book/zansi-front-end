@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import * as Icon from "react-feather";
 import {Link} from "react-router-dom";
-import {Card,Container, Row,Col, Badge} from "react-bootstrap";
-import Heading from "../components/typography/Heading";
+import {Card,Container, Row,Col} from "react-bootstrap";
 import Textbody from "../components/typography/Textbody";
 import {timeDifferenceForDate} from "../utils";
 

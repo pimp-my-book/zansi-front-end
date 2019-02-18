@@ -3,7 +3,7 @@ import {Auth} from "aws-amplify";
 import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
 
-import { Col, Container, Row,Image, Form } from "react-bootstrap";
+import { Col, Container, Row,Image } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import LoadingSpinner from "../components/LoadingSpinner";
 import OrderCard from "../components/OrderCard";
@@ -11,8 +11,6 @@ import styled from "styled-components";
 import Info from "../components/Info";
 import LinkButton from "../components/LinkButton";
 import Textbody from "../components/typography/Textbody";
-import ModalDialog from "../components/ModalDialog";
-import PrimaryButton from "../components/PrimaryButton";
 
 export default class StudentOrderList extends Component{
 	

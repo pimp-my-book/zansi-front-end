@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import { Query, Mutation} from "react-apollo";
 import {VIEW_ORDER}from "../graphql/Queries";
 import { CANCEL_ORDER}from "../graphql/Mutations";
-import { Col, Container, Row,  Badge, Form, Collapse, ListGroup } from "react-bootstrap";
+import { Col, Container, Row,  Badge, Form } from "react-bootstrap";
 import * as Icon from "react-feather";
 import DisplayLarge from "../components/typography/DisplayLarge";
-import DisplayMedium from "../components/typography/DisplayMedium";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -55,7 +54,6 @@ export default class CancelOrder extends Component {
 			orderId
 		}
 	});
-		const orderItemID = data.viewOrder.orderId;
 		
 		  data.viewOrder.orderStatus = this.state.orderStatus;
 		

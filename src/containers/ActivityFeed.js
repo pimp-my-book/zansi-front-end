@@ -1,26 +1,18 @@
 import React, {Component} from "react"; 
 import { Query} from "react-apollo";
-import styled from "styled-components";
-import { Col, Container, Row,  Badge, Form, Collapse, ListGroup } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import {ORDER_LIST}from "../graphql/Queries";
-import * as Icon from "react-feather";
 import DisplayLarge from "../components/typography/DisplayLarge";
-import DisplayMedium from "../components/typography/DisplayMedium";
-import Heading from "../components/typography/Heading";
-import Textbody from "../components/typography/Textbody";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ActivityCard from "../components/ActivityCard";
-import {timeDifferenceForDate} from "../utils";
 import Info from "../components/Info";
 
 export default class ActivityFeed extends Component {
-	constructor(props){
-		super(props);
-	}
+	
 
 	render(){
 		return(
-            <>
+            
             <Container>
             <Row className="justify-content-center">            		<Col lg={5}>
             			<DisplayLarge >
@@ -77,8 +69,7 @@ export default class ActivityFeed extends Component {
            
             	
            
-              
-            </>
+          
 		);
 	}
 }
