@@ -1,18 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 import {Card,Container, Row,Col, Badge} from "react-bootstrap";
 import Heading from "../components/typography/Heading";
 import Textbody from "../components/typography/Textbody";
-import {timeDifferenceForDate} from '../utils'
+import {timeDifferenceForDate} from "../utils";
 
 const CardStyles = styled(Card)`
   &&& {
     width:450px;
-    height: 200px;
+    height: 300px;
     border-radius: 5px;
     border: none;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
     background-color: white;
+
+    @media (max-width: 600px){
+        width:350px;
+        
+     }
   }
  `;
   
@@ -25,6 +31,9 @@ const OrderCard = ({
     orderID,
     orderStatus,
     orderDate,
+    onClick,
+    linkOrderID,
+    linkUserID,
     
     ...props
 }) => {
@@ -46,14 +55,14 @@ const OrderCard = ({
                      {orderStatus === null &&
                                     
                                     <Badge pill variant="danger">
-                                {orderStatus === null ? 'received' : orderStatus}
+                               {orderStatus === null ? 'received' : orderStatus}
                                 </Badge>
                                     }
 
                                     {orderStatus === "Delivered to Beneficiary" &&
                                     
                                     <Badge pill variant="success">
-                                {orderStatus}
+                           {orderStatus}
                                 </Badge>
                                     }
 
@@ -68,7 +77,7 @@ const OrderCard = ({
                     {orderStatus !== "Delivered to Beneficiary" && orderStatus !== null && orderStatus !== "received" &&
                                     
                                     <Badge pill variant="warning">
-                                {orderStatus}
+                          {orderStatus}
                                 </Badge>
                                     }
                                     
@@ -85,6 +94,23 @@ const OrderCard = ({
              </Container>
               
            </Card.Body>
+           <Card.Footer>
+               <Container>
+                   <Row >
+
+                   <Col lg={8}>
+                   <Textbody className="mr-2">
+                   <Link
+                   to={`/cancelorder/${linkOrderID}/${linkUserID}`}
+                   >
+                  Cancel Order
+                  </Link>
+                       </Textbody>
+                   </Col>
+
+                </Row>
+                 </Container>
+                </Card.Footer>
        </CardStyles>
     )
 }

@@ -9,7 +9,7 @@ import styled from "styled-components";
 const OutlineButtonStyles = styled(Button)`
 &&&{
 color: var(--rasin-black);
-background-color: transparent;
+background-color: ${props => props.fill ? "var(--rose-pink)" : "transparent"};
 border: 2px solid var(--rose-pink) ;
 width: ${props => props.small ? '100px' : '180px'};
 font-size: 20px;

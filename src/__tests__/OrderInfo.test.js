@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from "react-test-renderer";
 import OrderInfo from "../containers/OrderInfo";
+import {mount,configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import {wrap} from 'module';
+configure({adapter: new Adapter()});
 
 /////////////////////////////////////////////////
 /* Comoponent Behaviours

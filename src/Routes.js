@@ -18,6 +18,8 @@ import Order from "./containers/Order";
 import StaffSignup from "./containers/StaffSignup";
 import Dashboard from "./containers/Dashboard";
 import OrderInfo from "./containers/OrderInfo";
+import CancelOrder from "./containers/CancelOrder";
+import ActivityFeed from "./containers/ActivityFeed";
 
 export default ({childProps}) => 
 <div>
@@ -40,8 +42,18 @@ export default ({childProps}) =>
 		<AuthenticatedRoute  path="/myorders" component={StudentOrderList} props={childProps}/>
 		</NonStaffRoute>
 
+
+<NonStaffRoute path="/cancelorder/:orderId/:userId" component={CancelOrder}  props={childProps}>
+		<AuthenticatedRoute  path="/cancelorder/:orderId/:userId" component={CancelOrder} props={childProps}/>
+		</NonStaffRoute >
+
+
 		<StaffAuthRoute path="/dashboard" component={Dashboard}  props={childProps}>
 		<AuthenticatedRoute  path="/dashboard" component={Dashboard} props={childProps}/>
+		</StaffAuthRoute >
+
+		<StaffAuthRoute path="/activity" component={ActivityFeed}  props={childProps}>
+		<AuthenticatedRoute  path="/activity" component={ActivityFeed} props={childProps}/>
 		</StaffAuthRoute >
 
 		<StaffAuthRoute path="/orderinfo/:orderId/:userId" component={OrderInfo}  props={childProps}>

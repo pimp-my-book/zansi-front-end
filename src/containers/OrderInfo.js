@@ -1,7 +1,6 @@
 import React, {Component} from "react"; 
 import { Query, Mutation} from "react-apollo";
-import styled from "styled-components";
-import { Col, Container, Row,  Badge, Form, Collapse, ListGroup } from "react-bootstrap";
+import { Col, Container, Row,  Badge, Form, ListGroup } from "react-bootstrap";
 import {VIEW_ORDER}from "../graphql/Queries";
 import { UPDATE_ORDER_STATUS, UPDATE_ORDER_INFO}from "../graphql/Mutations";
 import * as Icon from "react-feather";
@@ -34,7 +33,6 @@ export default class OrderInfo extends Component {
 		this.state = {
 			show: false,
 			showDetails: false,
-			openInfo: false,
 			eta : "",
 			costPrice : "",
 			sellingPrice: "",
@@ -93,7 +91,6 @@ export default class OrderInfo extends Component {
 			orderId
 		}
 	});
-		const orderItemID = data.viewOrder.orderId;
 		
 		  data.viewOrder.orderStatus = this.state.orderStatus;
 		
@@ -106,7 +103,7 @@ export default class OrderInfo extends Component {
 
 	render(){
 		const {orderId, userId} = this.props.match.params;
-       const {orderStatus, openInfo} = this.state;
+       const {orderStatus} = this.state;
 		
 		return(
 			<div>

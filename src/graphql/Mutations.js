@@ -41,3 +41,14 @@ export const UPDATE_ORDER_INFO = gql`
     }
   }
 `;
+
+
+export const CANCEL_ORDER = gql`
+  mutation CANCEL_ORDER($orderId: String!, $userId:String!, $orderStatus: String){
+      cancelOrder(orderId: $orderId, userId: $userId, orderStatus: $orderStatus){
+        orderStatus
+        __typename
+
+      }
+  }
+`;

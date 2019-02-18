@@ -107,6 +107,19 @@ class App extends Component {
 							   </Nav.Item>
 						}
 						
+						{this.state.isStaff &&
+							<Nav.Item className="mt-4 mr-3">
+							<DisplaySmall normal>
+							<LinkA
+							href="/activity"
+							>
+							Activity Feed
+							</LinkA>
+							   
+							   </DisplaySmall>
+							   </Nav.Item>
+						}
+						
 
 						  {!this.state.isStaff &&
 						  <Fragment>
@@ -179,6 +192,16 @@ class App extends Component {
 							</DisplaySmall>
 							
 						 </Nav.Item>
+
+						 <Nav.Item className="mt-4 mr-4">
+				             <DisplaySmall normal>
+							<LinkA
+							href="/signup"
+							>
+							Sign up
+							</LinkA>
+							</DisplaySmall>
+						   </Nav.Item>
 						 
 						 
 						  <Nav.Item className="mt-3 mr-4">
@@ -187,12 +210,12 @@ class App extends Component {
 						  to="/login"
 						  small="true"
 						  border="true"
+						  fill="true"
 						   />
-						  
-            
-			
-            
 						 </Nav.Item>
+                            
+                   
+						  
 						</Fragment>
 						
 						

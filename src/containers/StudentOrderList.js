@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import {Auth} from "aws-amplify";
 import { Query} from "react-apollo";
 import {STUDENT_ORDER_LIST}from "../graphql/Queries";
+
 import { Col, Container, Row,Image } from "react-bootstrap";
 import DisplayLarge from "../components/typography/DisplayLarge";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -15,17 +16,23 @@ export default class StudentOrderList extends Component{
 	
 	constructor(props) {
 		super(props);
+
+		
 	
 		this.state = {
-		  userId: ""
+		  userId: "",
+		 
 		};
 	  }
+
+
+	
 
 
 	  async componentDidMount(){
 		try {
 			 const userData = await Auth.currentSession()
-			  this.setState({userId: userData.userData.UserAttributes.Username});
+			  this.setState({userId: userData.UserAttributes.Username});
 
 			}catch (e){
 			if (e !== 'No Current User!') {
@@ -42,7 +49,12 @@ export default class StudentOrderList extends Component{
         const OrdersGrid = styled.div`
         display: grid;
         grid-gap: 20px;
-        grid-template-columns: repeat(2, 3fr);
+		grid-template-columns: repeat(2, 3fr);
+		
+		@media (max-width: 600px){
+			grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+			
+		 }
         `;
 
 		const Email = "https://s3.amazonaws.com/zansi-static-assest/Illustrations/undraw_empty_xct9.svg";
@@ -50,6 +62,12 @@ export default class StudentOrderList extends Component{
 
 		return(
 			<Fragment>
+
+				
+
+
+
+	{/* THE CONTAINER THAT RENDERS THE ORDERS*/}
 				<Container>
 					<Row>
 						<Col>
@@ -80,6 +98,7 @@ export default class StudentOrderList extends Component{
 
 									const myOrders = data.studentOrderList;
 									console.log(myOrders);
+									
 									if (!myOrders.length){
 										return(
 											<Fragment>
@@ -113,12 +132,17 @@ export default class StudentOrderList extends Component{
 												  
 												   
 												   <Fragment key={orders.orderId}>
-												 <OrderCard
+                                                     <OrderCard
 													   orderTitle={orders.title}
 													   orderID={orders.orderId}
 													   orderStatus={orders.orderStatus}
 													   orderDate={orders.dateOrdered}
+													   onClick={this.handleShow}
+													   linkOrderID={orders.orderId}
+                                                       linkUserID={orders.userId}
 													   /> 
+												
+                                       
 												   </Fragment>
 												  
 												  
@@ -139,6 +163,7 @@ export default class StudentOrderList extends Component{
 						</Col>
 					</Row>
 				</Container>
+				{/* THE  END CONTAINER THAT RENDERS THE ORDERS*/}
                 </Fragment>
 		);
       
