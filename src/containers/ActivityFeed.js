@@ -13,9 +13,9 @@ export default class ActivityFeed extends Component {
 	render(){
 		return(
             
-            <Container>
-            <Row className="justify-content-center">            		
-            <Col lg={5}>
+			<Container>
+				<Row className="justify-content-center">            		
+					<Col lg={5}>
             			<DisplayLarge >
                           Activity Feed
  							</DisplayLarge>
@@ -26,61 +26,80 @@ export default class ActivityFeed extends Component {
             		{({data, loading, error}) => {
 
             			if (loading) return <Container>
-                            <Row className="justify-content-center">
-                                <Col >
-                                <LoadingSpinner/>
-                                </Col>
-                            </Row>
-                        </Container>;
+								<Row className="justify-content-center">
+									<Col >
+										<LoadingSpinner/>
+									</Col>
+								</Row>
+							</Container>;
             			if (error) return <Info
             				text={`${error}`}
-                            variant="danger"/>;
+								variant="danger"/>;
                             
-                            const activties = data.orderList.sort((l1,l2) => l1.statusDate - l2.statusDate);
-            			return (
-            				
-            		     <Col  lg={8}>
-                     {activties.map(orders => (
                        
+							const activties =  data.orderList.sort((l2,l1) => l2.statusDate - l1.statusDate);
+							if(!activties.length){
+                                return (
+                                    <Container>
+                                    <Row>
+                                        <Col>
+                                        <Info
+									text="No cancellations have been requested yet."
+									variant="info"/>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                                );
+							} else {
+								return (
+            				
+									<Col  lg={8}>
+										{activties.map(orders => (
+                                  
+           
+											<Fragment
+												key={orders.orderId}
+											>
+												{orders.orderStatus === "Cancel Request" &&  
+                                
+                               <ActivityCard
+                               
+                               	orderOwner={orders.name}
+                               	orderID={orders.orderId}
+                               	userID={orders.userId}
+                               	statusDate={orders.updateDate}
+                               />
+                               
+												}
+           
+           
+												{ orders.orderStatus === "Cancel Requested" &&
+                                
+                                <ActivityCard
+                                	orderOwner={orders.name}
+                                	orderID={orders.orderId}
+                                	userID={orders.userId}
+                                	statusDate={orders.updateDate}
+                                />
+                                
+												}
+											</Fragment>
+           
+           
+										))}
+									</Col>
+                               
+           
+								);
 
-                      <Fragment
-                      key={orders.orderId}
-                      >
-                       {orders.orderStatus === "Cancel Request" &&  
-                     
-                    <ActivityCard
-                    
-                    orderOwner={orders.name}
-                   orderID={orders.orderId}
-                     userID={orders.userId}
-                  statusDate={orders.updateDate}
-                  />
-                    
-                }
-
-
-   { orders.orderStatus === "Cancel Requested" &&
-                     
-                     <ActivityCard
-                     orderOwner={orders.name}
-                    orderID={orders.orderId}
-                      userID={orders.userId}
-                   statusDate={orders.updateDate}
-                   />
-                     
-                 }
-                      </Fragment>
-
-
-                     ))}
-            		      </Col>
-            	    
-
-            			);
+							}
+                        
+                        
+                           
             		}}
             	</Query>
-                </Row>
-            </Container>
+				</Row>
+			</Container>
 
            
             	
