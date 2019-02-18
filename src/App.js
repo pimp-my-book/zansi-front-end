@@ -210,6 +210,7 @@ class App extends Component {
 						  to="/login"
 						  small="true"
 						  border="true"
+						  fill="true"
 						   />
 						 </Nav.Item>
                             

@@ -20,15 +20,6 @@ const Home = () => {
    color: white;
    `;
 
-	const LinkButton = styled.a`
-color: #ff6bd6;
-background-color: transparent;
-border: 2px solid #ff6bd6;
-padding: 10px;
-border-radius: 8px;
-width: 156px;
-font-size: 20px;
-`;
 
 
 	const float = keyframes`
