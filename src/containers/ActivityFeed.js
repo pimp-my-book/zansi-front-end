@@ -82,7 +82,9 @@ export default class ActivityFeed extends Component {
                                 	statusDate={orders.updateDate}
                                 />
                                 
-												}
+                                                }
+                                                
+                                        
 											</Fragment>
            
            
