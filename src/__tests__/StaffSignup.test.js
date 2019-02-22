@@ -30,6 +30,25 @@ describe('<StaffSignup/>', ()=> {
           <StaffSignup/>
       )
     });
+
+
+    
+  it("renders loading state", () => {
+
+});
+
+it("renders error ui", () => {
+
+});
+
+it("able to signup", () => {
+
+});
+
+
+it("not able to signup", () => {
+
+});
     
     
     });
