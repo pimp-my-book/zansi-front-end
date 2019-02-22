@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from "react-test-renderer";
+import {MockedProvider} from "react-apollo/test-utils";
+import {PLACE_ORDER_MUTATION} from "../graphql/Mutations";
 import Order from '../containers/Order';
 import {mount,configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -41,3 +43,34 @@ Once the order form has been submitted it should render a orderConfirmationForm.
 --Look for if states & ternary operators.
 */
 /////////////////////////////////////////////////////
+
+const mocks = [
+    {
+
+    }
+];
+
+describe("<Order/>", () => {
+
+
+    it("renders without crashing", () => {
+
+    });
+
+    it("renders loading state", () => {
+
+    });
+
+    it("renders error ui", () => {
+
+    });
+
+    it("able to place an order", () => {
+
+    });
+
+
+    it("not able to place an order", () => {
+
+    });
+}); 

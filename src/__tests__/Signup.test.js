@@ -49,8 +49,33 @@ React Router
 //////////////////////////////////////////////////
 
 
-it('renders without crashing', () => {
-  renderer.create(
-      <Signup/>
-  )
+
+describe("<Signup/>", () => {
+
+  it('renders without crashing', () => {
+    renderer.create(
+        <Signup/>
+    )
+  });
+
+  
+  
+  it("renders loading state", () => {
+
+  });
+
+  it("renders error ui", () => {
+
+  });
+
+  it("able to signup", () => {
+
+  });
+
+
+  it("not able to signup", () => {
+
+  });
+
 });
+
