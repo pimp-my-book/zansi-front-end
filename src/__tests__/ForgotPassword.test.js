@@ -51,6 +51,11 @@ User needs to see a message telling them to be redirected to the Login Page
 //configure enzyme adpater
 configure({adapter: new Adapter()});
 
+function type(wrapper, name,value) {
+	wrapper.find(`Form.Control type=${name}`).simulate("change",{
+		target: {name, value}
+	});
+}
 
 describe("<ForgotPassword/>", () => {
 
@@ -69,27 +74,48 @@ describe("<ForgotPassword/>", () => {
 	it("calls the submit event for RequestCodeForm ", () =>{
 		const onSubmitFn = jest.fn();
 		const wrapper = mount(<ForgotPassword onSubmit={onSubmitFn}/>);
-        
-        const form = wrapper.find('.Request__Form');
-        form.simulate('submit');
-        expect(onSubmitFn).toHaveBeenCalledTimes(1);
-    });
+		
+		wrapper.update();
+		type(wrapper, "email", "me@goodmusic.com");
+		wrapper.update();
+		wrapper.find("Form").simulate("submit");
+       
+		expect(onSubmitFn).toHaveBeenCalledTimes(1);
+
+
+	});
     
 	it("Dispalys an error for email that is not on file", () =>{
-      return null;
+
+		return null;
 	});
     
     
 	it("calls the submit event for RequestConfirmationForm", () =>{
-        return null;
+		
+		const onSubmitFn = jest.fn();
+		const wrapper = mount(<ForgotPassword onSubmit={onSubmitFn}/>);
+		
+		wrapper.setSate({confirmed: true});
+		type(wrapper, "tell", "00254874");
+		type(wrapper, "password", "G3n!us");
+		wrapper.update();
+		wrapper.find("Form").simulate("submit");
+       
+		expect(onSubmitFn).toHaveBeenCalledTimes(1);
 	});
     
 	it("Dispalys an error for incorrect code or non-matching passwords", () =>{
-        return null;
+		return null;
 	});
     
 	it("renders the success page", () =>{
-        return null;
+		const onSubmitFn = jest.fn();
+		const wrapper = mount(<ForgotPassword onSubmit={onSubmitFn}/>);
+		
+		wrapper.setSate({confirmed: false});
+
+		expect(wrapper.find("DisplayMedium").text()).toContain("You Have a New Password!");
 	});
 
 
