@@ -7,6 +7,7 @@ import Dashboard from "../containers/Dashboard";
 import {mount,configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Info from "../components/Info";
 import {wrap} from "module";
 configure({adapter: new Adapter()});
 /////////////////////////////////////////////////
@@ -47,26 +48,29 @@ const mocks = [
 		result: {
 			data: {
 				order1: {
-					orderId: "34444444343",
+                    orderId: "34444444343",
+                    studentNumber: "2323mlk",
 					name: "SBTRK",
 					status: "Recieved",
-                    dateOrdered: "2 days ago",
-                    title: "Such a Savage"
+					dateOrdered: "2 days ago",
+					title: "Such a Savage"
 				}, 
         
 				order2: {
-					orderId: "4535343423423",
+                    orderId: "4535343423423",
+                    studentNumber: "34343err",
 					name: "Bakar",
 					status: "Recieved",
-                    dateOrdered: "2 days ago",
-                    title: "One Way Road"
+					dateOrdered: "2 days ago",
+					title: "One Way Road"
 				}, 
 				order3: {
-					orderId: "235234324",
+                    orderId: "235234324",
+                    studentNumber: "dfdfdg675",
 					name: "Brooke",
 					status: "Cancel Requested",
-                    dateOrdered: "2 days ago",
-                    title: "Say My Name Across the Boarder"
+					dateOrdered: "2 days ago",
+					title: "Say My Name Across the Boarder"
 				}, 
 			}
 		}
@@ -79,9 +83,9 @@ describe("<Dashboard/>", ()=> {
   
 	it("renders without crashing", () => {
 		renderer.create(
-            <MockedProvider mocks={[]}>
-               <Dashboard/>
-            </MockedProvider>
+			<MockedProvider mocks={[]}>
+				<Dashboard/>
+			</MockedProvider>
 			
 		);
 	});
@@ -92,17 +96,49 @@ describe("<Dashboard/>", ()=> {
 	});
     
 
-    it("renders the loading state", () => {
+	it("renders the loading state", () => {
         
-           const wrapper = mount(
-                <MockedProvider mocks={[]}>
-                   <Dashboard/>
-                </MockedProvider>
+		const wrapper = mount(
+			<MockedProvider mocks={[]}>
+				<Dashboard/>
+			</MockedProvider>
                 
-            );
+		);
 
-            expect(wrapper).toContain(<LoadingSpinner/>);
+		//expect(wrapper).toMatchObject(<LoadingSpinner/>);
+		expect(wrapper.find(<LoadingSpinner/>));
+    });
+    
+
+    it("renders an error ui when it can't query the API", () => {
+        const wrapper = mount(
+			<MockedProvider mocks={[]}>
+				<Dashboard/>
+			</MockedProvider>
+                
+        );
         
+        expect(wrapper.find(<Info/>));
+    });
+
+    it("renderes te orders to the table",() => {
+        const wrapper = mount(
+			<MockedProvider mocks={mocks}>
+				<Dashboard/>
+			</MockedProvider>
+                
+        );
+
+        expect(wrapper.find("td").text()).toBe(mocks.result.data.order1.orderId);
+        expect(wrapper.find("td").text()).toBe(mocks.result.data.order1.name);
+        expect(wrapper.find("td").text()).toBe(mocks.result.data.order1.title);
+        expect(wrapper.find("td").text()).toBe(mocks.result.data.order1.dateOrdered);
+        expect(wrapper.find("td").text()).toBe(mocks.result.data.order1.studentNumber);
+        expect(wrapper.find("td").text()).toBe(mocks.result.data.order1.status);
+
+
+
+
     })
     
 });
