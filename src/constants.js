@@ -1,6 +1,7 @@
 export const Univeristies = [
 	"Choose",
 	"UKZN",
+	"UJ",
 	"UFS",
 	"UP",
 	"UCT",
