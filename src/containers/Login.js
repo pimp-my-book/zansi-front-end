@@ -62,57 +62,17 @@ export default class Login extends Component {
     render(){
         return (
             <Container>
-                <Row className="justify-content-center">
-                    <Col sm={6} lg={4}>
+                <Row className="justify-content-center mt-5">
+                    <Col sm={6} lg={6} >
                     
-                <DisplayMedium className="text-center">Welcome Back!</DisplayMedium>
-                {this.state.error && 
-                       <Info 
-                       text={this.state.error}
-                       variant="danger"
-                       />
-                       }
-                <Form className="justify-content-center" onSubmit={this.handleSubmit}>
-                <Form.Group  controlId="email" >
-                <Form.Label><Textbody>Email</Textbody></Form.Label>
-                <Form.Control
-
-                required
-                type="email"
-                value={this.state.email}
-                onChange={this.handleChange('email')}
-                />
-                </Form.Group>
-                <Form.Group controlId="password" >
-                <Form.Label><Textbody>Password</Textbody></Form.Label>
-                <Form.Control
-                type="password"
-                required
-                
-                value={this.state.password}
-                onChange={this.handleChange('password')}
-                               />
-                </Form.Group>
-                <Form.Group>
-                <LinkButton sm href="/forgot-password" >
-                Forgot Your Password?
-                </LinkButton>
-                </Form.Group>
-                
-          <PrimaryButton
-             text="Login"
-             small="true"
-             disabled={!this.validateForm()}
-             className="mr-3"
-             type="submit"
-             isLoading={this.state.isLoading}
-             
-          /> 
+              <DisplayMedium>Sorry We are no longer providing support for Zansi. So please head over to GOA to place your orders.</DisplayMedium>
           
-         <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
+         <LinkButton 
+         className="mt-5"
+         sm href="https://gogoa.co.za" >Head to GOA</LinkButton>
         
           
-                </Form>
+            
                     </Col>
                 </Row>
             </Container>
