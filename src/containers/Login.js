@@ -106,7 +106,6 @@ export default class Login extends Component {
              className="mr-3"
              type="submit"
              isLoading={this.state.isLoading}
-             
           /> 
           
          <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
