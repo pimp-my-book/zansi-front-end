@@ -67,7 +67,9 @@ export default class Login extends Component {
                     
               <DisplayMedium>Sorry We are no longer providing support for Zansi. So please head over to GOA to place your orders.</DisplayMedium>
           
-         <LinkButton sm href="/signup" >Don't Have An Account?</LinkButton>
+         <LinkButton 
+         className="mt-5"
+         sm href="https://gogoa.co.za" >Head to GOA</LinkButton>
         
           
             
